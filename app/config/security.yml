@@ -16,7 +16,7 @@ security:
             memory:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_SUPER_ADMIN' ] }
 
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
@@ -45,8 +45,20 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
 
+        main:
+            pattern: ^/
+            form_login:
+                provider: in_memory
+                csrf_provider: form.csrf_provider
+                login_path: /login
+                check_path: /login_check
+            logout:
+                path:   /logout
+                target: /
+            anonymous:    true
+
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/admin/, role: ROLE_ADMIN }
