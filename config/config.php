@@ -1,0 +1,4 @@
+<?php
+
+const APPID = "468672573284887";
+const APPSECRET = "7c587c1b5dda8bf23c26c2ce7128fe50";
