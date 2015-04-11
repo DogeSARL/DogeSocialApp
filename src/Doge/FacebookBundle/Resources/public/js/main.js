@@ -4,6 +4,6 @@ $(document).ready(function(){
   	pager: false,
   	adaptiveHeight: false,
   	controls: false,
-  	auto: false
+  	auto: true
   });
 });

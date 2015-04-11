@@ -13,27 +13,30 @@
         <script src="{{ asset("bundles/dogefacebook/js/vendor/modernizr-2.8.3.min.js") }}"></script>
     </head>
     <body>
-        <header>
+
+        <div id="container" class="page_home clearfix">
+            <header>
             <img class="logo" src="{{ asset("bundles/dogefacebook/img/KawaiiPetsLogo.png") }}" alt="Kawaii Pets">
         </header>
-        <div id="container" class="page_home clearfix">
             <div>
                 <h1>Become the sublime model<br />of Kawaii Pets</h1>
                 <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
-                <div class="slider_home_wrapper">
-                    <ul class="slide_home">
-                        <li>
-                            <img src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}" alt="">
-                        </li>
-                        <li>
-                            <img src="{{ asset("bundles/dogefacebook/img/slide02.jpg") }}" alt="">
-                        </li>
-                        <li>
-                            <img src="{{ asset("bundles/dogefacebook/img/slide03.jpg") }}" alt="">
-                        </li>
-                    </ul>
-                    <a href="" class="cta_login">Login</a>
-                </div>
+                <a class="cta_home_link" href="">
+                    <div class="slider_home_wrapper">
+                        <ul class="slide_home">
+                            <li>
+                                <img src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}" alt="">
+                            </li>
+                            <li>
+                                <img src="{{ asset("bundles/dogefacebook/img/slide02.jpg") }}" alt="">
+                            </li>
+                            <li>
+                                <img src="{{ asset("bundles/dogefacebook/img/slide03.jpg") }}" alt="">
+                            </li>
+                        </ul>
+                        <div href="" class="cta_login">Login</div>
+                    </div>
+                </a>
             </div>
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

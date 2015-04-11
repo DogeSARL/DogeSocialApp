@@ -99,9 +99,7 @@ header{
     width: 810px;
     height: auto;
     text-align: center;
-    background-color: #de5995;
     padding: 30px 0;
-    border-bottom: 1px solid #d9d9d9;
 }
 
 img.logo{width: 130px; height: auto; margin: 0 auto;}
@@ -111,6 +109,8 @@ img.logo{width: 130px; height: auto; margin: 0 auto;}
     height: 927px;
     background-color: #a5c8ec;
     text-align:  center;
+    background-image: url('../img/swimmingpool.jpg');
+    background-repeat: no-repeat;
 }
 
 #container.page_home h1{
@@ -149,14 +149,20 @@ ul.slide_home{
     margin: 70px auto 0;
     padding: 0;
     left: 0;
-    border:none;
+    border: 10px solid #fff;
     background: none;
     overflow: hidden;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     -o-box-shadow: none;
     box-shadow: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
+
+#container.page_home a.cta_home_link:hover .bx-wrapper .bx-viewport{/* border-color:#ce9249; */ border-color: #f6ad54;}
 
 #container.page_home .bx-wrapper .bx-viewport ul.slide_home img{
     margin: 0 auto;
@@ -174,10 +180,10 @@ ul.slide_home{
     background-position: center center;
     margin-top: -24px;
     opacity: 0.6;
-    -webkit-transition: opacity .3s ease-in-out;
-    -moz-transition: opacity .3s ease-in-out;
-    -o-transition: opacity .3s ease-in-out;
-    transition: opacity .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 #container.page_home .bx-wrapper li{
@@ -198,10 +204,10 @@ ul.slide_home{
     background-image: url('../img/nav-left.png');
 }
 
-a.cta_login{
+a.cta_home_link div.cta_login{
     width: 312px;
     background: none repeat scroll 0 0 #f6f6f6;
-    border: 1px solid #f6f6f6;
+    /* border: 1px solid #f6f6f6; */
     color: #000;
     display: block;
     position: absolute;
@@ -221,9 +227,9 @@ a.cta_login{
     transition: 0.2s;
 }
 
-a.cta_login:hover{
-    border: 1px solid #9e7234;
-    background: #ce9249;
+a.cta_home_link:hover div.cta_login{
+    /* border: 1px solid #9e7234; */
+    background: #f6ad54;
     color:#FFF;
 }
 
