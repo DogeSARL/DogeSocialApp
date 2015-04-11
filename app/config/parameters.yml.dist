@@ -18,3 +18,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    doge_facebook.appId: 468672573284887
+    doge_facebook.appSecret: 7c587c1b5dda8bf23c26c2ce7128fe50
