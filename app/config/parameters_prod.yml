@@ -1,0 +1,17 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver:    pdo_pgsql
+    database_host:      ec2-54-247-125-202.eu-west-1.compute.amazonaws.com
+    database_port:      5432
+    database_name:      d8ul3ddagiij8g
+    database_user:      mdiwfkxrnheurq
+    database_password:  smPd8JNEobgAIHgTZ3k3fJpQTL
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: fr
+    secret: b1dc7b45995f4b691925de8d1090b0b35078ca33
+
+    doge_facebook.appId: 468672573284887
+    doge_facebook.appSecret: 7c587c1b5dda8bf23c26c2ce7128fe50

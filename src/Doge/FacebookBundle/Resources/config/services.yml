@@ -1,4 +1,5 @@
 services:
-#    doge_facebook.example:
-#        class: Doge\FacebookBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    doge_facebook.session.helper:
+        class: Doge\FacebookBundle\Helper\Facebook\FacebookSessionHelper
+        scope: request
+        arguments: [ @request, @router, %doge_facebook.appId%, %doge_facebook.appSecret% ]
