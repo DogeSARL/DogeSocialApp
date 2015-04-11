@@ -1,3 +1,7 @@
 doge_facebook_homepage:
     path:     /admin/hello/{name}
     defaults: { _controller: DogeFacebookBundle:Default:index }
+
+doge_facebook_home:
+    path:     /
+    defaults: { _controller: DogeFacebookBundle:Default:test }

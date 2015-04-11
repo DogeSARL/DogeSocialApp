@@ -6,14 +6,16 @@
  * Time: 20:01
  */
 
-namespace Doge\Handler;
+namespace Doge\FacebookBundle\Helper\Facebook;
 
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Router;
 
-class FacebookSessionHandler{
+class FacebookSessionHelper{
 
     /**
      * @var FacebookRedirectLoginHelper
@@ -31,12 +33,15 @@ class FacebookSessionHandler{
     protected $user = null;
 
     /**
-     * @param string $link
+     * @param Request $request
+     * @param string $appId
+     * @param string $appSecret
      */
-    public function __construct( $link = "" )
+    public function __construct( Request $request, Router $router, $appId, $appSecret )
     {
-        FacebookSession::setDefaultApplication(APPID, APPSECRET);
-        $this->helper = new FacebookRedirectLoginHelper( "https://dogesocialapp.herokuapp.com/" );
+
+        FacebookSession::setDefaultApplication( $appId, $appSecret );
+        $this->helper = new FacebookRedirectLoginHelper( $router->generate( "doge_facebook_home", [], Router::ABSOLUTE_URL ) );
     }
 
     /**
@@ -119,5 +124,13 @@ class FacebookSessionHandler{
     public function isUserConnected()
     {
         return ( $this->session || $_SESSION && isset( $_SESSION['fbToken'] ) );
+    }
+
+    /**
+     * @return string
+     */
+    public function getLoginUrl()
+    {
+        return $this->helper->getLoginUrl();
     }
 }
