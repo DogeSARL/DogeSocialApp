@@ -3,3 +3,9 @@ services:
         class: Doge\FacebookBundle\Helper\Facebook\FacebookSessionHelper
         scope: request
         arguments: [ @request, @router, %doge_facebook.appId%, %doge_facebook.appSecret% ]
+
+    doge.oauth.user_provider:
+        class: Doge\FacebookBundle\Provider\OauthProvider
+        arguments:
+            - @fos_user.user_manager
+            - [ facebook: %doge_facebook.appid% ]

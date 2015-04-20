@@ -1,8 +1,10 @@
 doge_facebook:
     resource: "@DogeFacebookBundle/Resources/config/routing.yml"
     prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /admin
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
@@ -12,5 +14,10 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-login_check:
-    pattern:   /login_check
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login

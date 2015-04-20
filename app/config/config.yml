@@ -76,3 +76,13 @@ fos_user:
     db_driver:     orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class:    Doge\FacebookBundle\Entity\User
+
+hwi_oauth:
+    firewall_name: main
+    resource_owners:
+        facebook:
+            type: facebook
+            client_id: %doge_facebook.appId%
+            client_secret: %doge_facebook.appSecret%
+            options:
+                display: popup #dialog is optimized for popup window
