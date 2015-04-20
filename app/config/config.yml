@@ -88,5 +88,3 @@ hwi_oauth:
             type: facebook
             client_id: %doge_facebook.appId%
             client_secret: %doge_facebook.appSecret%
-            options:
-                display: popup #dialog is optimized for popup window
