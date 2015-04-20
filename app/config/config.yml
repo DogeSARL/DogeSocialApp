@@ -79,6 +79,8 @@ fos_user:
 
 hwi_oauth:
     firewall_name: main
+    connect:
+        account_connector: my_user_provider
     fosub:
         username_iterations: 30
         properties:
