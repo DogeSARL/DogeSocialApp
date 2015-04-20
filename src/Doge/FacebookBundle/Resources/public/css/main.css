@@ -204,7 +204,7 @@ ul.slide_home{
     background-image: url('../img/nav-left.png');
 }
 
-a.cta_home_link a.cta_login{
+a.cta_home_link div.cta_login{
     width: 312px;
     background: none repeat scroll 0 0 #f6f6f6;
     /* border: 1px solid #f6f6f6; */
@@ -227,7 +227,7 @@ a.cta_home_link a.cta_login{
     transition: 0.2s;
 }
 
-a.cta_home_link:hover a.cta_login{
+a.cta_home_link:hover div.cta_login{
     /* border: 1px solid #9e7234; */
     background: #f6ad54;
     color:#FFF;
