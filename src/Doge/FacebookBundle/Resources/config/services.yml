@@ -6,6 +6,4 @@ services:
 
     doge.oauth.user_provider:
         class: Doge\FacebookBundle\Provider\OauthProvider
-        arguments:
-            - @fos_user.user_manager
-            - [ facebook: %doge_facebook.appid% ]
+        arguments: [ @fos_user.user_manager, { facebook: %doge_facebook.appid% } ]
