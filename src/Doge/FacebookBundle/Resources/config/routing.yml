@@ -10,6 +10,10 @@ doge_facebook_slideshow:
     path: /slideshow
     defaults: { _controller: DogeFacebookBundle:Home:slideshow }
 
+doge_facebook_upload:
+    path: /upload
+    defaults: { _controller: DogeFacebookBundle:Home:uploadPhoto }
+
 doge_facebook_admin_index:
     path:     /admin/index
     defaults: { _controller: DogeFacebookBundle:Admin:index }
