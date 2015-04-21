@@ -16,12 +16,11 @@
 
         <div id="container" class="page_home clearfix">
             <header>
-            <img class="logo" src="{{ asset("bundles/dogefacebook/img/KawaiiPetsLogo.png") }}" alt="Kawaii Pets">
+            <a href="{{ path("doge_facebook_homepage") }}"><img class="logo" src="{{ asset("bundles/dogefacebook/img/KawaiiPetsLogo.png") }}" alt="Kawaii Pets"></a>
         </header>
             <div>
                 <h1>Become the sublime model<br />of Kawaii Pets</h1>
                 <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
-                <a class="cta_home_link" href="{% if app.user %}{{ path("doge_facebook_homepage") }}{% else %}{{ hwi_oauth_login_url("facebook") }}{% endif %}">
                     <div class="slider_home_wrapper">
                         <ul class="slide_home">
                             <li>
@@ -34,7 +33,6 @@
                                 <img src="{{ asset("bundles/dogefacebook/img/slide03.jpg") }}" alt="">
                             </li>
                         </ul>
-                        <div class="cta_login">{% if app.user %}Voir les photos{% else %}Login{% endif %}</div>
                     </div>
                 </a>
             </div>

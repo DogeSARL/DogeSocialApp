@@ -20,14 +20,40 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var strinh$=g
      * @ORM\Column(type="string", type="string", length=255, nullable=true)
      */
     protected $facebookId;
 
     /**
+     * @var string
      * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true)
      */
     protected $facebookAccessToken;
+
+    /**
+     * @var string
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     */
+    protected $nom;
+
+    /**
+     * @var string
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     */
+    protected $prenom;
+
+    /**
+     * @var \Datetime
+     * @ORM\Column(name="birthday", type="datetime", length=255, nullable=true)
+     */
+    protected $birthDay;
+
+    /**
+     * @var string
+     * @ORM\Column(name="gender", type="string", length=10, nullable=true)
+     */
+    protected $gender;
 
     public function __construct()
     {
@@ -65,5 +91,69 @@ class User extends BaseUser
     public function setFacebookAccessToken($facebookAccessToken)
     {
         $this->facebookAccessToken = $facebookAccessToken;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBirthDay()
+    {
+        return $this->birthDay;
+    }
+
+    /**
+     * @param mixed $birthDay
+     */
+    public function setBirthDay($birthDay)
+    {
+        $this->birthDay = $birthDay;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * @param mixed $prenom
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
     }
 }

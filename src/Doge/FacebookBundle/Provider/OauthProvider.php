@@ -44,6 +44,7 @@ class OauthProvider extends BaseClass
     {
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
@@ -59,6 +60,7 @@ class OauthProvider extends BaseClass
             $user->setUsername($username);
             $user->setEmail($username);
             $user->setPassword($username);
+
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
             return $user;
@@ -66,6 +68,14 @@ class OauthProvider extends BaseClass
 
         //if user exists - go with the HWIOAuth way
         $user = parent::loadUserByOAuthUserResponse($response);
+
+        $user->setNom($response->getResponse()["first_name"]);
+        $user->setPrenom($response->getResponse()["last_name"]);
+        $user->setGender($response->getResponse()["gender"]);
+
+        echo "<pre>";
+        \Doctrine\Common\Util\Debug::dump($user);
+        echo "</pre>";
 
         $serviceName = $response->getResourceOwner()->getName();
         $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
