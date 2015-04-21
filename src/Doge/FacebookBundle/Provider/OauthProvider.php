@@ -45,6 +45,9 @@ class OauthProvider extends BaseClass
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
 
+        echo "<pre>";
+        \Doctrine\Common\Util\Debug::dump($response->getResponse());
+        echo "</pre>";
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
@@ -63,6 +66,12 @@ class OauthProvider extends BaseClass
             $user->setNom($response->getResponse()["first_name"]);
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
+
+            echo "<pre>";
+            \Doctrine\Common\Util\Debug::dump($user);
+            echo "</pre>";
+            die;
+
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
             return $user;
