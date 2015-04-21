@@ -55,6 +55,12 @@ class User extends BaseUser
      */
     protected $gender;
 
+    /**
+     * @var string
+     * @ORM\Column(name="country", type="string", length=10, nullable=true)
+     */
+    protected $country;
+
     public function __construct()
     {
         parent::__construct();
@@ -155,5 +161,21 @@ class User extends BaseUser
     public function setGender($gender)
     {
         $this->gender = $gender;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
     }
 }
