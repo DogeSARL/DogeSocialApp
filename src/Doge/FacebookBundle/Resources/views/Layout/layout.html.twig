@@ -1,0 +1,27 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block css %}
+    {% include 'DogeFacebookBundle:Layout:stylesheet.html.twig' %}
+    {% endblock css %}
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn:400,400italic,700' rel='stylesheet' type='text/css'>
+    <script src="{{ asset("bundles/dogefacebook/js/vendor/modernizr-2.8.3.min.js") }}"></script>
+</head>
+<body>
+<div id="container" class="page_home clearfix">
+    <header>
+        <a href="{{ path("doge_facebook_homepage") }}"><img class="logo" src="{{ asset("bundles/dogefacebook/img/KawaiiPetsLogo.png") }}" alt="Kawaii Pets"></a>
+    </header>
+    {% block content %}
+    {% endblock %}
+</div>
+{% block js %}
+{% include 'DogeFacebookBundle:Layout:javascript.html.twig' %}
+{% endblock %}
+</body>
+</html>
