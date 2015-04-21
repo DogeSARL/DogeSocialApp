@@ -44,6 +44,9 @@ class OauthProvider extends BaseClass
     {
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+        echo "<pre>";
+        \Doctrine\Common\Util\Debug::dump($response);
+        echo "</pre>";die;
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
