@@ -49,6 +49,11 @@ class User extends BaseUser
      */
     protected $birthDay;
 
+    /**
+     * @var string
+     * @ORM\Column(name="gender", type="string", length=10, nullable=true)
+     */
+    protected $gender;
 
     public function __construct()
     {
