@@ -1,57 +1,46 @@
-<!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ asset("bundles/dogefacebook/css/normalize.css") }}">
-        <link rel="stylesheet" href="{{ asset("bundles/dogefacebook/css/main.css") }}">
-        <link rel="stylesheet" href="{{ asset("bundles/dogefacebook/js/jquery.bxslider/jquery.bxslider.css") }}">
-        <link href='http://fonts.googleapis.com/css?family=Vollkorn:400,400italic,700' rel='stylesheet' type='text/css'>
-        <script src="{{ asset("bundles/dogefacebook/js/vendor/modernizr-2.8.3.min.js") }}"></script>
-    </head>
-    <body>
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
 
-        <div id="container" class="page_home clearfix">
-            <header>
-            <img class="logo" src="{{ asset("bundles/dogefacebook/img/KawaiiPetsLogo.png") }}" alt="Kawaii Pets">
-        </header>
-            <div>
-                <h1>Become the sublime model<br />of Kawaii Pets</h1>
-                <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
-                <a class="cta_home_link" href="{% if app.user %}{{ path("doge_facebook_homepage") }}{% else %}{{ hwi_oauth_login_url("facebook") }}{% endif %}">
-                    <div class="slider_home_wrapper">
-                        <ul class="slide_home">
-                            <li>
-                                <img src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}" alt="">
-                            </li>
-                            <li>
-                                <img src="{{ asset("bundles/dogefacebook/img/slide02.jpg") }}" alt="">
-                            </li>
-                            <li>
-                                <img src="{{ asset("bundles/dogefacebook/img/slide03.jpg") }}" alt="">
-                            </li>
-                        </ul>
-                        <div class="cta_login">{% if app.user %}Voir les photos{% else %}Login{% endif %}</div>
-                    </div>
-                </a>
-            </div>
+
+
+{% block content %}
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=468672573284887";
+                fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+        <div>
+            <h1>Become the sublime model<br />of Kawaii Pets</h1>
+            <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
+
+            <a class="cta_home_link" href="{% if app.user %}{{ path("doge_facebook_homepage") }}{% else %}{{ hwi_oauth_login_url("facebook") }}{% endif %}">
+                {% if app.user %}Voir les photos{% else %}Login{% endif %}
+            </a>
+
+                <div class="slider_home_wrapper">
+                    <ul class="slide_home">
+                        <li>
+                            <img src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}" alt="">
+                        </li>
+                        <li>
+                            <img src="{{ asset("bundles/dogefacebook/img/slide02.jpg") }}" alt="">
+                        </li>
+                        <li>
+                            <img src="{{ asset("bundles/dogefacebook/img/slide03.jpg") }}" alt="">
+                        </li>
+                    </ul>
+
+                </div>
+
         </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-        <script src="{{ asset("bundles/dogefacebook/js/plugins.js") }}"></script>
-        <script src="{{ asset("bundles/dogefacebook/js/jquery.bxslider/jquery.bxslider.min.js") }}"></script>
-        <script src="{{ asset("bundles/dogefacebook/js/main.js") }}"></script>
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-    </body>
-</html>
+        <div class="fb-like" data-href="https://dogesocialapp.herokuapp.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+
+{% endblock %}
+
+
+{% block js %}
+    {{ parent() }}
+{% endblock %}
