@@ -10,5 +10,10 @@ class HomeController extends Controller
 
     return $this->render('DogeFacebookBundle:Home:new.html.twig');
   }
+
+    public function slideshowAction()
+    {
+        return $this->render("DogeFacebookBundle:Home:slideshow.html.twig");
+    }
 }
 
