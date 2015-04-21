@@ -140,4 +140,20 @@ class User extends BaseUser
     {
         $this->prenom = $prenom;
     }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
 }
