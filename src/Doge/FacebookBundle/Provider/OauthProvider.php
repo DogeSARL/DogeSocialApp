@@ -48,6 +48,9 @@ class OauthProvider extends BaseClass
         echo "<pre>";
         \Doctrine\Common\Util\Debug::dump($response->getResponse());
         echo "</pre>";
+        echo "<pre>";
+        \Doctrine\Common\Util\Debug::dump($user);
+        echo "</pre>";die;
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
