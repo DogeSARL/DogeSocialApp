@@ -26,6 +26,7 @@ class HomeController extends Controller
         $form = $formBuilder->getForm();
         $message = "";
 
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($request->getMethod() == "POST" && $this->getUser()); echo "</pre>";die;
         if( $request->getMethod() == "POST" && $this->getUser() ){
             $form->handleRequest( $request );
 
