@@ -35,7 +35,7 @@ class HomeController extends Controller
 
             $file = $form->get("file")->getData();
 
-            $extension = $file->guessExtension();
+//            $extension = $file->guessExtension();
 
             $fileName = explode( ".", $file->getClientOriginalName() );
             array_pop( $fileName );
