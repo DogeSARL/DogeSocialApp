@@ -54,6 +54,7 @@ class HomeController extends Controller
                     )
                 ))->execute()->getGraphObject();
 
+                die;
                 // If you're not using PHP 5.5 or later, change the file reference to:
                 // 'source' => '@/path/to/file.name'
                 $message = "ok";
