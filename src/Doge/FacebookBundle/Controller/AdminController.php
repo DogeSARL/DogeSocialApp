@@ -11,8 +11,16 @@ class AdminController extends Controller
   public function indexAction() {
 
     $url = 'https://api.facebook.com/method/fql.query?query=select%20like_count%20from%20link_stat%20where%20url=%27https://www.facebook.com/pages/Kawaii-Pets/801971733218893?fref=ts/%27&format=json';
-    $obj = json_decode(file_get_contents($url), true);
-    return $this->render('DogeFacebookBundle:Admin:index.html.twig', ['json' => $obj]);
+    $json = json_decode(file_get_contents($url), true);
+
+    $userStatsService = $this->get("doge_facebook.helper.stats.user");
+    $countries = [];
+
+    $users = $this->getDoctrine()->getManager()->getRepository("DogeFacebookBundle:User")->findAll();
+    $countries = $userStatsService->getCountries($users);
+    $user_per_country = $userStatsService->getUserPerCountry($users);
+
+    return $this->render('DogeFacebookBundle:Admin:index.html.twig', ['users' => $users, 'json' => $json, 'countries' => $countries, 'user_per_country' => $user_per_country]);
+
   }
 }
-
