@@ -41,7 +41,7 @@ class HomeController extends Controller
                 // a specific album by using /ALBUM_ID as the path
                 $response = (new FacebookRequest(
                     $this->getUser()->getFacebookAccessToken(), 'POST', '/me/photos', array(
-                        'source' => new \CURLFile( $this->getImageDir() . DIRECTORY_SEPARATOR . $fileName, $file->getMimeType() ),
+                        'source' => new \CURLFile( $this->getImageDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] ),
                         'message' => 'A photo'
                     )
                 ))->execute()->getGraphObject();
