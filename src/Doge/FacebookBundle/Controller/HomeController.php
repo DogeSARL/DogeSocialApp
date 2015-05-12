@@ -27,24 +27,15 @@ class HomeController extends Controller
         $message = "";
 
         if( $request->getMethod() == "POST" && $this->getUser() ){
-
-            try {
-            $form->handleRequest( $request );
-
             if( !is_dir( $this->getImageDir() ) ){
                 mkdir( $this->getImageDir(), 0764, true );
             }
 
-                $file = $form->get("file")->getData();
+            if( isset( $_FILES['form']['tmp_name']['file'] ) ){
+                move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
+            }
 
-                $extension = $file->guessExtension();
-
-                $fileName = explode( ".", $file->getClientOriginalName() );
-                array_pop( $fileName );
-                $fileName = implode( $fileName, "." );
-
-                $form->get("file")->getData()->move( $this->getImageDir(), "1_" . $fileName . '.' . $extension );
-
+            try {
                 // Upload to a user's profile. The photo will be in the
                 // first album in the profile. You can also upload to
                 // a specific album by using /ALBUM_ID as the path
@@ -60,8 +51,8 @@ class HomeController extends Controller
                 // 'source' => '@/path/to/file.name'
                 $message = "ok";
 
-            } catch(\Exception $e) {
-                die($e->getMessage());
+            } catch(FacebookRequestException $e) {
+                $message = "error";
             }
         }
 
