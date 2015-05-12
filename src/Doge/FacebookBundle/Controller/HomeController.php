@@ -40,7 +40,7 @@ class HomeController extends Controller
                 // first album in the profile. You can also upload to
                 // a specific album by using /ALBUM_ID as the path
                 $response = (new FacebookRequest(
-                    $this->getUser()->getFacebookAccessToken(), 'POST', '/me/photos', array(
+                    $this->get("doge_facebook.session.helper")->getSession(), 'POST', '/me/photos', array(
                         'source' => new \CURLFile( $this->getImageDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] ),
                         'message' => 'A photo'
                     )
