@@ -10,4 +10,4 @@ services:
 
     doge.facebook_session:
         class: Doge\FacebookBundle\Facebook\FacebookSession
-        arguments: [ @security.token_storage ]
+        arguments: [ @security.token_storage, %doge_facebook.appid%, %doge_facebook.appsecret% ]

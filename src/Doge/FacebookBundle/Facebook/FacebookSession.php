@@ -7,8 +7,10 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class FacebookSession extends BaseSession {
 
-    public function __construct( TokenStorage $tokenStorage )
+    public function __construct( TokenStorage $tokenStorage, $appId, $appSecret )
     {
+        FacebookSession::setDefaultApplication($appId, $appSecret);
+
         if( null != $tokenStorage->getToken() ){
             $user = $tokenStorage->getToken()->getUser();
 
