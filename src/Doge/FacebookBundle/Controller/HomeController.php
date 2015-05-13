@@ -36,14 +36,12 @@ class HomeController extends Controller
                 move_uploaded_file( $_FILES['form']['tmp_name']['file'], $file  );
             }
 
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->getUser()); echo "</pre>";
-
             try {
                 // Upload to a user's profile. The photo will be in the
                 // first album in the profile. You can also upload to
                 // a specific album by using /ALBUM_ID as the path
                 $response = (new FacebookRequest(
-                    $this->get("doge_facebook.session.helper")->getSession(), 'POST', '/me/photos', array(
+                    $this->get("doge.facebook_session"), 'POST', '/me/photos', array(
                         'source' => new \CURLFile( $file ),
                         'message' => 'A photo'
                     )
