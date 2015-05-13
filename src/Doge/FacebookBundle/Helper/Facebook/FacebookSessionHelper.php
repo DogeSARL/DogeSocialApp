@@ -39,9 +39,8 @@ class FacebookSessionHelper{
      */
     public function __construct( Request $request, Router $router, $appId, $appSecret )
     {
-
         FacebookSession::setDefaultApplication( $appId, $appSecret );
-        $this->helper = new FacebookRedirectLoginHelper( $router->generate( "doge_facebook_home", [], Router::ABSOLUTE_URL ) );
+        $this->helper = new FacebookRedirectLoginHelper( $router->generate( "doge_facebook_homepage", [], Router::ABSOLUTE_URL ) );
     }
 
     /**
