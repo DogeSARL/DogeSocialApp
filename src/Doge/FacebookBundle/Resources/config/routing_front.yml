@@ -9,3 +9,7 @@ doge_facebook_slideshow:
 doge_facebook_upload:
     path: /upload
     defaults: { _controller: DogeFacebookBundle:Home:uploadPhoto }
+
+doge_facebook_test_homepage:
+    path:     /test
+    defaults: { _controller: DogeFacebookBundle:Default:test }
