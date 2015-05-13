@@ -12,6 +12,8 @@ class FacebookSession extends BaseSession {
         if( null != $tokenStorage->getToken() ){
             $user = $tokenStorage->getToken()->getUser();
 
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($user); echo "</pre>";
+
             if( $user->getAccessToken() != null ){
                 parent::__construct( $user->getAccessToken() );
             }
