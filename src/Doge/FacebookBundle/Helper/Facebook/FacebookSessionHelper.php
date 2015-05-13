@@ -18,12 +18,6 @@ use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class FacebookSessionHelper{
-
-    /**
-     * @var FacebookRedirectLoginHelper
-     */
-    protected $helper;
-
     /**
      * @var FacebookSession
      */
@@ -42,7 +36,7 @@ class FacebookSessionHelper{
     /**
      * @var TokenStorage
      */
-    protected $tokenStorage;
+    protected $tokenStorage = null;
 
     /**
      * @param Request $request
@@ -52,8 +46,8 @@ class FacebookSessionHelper{
     public function __construct( Request $request, Router $router, TokenStorage $tokenStorage, $appId, $appSecret )
     {
         FacebookSession::setDefaultApplication( $appId, $appSecret );
-        $this->helper = new FacebookRedirectLoginHelper( $router->generate( "doge_facebook_homepage", [], Router::ABSOLUTE_URL ) );
         $this->tokenStorage = $tokenStorage;
+
         $this->user = $this->getUser();
 
         if( $this->user ){

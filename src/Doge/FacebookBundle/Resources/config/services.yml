@@ -7,3 +7,7 @@ services:
     doge.oauth.user_provider:
         class: Doge\FacebookBundle\Provider\OauthProvider
         arguments: [@fos_user.user_manager,{facebook: facebookId}]
+
+    doge.facebook_session:
+        class: Doge\FacebookBundle\Facebook\FacebookSession
+        arguments: [ @security.token_storage ]

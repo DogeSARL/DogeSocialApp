@@ -18,7 +18,7 @@ class DefaultController extends Controller
      */
     public function testAction( Request $request )
     {
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->get("doge_facebook.session.helper")); echo "</pre>";die;
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->get("doge.facebook_session")); echo "</pre>";die;
 
         return $this->render("DogeFacebookBundle:Default:test.html.twig", [ "loginUrl" => $loginUrl ] );
     }
