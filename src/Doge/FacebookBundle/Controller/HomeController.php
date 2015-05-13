@@ -40,6 +40,8 @@ class HomeController extends Controller
             echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(scandir($this->getImageDir() . "/../..")); echo "</pre>";
             echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(scandir($this->getImageDir() . "/../../..")); echo "</pre>";
 
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->getUser()); echo "</pre>";
+
 //            try {
 //                // Upload to a user's profile. The photo will be in the
 //                // first album in the profile. You can also upload to
