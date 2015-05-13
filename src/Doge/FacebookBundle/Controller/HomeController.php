@@ -32,34 +32,30 @@ class HomeController extends Controller
             }
 
             if( isset( $_FILES['form']['tmp_name']['file'] ) ){
-                move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getImageDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
+                $file = $this->getImageDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'];
+                move_uploaded_file( $_FILES['form']['tmp_name']['file'], $file  );
             }
-
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(scandir($this->getImageDir())); echo "</pre>";
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(scandir($this->getImageDir() . "/..")); echo "</pre>";
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(scandir($this->getImageDir() . "/../..")); echo "</pre>";
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(scandir($this->getImageDir() . "/../../..")); echo "</pre>";
 
             echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->getUser()); echo "</pre>";
 
-//            try {
-//                // Upload to a user's profile. The photo will be in the
-//                // first album in the profile. You can also upload to
-//                // a specific album by using /ALBUM_ID as the path
-//                $response = (new FacebookRequest(
-//                    $this->get("doge_facebook.session.helper")->getSession(), 'POST', '/me/photos', array(
-//                        'source' => new \CURLFile( $this->getImageDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] ),
-//                        'message' => 'A photo'
-//                    )
-//                ))->execute()->getGraphObject();
-//
-//                // If you're not using PHP 5.5 or later, change the file reference to:
-//                // 'source' => '@/path/to/file.name'
-//                $message = "ok";
-//
-//            } catch(FacebookRequestException $e) {
-//                $message = "error";
-//            }
+            try {
+                // Upload to a user's profile. The photo will be in the
+                // first album in the profile. You can also upload to
+                // a specific album by using /ALBUM_ID as the path
+                $response = (new FacebookRequest(
+                    $this->get("doge_facebook.session.helper")->getSession(), 'POST', '/me/photos', array(
+                        'source' => new \CURLFile( $file ),
+                        'message' => 'A photo'
+                    )
+                ))->execute()->getGraphObject();
+
+                // If you're not using PHP 5.5 or later, change the file reference to:
+                // 'source' => '@/path/to/file.name'
+                $message = "ok";
+
+            } catch(FacebookRequestException $e) {
+                $message = "error";
+            }
         }
 
         return $this->render("DogeFacebookBundle:Home:upload.html.twig", [ 'form' => $form->createView(), "message" => $message ]);
