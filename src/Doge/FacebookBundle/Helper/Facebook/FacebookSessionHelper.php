@@ -14,6 +14,7 @@ use Facebook\FacebookRequest;
 use Facebook\GraphUser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class FacebookSessionHelper{
 
@@ -33,14 +34,20 @@ class FacebookSessionHelper{
     protected $user = null;
 
     /**
+     * @var TokenStorage
+     */
+    protected $tokenStorage;
+
+    /**
      * @param Request $request
      * @param string $appId
      * @param string $appSecret
      */
-    public function __construct( Request $request, Router $router, $appId, $appSecret )
+    public function __construct( Request $request, Router $router, TokenStorage $tokenStorage, $appId, $appSecret )
     {
         FacebookSession::setDefaultApplication( $appId, $appSecret );
         $this->helper = new FacebookRedirectLoginHelper( $router->generate( "doge_facebook_homepage", [], Router::ABSOLUTE_URL ) );
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -48,32 +55,6 @@ class FacebookSessionHelper{
      *
      */
     protected function handleSession(){
-        $this->session = $this->helper->getSessionFromRedirect();
-
-        if( !$this->session && $_SESSION && isset( $_SESSION['fbToken'] ) ){
-            $this->session = new FacebookSession( $_SESSION['fbToken'] );
-            $_SESSION['fbToken'] = $this->session->getAccessToken();
-
-            return true;
-        } else if ( $this->session ){
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Destroys the current Facebook Session
-     */
-    public function destroySession()
-    {
-        if( $this->session ){
-            $this->session = null;
-        }
-
-        if( $_SESSION && $_SESSION['fbToken'] ){
-            unset( $_SESSION['fbToken'] );
-        }
     }
 
     /**
@@ -81,24 +62,35 @@ class FacebookSessionHelper{
      */
     public function handleUser()
     {
-        if( !$this->session ){
-            $this->handleSession();
-        }
-
         $request = new FacebookRequest( $this->session, "GET", "/me");
         $this->user = $request->execute()->getGraphObject( GraphUser::className() );
     }
 
     /**
-     * @return GraphUser
+     * Get a user from the Security Token Storage.
+     *
+     * @return mixed
+     *
+     * @throws \LogicException If SecurityBundle is not available
+     *
+     * @see TokenInterface::getUser()
      */
     public function getUser()
     {
-        if( !$this->user ){
-            $this->handleUser();
+        if (!$this->tokenStorage) {
+            throw new \LogicException('The SecurityBundle is not registered in your application.');
         }
 
-        return $this->user;
+        if (null === $token = $this->tokenStorage->getToken()) {
+            return;
+        }
+
+        if (!is_object($user = $token->getUser())) {
+            // e.g. anonymous authentication
+            return;
+        }
+
+        return $user;
     }
 
     /**

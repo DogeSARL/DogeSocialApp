@@ -30,3 +30,7 @@ hwi_oauth_login:
 
 facebook_login:
     pattern: /app/login/check-facebook
+
+doge_facebook_test_homepage:
+    path:     /test
+    defaults: { _controller: DogeFacebookBundle:Default:test }
