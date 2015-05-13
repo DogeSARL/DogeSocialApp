@@ -35,7 +35,7 @@ class HomeController extends Controller
                 move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getImageDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
             }
 
-            scandir($this->getImageDir());
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(scandir($this->getImageDir())); echo "</pre>";
 
 //            try {
 //                // Upload to a user's profile. The photo will be in the
