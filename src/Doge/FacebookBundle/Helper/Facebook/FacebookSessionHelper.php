@@ -8,6 +8,7 @@
 
 namespace Doge\FacebookBundle\Helper\Facebook;
 
+use Doge\FacebookBundle\Entity\User;
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
@@ -31,6 +32,11 @@ class FacebookSessionHelper{
     /**
      * @var GraphUser
      */
+    protected $fbUser = null;
+
+    /**
+     * @var User
+     */
     protected $user = null;
 
     /**
@@ -48,6 +54,12 @@ class FacebookSessionHelper{
         FacebookSession::setDefaultApplication( $appId, $appSecret );
         $this->helper = new FacebookRedirectLoginHelper( $router->generate( "doge_facebook_homepage", [], Router::ABSOLUTE_URL ) );
         $this->tokenStorage = $tokenStorage;
+        $this->user = $this->getUser();
+
+        if( $this->user ){
+            $this->session = new FacebookSession( $this->user->getAccessToken );
+        }
+
     }
 
     /**
