@@ -31,9 +31,11 @@ class HomeController extends Controller
                 mkdir( $this->getImageDir(), 0764, true );
             }
 
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump(is_dir( $this->getImageDir() )); echo "</pre>";
+
             if( isset( $_FILES['form']['tmp_name']['file'] ) ){
                 echo "\n<pre>"; var_dump($_FILES); echo "</pre>";
-                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file']); echo "</pre>";die;
+                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file']); echo "</pre>";
                 move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
             }
 
