@@ -32,6 +32,8 @@ class HomeController extends Controller
             }
 
             if( isset( $_FILES['form']['tmp_name']['file'] ) ){
+                echo "\n<pre>"; var_dump($_FILES); echo "</pre>";
+                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file']); echo "</pre>";die;
                 move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
             }
 
