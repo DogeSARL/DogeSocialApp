@@ -32,8 +32,10 @@ class HomeController extends Controller
             }
 
             if( isset( $_FILES['form']['tmp_name']['file'] ) ){
-                move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
+                move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getImageDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
             }
+
+            scandir($this->getImageDir());
 
 //            try {
 //                // Upload to a user's profile. The photo will be in the
