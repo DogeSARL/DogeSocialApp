@@ -35,6 +35,7 @@ class HomeController extends Controller
                 move_uploaded_file( $_FILES['form']['tmp_name']['file'], $this->getUploadDir() . DIRECTORY_SEPARATOR . $_FILES['form']['name']['file'] );
             }
 
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump("ok"); echo "</pre>";die;
             try {
                 // Upload to a user's profile. The photo will be in the
                 // first album in the profile. You can also upload to
@@ -46,7 +47,6 @@ class HomeController extends Controller
                     )
                 ))->execute()->getGraphObject();
 
-                die;
                 // If you're not using PHP 5.5 or later, change the file reference to:
                 // 'source' => '@/path/to/file.name'
                 $message = "ok";
