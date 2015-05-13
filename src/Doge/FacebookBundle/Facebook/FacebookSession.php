@@ -15,7 +15,7 @@ class FacebookSession extends BaseSession {
             echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($user); echo "</pre>";
 
             if( is_object( $user ) && $user->getAccessToken() != null ){
-                parent::__construct( $user->getAccessToken() );
+                parent::__construct( $user->getFacebookAccessToken() );
             }
         }
 
