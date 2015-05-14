@@ -81,6 +81,8 @@ class HomeController extends Controller
             $images[] = [ "url" => $response->getProperty("source"),
                           "name" => $response->getProperty("name"),
                           "user" => $response->getProperty("from") ];
+            
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($images); echo "</pre>";
         }
 
         return $this->render("DogeFacebookBundle:Home:gallery.html.twig", ["images" => $images]);
