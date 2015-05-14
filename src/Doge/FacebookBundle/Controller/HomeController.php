@@ -52,7 +52,7 @@ class HomeController extends Controller
                 $message = "ok";
 
             } catch(FacebookRequestException $e) {
-                $message = "error";
+                $message = $e->getMessage();
             }
         }
 
