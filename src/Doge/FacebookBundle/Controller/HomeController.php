@@ -66,6 +66,25 @@ class HomeController extends Controller
         return $this->render("DogeFacebookBundle:Home:upload.html.twig", [ 'form' => $form->createView(), "message" => $message ]);
     }
 
+    public function galleryAction()
+    {
+        $imagesDb = $this->getDoctrine()->getRepository("DogeFacebookBundle:Image")->findAll();
+
+        $images = [];
+
+        foreach( $imagesDb as $db ){
+            $response = (new FacebookRequest(
+                $this->get("doge.facebook_session"), 'GET', '/' . $db->getPostId()
+            ))->execute()->getGraphObject();
+
+            $images[] = [ "url" => $response->getProperty("source"),
+                          "name" => $response->getProperty("name"),
+                          "user" => $response->getProperty("from") ];
+        }
+
+        return $this->render("DogeFacebookBundle:Home:gallery.html.twig", ["images" => $images]);
+    }
+
     protected function getImageDir(){
         return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'web'.DIRECTORY_SEPARATOR.$this->getUploadDir();
     }
