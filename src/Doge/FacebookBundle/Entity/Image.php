@@ -20,52 +20,23 @@ use Doctrine\ORM\Mapping as ORM;
 class Image {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="string")
      */
-    protected $id;
+    protected $postId;
 
     /**
-     * @var string
-     * @ORM\Column(name="link", type="string", length=255)
+     * @return mixed
      */
-    protected $link;
-
-    /**
-     * @var string
-     * @ORM\Column(name="fb_user_id", type="string", length=255)
-     */
-    protected $fbUserId;
-
-    /**
-     * @return string
-     */
-    public function getLink()
+    public function getPostId()
     {
-        return $this->link;
+        return $this->postId;
     }
 
     /**
-     * @param string $link
+     * @param mixed $postId
      */
-    public function setLink($link)
+    public function setPostId($postId)
     {
-        $this->link = $link;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFbUserId()
-    {
-        return $this->fbUserId;
-    }
-
-    /**
-     * @param string $fbUserId
-     */
-    public function setFbUserId($fbUserId)
-    {
-        $this->fbUserId = $fbUserId;
+        $this->postId = $postId;
     }
 }

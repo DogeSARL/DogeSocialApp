@@ -48,14 +48,15 @@ class HomeController extends Controller
                     )
                 ))->execute()->getGraphObject();
 
-                echo "\n<pre>"; var_dump($response); echo "</pre>";
                 $image = new Image();
-//                $image->setFbUserId();
-//                $image->setLink();
+                $image->setPostId( $response->getProperty("id") );
+
+                $this->getDoctrine()->getManager()->persist($image);
+                $this->getDoctrine()->getManager()->flush();
 
                 // If you're not using PHP 5.5 or later, change the file reference to:
                 // 'source' => '@/path/to/file.name'
-                $message = "ok";
+                $message = "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
 
             } catch(FacebookRequestException $e) {
                 $message = $e->getMessage();
