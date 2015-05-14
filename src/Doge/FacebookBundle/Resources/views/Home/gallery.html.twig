@@ -1,3 +1,7 @@
+<html>
+<body>
 {% for image in images %}
-    Uploaded by : <img src="{{ image.url }}" alt="{{ image.name }}"/>
+    Uploaded by {{ image.user.getProperty("name") }}: <img src="{{ image.url }}" alt="{{ image.name }}"/>
 {% endfor %}
+</body>
+</html>
