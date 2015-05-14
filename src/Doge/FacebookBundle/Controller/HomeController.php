@@ -77,6 +77,7 @@ class HomeController extends Controller
                 $this->get("doge.facebook_session"), 'GET', '/' . $db->getPostId()
             ))->execute()->getGraphObject();
 
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response); echo "</pre>";
             $images[] = [ "url" => $response->getProperty("source"),
                           "name" => $response->getProperty("name"),
                           "user" => $response->getProperty("from") ];
