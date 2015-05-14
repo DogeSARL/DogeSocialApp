@@ -2,6 +2,7 @@
 
 namespace Doge\FacebookBundle\Controller;
 
+use Doge\FacebookBundle\Entity\Image;
 use Facebook\FacebookRequest;
 use Facebook\FacebookRequestException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,6 +47,11 @@ class HomeController extends Controller
                         'message' => 'A photo'
                     )
                 ))->execute()->getGraphObject();
+
+                echo "\n<pre>"; var_dump($response); echo "</pre>";
+                $image = new Image();
+//                $image->setFbUserId();
+//                $image->setLink();
 
                 // If you're not using PHP 5.5 or later, change the file reference to:
                 // 'source' => '@/path/to/file.name'
