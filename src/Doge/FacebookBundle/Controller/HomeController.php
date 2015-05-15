@@ -3,6 +3,7 @@
 namespace Doge\FacebookBundle\Controller;
 
 use Doge\FacebookBundle\Entity\Image;
+use Facebook\FacebookAuthorizationException;
 use Facebook\FacebookRequest;
 use Facebook\FacebookRequestException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -82,8 +83,9 @@ class HomeController extends Controller
                     "name" => $response->getProperty("name"),
                     "user" => $response->getProperty("from") ];
 
-            } catch( \Exception $e ){
-                echo "ok";
+            } catch( FacebookAuthorizationException $e ){
+                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($e->getMessage()); echo "</pre>";
+                die;
             }
         }
 
