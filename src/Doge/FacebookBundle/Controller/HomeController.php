@@ -22,6 +22,9 @@ class HomeController extends Controller
 
     public function uploadPhotoAction( Request $request )
     {
+        $fbRequest = $this->get("doge.request_facebook");
+
+        $fbRequest->checkPermission("publish_actions");
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add("file", "file")->add("text", "text")->add("envoyer", "submit");
 
@@ -39,18 +42,10 @@ class HomeController extends Controller
             }
 
             try {
-                // Upload to a user's profile. The photo will be in the
-                // first album in the profile. You can also upload to
-                // a specific album by using /ALBUM_ID as the path
-                $response = (new FacebookRequest(
-                    $this->get("doge.facebook_session"), 'POST', '/me/photos', array(
-                        'source' => new \CURLFile( $file ),
-                        'message' => $_POST['form']['text']
-                    )
-                ))->execute()->getGraphObject();
+                $request = $fbRequest->postPhoto( $file, $_POST['form']['file']);
 
                 $image = new Image();
-                $image->setPostId( $response->getProperty("id") );
+                $image->setPostId( $request->getProperty("id") );
 
                 $this->getDoctrine()->getManager()->persist($image);
                 $this->getDoctrine()->getManager()->flush();
@@ -60,7 +55,7 @@ class HomeController extends Controller
                 $message = "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
 
             } catch(FacebookRequestException $e) {
-                $message = $e->getMessage();
+
             }
         }
 
