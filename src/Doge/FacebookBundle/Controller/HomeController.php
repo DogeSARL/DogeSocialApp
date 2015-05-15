@@ -84,8 +84,6 @@ class HomeController extends Controller
                     "user" => $response->getProperty("from") ];
 
             } catch( FacebookAuthorizationException $e ){
-                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($e->getMessage()); echo "</pre>";
-                die;
             }
         }
 
