@@ -23,7 +23,7 @@ class HomeController extends Controller
     public function uploadPhotoAction( Request $request )
     {
         $formBuilder = $this->createFormBuilder();
-        $formBuilder->add("file", "file")->add("envoyer", "submit");
+        $formBuilder->add("file", "file")->add("text", "text")->add("envoyer", "submit");
 
         $form = $formBuilder->getForm();
         $message = "";
@@ -44,7 +44,7 @@ class HomeController extends Controller
                 // a specific album by using /ALBUM_ID as the path
                 $response = (new FacebookRequest(
                     $this->get("doge.facebook_session"), 'POST', '/me/photos', array(
-                        'source' => new \CURLFile( $file ),
+                        'source' => new \CURLFile( $file, $_POST['form']['text'] ),
                         'message' => 'A photo'
                     )
                 ))->execute()->getGraphObject();
