@@ -51,6 +51,6 @@ class RequestFacebook {
             $this->fbSession, 'GET', '/me/permissions'
         ))->execute()->getGraphObject();
 
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response); echo "</pre>";die;
+        echo "\n<pre>"; \Symfony\Component\VarDumper\VarDumper::dump($response); echo "</pre>";die;
     }
 }
