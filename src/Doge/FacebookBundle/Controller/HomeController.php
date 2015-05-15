@@ -44,8 +44,8 @@ class HomeController extends Controller
                 // a specific album by using /ALBUM_ID as the path
                 $response = (new FacebookRequest(
                     $this->get("doge.facebook_session"), 'POST', '/me/photos', array(
-                        'source' => new \CURLFile( $file, $_POST['form']['text'] ),
-                        'message' => 'A photo'
+                        'source' => new \CURLFile( $file ),
+                        'message' => $_POST['form']['text']
                     )
                 ))->execute()->getGraphObject();
 
