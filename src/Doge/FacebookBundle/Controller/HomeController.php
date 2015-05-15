@@ -73,16 +73,18 @@ class HomeController extends Controller
         $images = [];
 
         foreach( $imagesDb as $db ){
-            $response = (new FacebookRequest(
-                $this->get("doge.facebook_session"), 'GET', '/' . $db->getPostId()
-            ))->execute()->getGraphObject();
+            try{
+                $response = (new FacebookRequest(
+                    $this->get("doge.facebook_session"), 'GET', '/' . $db->getPostId()
+                ))->execute()->getGraphObject();
 
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response); echo "</pre>";
-            $images[] = [ "url" => $response->getProperty("source"),
-                          "name" => $response->getProperty("name"),
-                          "user" => $response->getProperty("from") ];
-            
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($images); echo "</pre>";
+                $images[] = [ "url" => $response->getProperty("source"),
+                    "name" => $response->getProperty("name"),
+                    "user" => $response->getProperty("from") ];
+
+            } catch( \Exception $e ){
+                echo "ok";
+            }
         }
 
         return $this->render("DogeFacebookBundle:Home:gallery.html.twig", ["images" => $images]);
