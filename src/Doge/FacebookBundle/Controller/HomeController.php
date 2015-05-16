@@ -38,6 +38,7 @@ class HomeController extends Controller
             } else {
                 echo "ok";
                 $this->addFlash("asking_permission", true);
+                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->generateUrl( $request->get("_route"), [], UrlGeneratorInterface::ABSOLUTE_PATH )); echo "</pre>";die;
 
                 return $this->redirect(
                     $this->container->get('hwi_oauth.security.oauth_utils')->getAuthorizationUrl(
