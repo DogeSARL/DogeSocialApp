@@ -43,7 +43,7 @@ class HomeController extends Controller
                     $this->container->get('hwi_oauth.security.oauth_utils')->getAuthorizationUrl(
                         $request,
                         "facebook",
-                        $this->generateUrl( $request->get("_route") ),
+                        $this->generateUrl( $request->get("_route"), [], UrlGeneratorInterface::ABSOLUTE_PATH ),
                         [ "auth_type" => "rerequest" ]
                     )
                 );
