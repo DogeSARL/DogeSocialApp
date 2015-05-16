@@ -46,11 +46,17 @@ class RequestFacebook {
      * @return boolean
      * @throws \Facebook\FacebookRequestException
      */
-    public function checkPermission( $permission ){
+    public function checkPermission( $permissionLabel ){
         $response = (new FacebookRequest(
             $this->fbSession, 'GET', '/me/permissions'
         ))->execute()->getGraphObject();
 
-        echo "\n<pre>"; \Symfony\Component\VarDumper\VarDumper::dump($response); echo "</pre>";die;
+        foreach( $response->asArray() as $permission ){
+            if( $permission['permission'] == $permissionLabel && $permission['status'] == "granted" ){
+                return true;
+            }
+        }
+
+        return false;
     }
 }
