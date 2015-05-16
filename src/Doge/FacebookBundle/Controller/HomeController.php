@@ -4,10 +4,12 @@ namespace Doge\FacebookBundle\Controller;
 
 use Doge\FacebookBundle\Entity\Image;
 use Facebook\FacebookAuthorizationException;
+use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
 use Facebook\FacebookRequestException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,24 @@ class HomeController extends Controller
     {
         $fbRequest = $this->get("doge.request_facebook");
 
-        $fbRequest->checkPermission("publish_actions");
+        if( !$fbRequest->checkPermission("publish_actions") ){
+            if( $this->get("session")->getFlashBag()->get("asking_permission") ){
+
+                $fbSession = $this->get("doge.facebook_session");
+
+                return $this->redirect(
+                    $this->container->get('hwi_oauth.security.oauth_utils')->getAuthorizationUrl(
+                        $request,
+                        "facebook",
+                        $this->generateUrl( $request->get("_route") ),
+                        [ "auth_type" => "rerequest" ]
+                    )
+                );
+            } else {
+                $error = "Kawaii Pets n'a pas le droit de poster du contenu sur votre compte.";
+            }
+        }
+
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add("file", "file")->add("text", "text")->add("envoyer", "submit");
 

@@ -1,3 +1,7 @@
-{{ message }}
-<br />
-{{ form( form ) }}
+{% if error is defined %}
+    {{ error }}
+{% else %}
+    {{ message }}
+    <br />
+    {{ form( form ) }}
+{% endif %}
