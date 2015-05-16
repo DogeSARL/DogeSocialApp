@@ -51,6 +51,7 @@ class RequestFacebook {
             $this->fbSession, 'GET', '/me/permissions'
         ))->execute()->getGraphObject();
 
+        echo "\n<pre>"; \Symfony\Component\VarDumper\VarDumper::dump($response->asArray()); echo "</pre>";die;
         foreach( $response->asArray() as $permission ){
             if( $permission['permission'] == $permissionLabel && $permission['status'] == "granted" ){
                 return true;
