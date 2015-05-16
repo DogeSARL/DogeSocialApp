@@ -2,3 +2,8 @@ doge_service_connect:
     pattern: /{service}
     defaults:
         _controller: DogeFacebookBundle:Connect:redirectToService
+
+hwi_oauth_connect:
+    pattern: /
+    defaults:
+        _controller: HWIOAuthBundle:Connect:connect
