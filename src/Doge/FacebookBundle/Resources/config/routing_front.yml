@@ -8,11 +8,11 @@ doge_facebook_slideshow:
 
 doge_facebook_upload:
     path: /upload
-    defaults: { _controller: DogeFacebookBundle:Home:uploadPhoto }
+    defaults: { _controller: DogeFacebookBundle:Gallery:uploadPhoto }
 
 doge_facebook_gallery:
     path: /gallery
-    defaults: { _controller: DogeFacebookBundle:Home:gallery }
+    defaults: { _controller: DogeFacebookBundle:Gallery:gallery }
 
 doge_facebook_test_homepage:
     path:     /test
