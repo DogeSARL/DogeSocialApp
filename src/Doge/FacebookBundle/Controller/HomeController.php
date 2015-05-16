@@ -26,6 +26,7 @@ class HomeController extends Controller
     {
         $fbRequest = $this->get("doge.request_facebook");
 
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($fbRequest->checkPermission("publish_actions")); echo "</pre>";
         if( !$fbRequest->checkPermission("publish_actions") ){
             if( $this->get("session")->getFlashBag()->get("asking_permission") ){
 
