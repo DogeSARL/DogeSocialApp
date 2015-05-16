@@ -1,0 +1,30 @@
+@media only screen and (max-width: 600px) {
+
+
+.slider_home_wrapper {
+    width: 95%;
+	height: 100%;
+}
+
+#container.page_home .bx-wrapper .bx-viewport {
+
+    height: 270px !important;
+
+}
+
+
+@media only screen and (max-width: 360px) {
+
+
+.slider_home_wrapper {
+    width: 95%;
+	height: 100%;
+}
+
+#container.page_home .bx-wrapper .bx-viewport {
+
+    height: 210px !important;
+
+}
+
+}
