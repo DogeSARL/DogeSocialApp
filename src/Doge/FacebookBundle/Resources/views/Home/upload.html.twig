@@ -1,4 +1,4 @@
-{% if error is defined %}
+{% if error is defined and error not empty %}
     {{ error }}
 {% else %}
     {{ message }}

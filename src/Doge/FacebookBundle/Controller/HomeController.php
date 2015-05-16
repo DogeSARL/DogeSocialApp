@@ -25,12 +25,14 @@ class HomeController extends Controller
     public function uploadPhotoAction( Request $request )
     {
         $fbRequest = $this->get("doge.request_facebook");
+        $serror = "";
 
         echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($fbRequest->checkPermission("publish_actions")); echo "</pre>";
         if( !$fbRequest->checkPermission("publish_actions") ){
             if( $this->get("session")->getFlashBag()->get("asking_permission") ){
-
-                $fbSession = $this->get("doge.facebook_session");
+                $error = "Kawaii Pets n'a pas le droit de poster du contenu sur votre compte.";
+            } else {
+                $this->addFlash("asking_permission", true);
 
                 return $this->redirect(
                     $this->container->get('hwi_oauth.security.oauth_utils')->getAuthorizationUrl(
@@ -40,8 +42,6 @@ class HomeController extends Controller
                         [ "auth_type" => "rerequest" ]
                     )
                 );
-            } else {
-                $error = "Kawaii Pets n'a pas le droit de poster du contenu sur votre compte.";
             }
         }
 
