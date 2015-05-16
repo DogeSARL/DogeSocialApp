@@ -24,3 +24,6 @@ services:
         class: Doge\FacebookBundle\Helper\Facebook\RequestFacebook
         arguments:
             - @doge.facebook_session
+
+    doge_facebook.helper.stats.user:
+        class: Doge\FacebookBundle\Helper\Stats\User
