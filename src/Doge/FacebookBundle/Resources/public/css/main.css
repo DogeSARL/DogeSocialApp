@@ -290,6 +290,7 @@ a.cta_home_link *{
     margin: 30px auto 0;
     max-width: 810px;
     width: 100%;
+    padding-bottom: 30px;
 }
 
 #gallery a.openpop{
@@ -310,27 +311,107 @@ a.cta_home_link *{
     margin: 0;
 }
 
+.popup_participation .gal_content{
+    position: relative;
+}
+
 #gallery a.openpop img{
     width: 100%;
     height:auto;
 }
 
-#gallery .popup_participation{display: none;}
+#gallery .popup_participation{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: -1;
+    opacity: 0;
+    text-align: center;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -ms-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
 
 .pager.pager_bottom{
     margin: 0 auto;
     width: 100%;
     max-width: 810px;
+    clear: both;
 }
 
 .pager.pager_bottom a,.pager.pager_bottom p{
     display: inline-block;
+    margin:0 5px;
+    color: white;
+    text-shadow: 2px 1px 10px rgba(0, 0, 0, 1);
 }
 
 .pager.pager_bottom a{
     text-decoration: none;
     color: white;
-    text-shadow: 5px 1px 2px rgba(150, 150, 150, 1);
+    text-shadow: 2px 1px 10px rgba(0, 0, 0, 1);
+}
+
+#gallery .popup_participation.show{
+    z-index: 3;
+    opacity: 1;
+
+}
+
+.popup_participation .frame{
+    opacity: 0;
+    -webkit-transition: all 0.6s ease-in-out 0.2s;
+    -moz-transition: all 0.6s ease-in-out 0.2s;
+    -ms-transition: all 0.6s ease-in-out 0.2s;
+    -o-transition: all 0.6s ease-in-out 0.2s;
+    transition: all 0.6s ease-in-out 0.2s;
+}
+.popup_participation.show .frame{
+    opacity: 1;
+}
+.popup_participation .close{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 27px;
+    height: 27px;
+    display: block;
+    background: url(../img/close.png) top left no-repeat;
+    cursor: pointer;
+    z-index: 5;
+}
+.visu{
+    width: 430px;
+    margin: 20px auto;
+}
+.inside_visu{
+    overflow: hidden;
+    background: rgba(0,0,0,0.6);
+    padding: 14px;
+    width: 100%;
+    height: auto;
+}
+.visu img{
+    max-width: 100%;
+}
+.frame p.pseudo{
+    font-family: "GaramondIT", serif;
+    font-style:italic;
+    font-size: 21px;
+    font-weight: normal;
+}
+.frame p{
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 13px;
 }
 
 
