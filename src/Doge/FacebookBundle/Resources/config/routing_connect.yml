@@ -1,0 +1,4 @@
+doge_service_connect:
+    pattern: /{service}
+    defaults:
+        _controller: DogeFacebookBundle:Connect:redirectToService
