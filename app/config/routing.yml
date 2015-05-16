@@ -19,7 +19,7 @@ fos_user_change_password:
     prefix: /profile
 
 hwi_oauth_redirect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    resource: "@DogeFacebookBundle/Resources/config/routing_connect.yml"
     prefix:   /app/connect
     requirements:
         _scheme: https

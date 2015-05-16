@@ -40,6 +40,7 @@ security:
         - { path: ^/app/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/app/connect/facebook, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/app/upload, role: ROLE_USER }
+        - { path: ^/app/gallery, role: ROLE_USER }
         - { path: ^/app/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
