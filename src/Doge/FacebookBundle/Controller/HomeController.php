@@ -29,9 +29,14 @@ class HomeController extends Controller
 
         echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($fbRequest->checkPermission("publish_actions")); echo "</pre>";
         if( !$fbRequest->checkPermission("publish_actions") ){
-            if( $this->get("session")->getFlashBag()->get("asking_permission") ){
+            $alreadyAsked = $this->get("session")->getFlashBag()->get("asking_permission");
+
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($alreadyAsked); echo "</pre>";
+
+            if( $alreadyAsked ){
                 $error = "Kawaii Pets n'a pas le droit de poster du contenu sur votre compte.";
             } else {
+                echo "ok";
                 $this->addFlash("asking_permission", true);
 
                 return $this->redirect(
