@@ -1,0 +1,7 @@
+doge_facebook_gallery_maquette:
+    path: /gallery
+    defaults: { _controller: DogeFacebookBundle:Home:gallery }
+
+doge_facebook_participe_maquette:
+    path: /participe
+    defaults: { _controller: DogeFacebookBundle:Home:participe }

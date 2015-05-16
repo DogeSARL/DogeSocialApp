@@ -1,3 +1,7 @@
+doge_facebook_maquette:
+    resource: "@DogeFacebookBundle/Resources/config/routing_maquette.yml"
+    prefix:   /
+
 doge_facebook_admin:
     resource: "@DogeFacebookBundle/Resources/config/routing.yml"
     prefix:   /admin
