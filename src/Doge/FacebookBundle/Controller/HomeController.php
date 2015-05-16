@@ -21,8 +21,10 @@ class HomeController extends Controller
     	return $this->render("DogeFacebookBundle:Home:slideshow.html.twig");
     }
 
-    public function participeAction(){
-    	return $this->render("DogeFacebookBundle:Home:participe.html.twig");
+    public function participeAction()
+    {
+        return $this->render("DogeFacebookBundle:Home:participe.html.twig");
+    }
 
     public function galleryAction(){
     	return $this->render("DogeFacebookBundle:Home:gallery.html.twig");
