@@ -35,13 +35,12 @@ class HomeController extends Controller
                 $error = "Kawaii Pets n'a pas le droit de poster du contenu sur votre compte.";
             } else {
                 $this->addFlash("asking_permission", true);
-                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->generateUrl( $request->get("_route"), [], UrlGeneratorInterface::ABSOLUTE_PATH )); echo "</pre>";die;
 
                 return $this->redirect(
                     $this->container->get('hwi_oauth.security.oauth_utils')->getAuthorizationUrl(
                         $request,
                         "facebook",
-                        $this->generateUrl( $request->get("_route"), [], UrlGeneratorInterface::ABSOLUTE_PATH ),
+                        $this->generateUrl( $request->get("_route"), [], UrlGeneratorInterface::ABSOLUTE_URL ),
                         [ "auth_type" => "rerequest" ]
                     )
                 );
