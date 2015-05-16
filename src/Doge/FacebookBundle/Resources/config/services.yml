@@ -1,9 +1,29 @@
 services:
-    doge_facebook.session.helper:
-        class: Doge\FacebookBundle\Helper\Facebook\FacebookSessionHelper
-        scope: request
-        arguments: [ @request, @router, %doge_facebook.appId%, %doge_facebook.appSecret% ]
+    doge.form.handler.upload:
+        class: Doge\FacebookBundle\Form\Handler\Upload\Upload
+        arguments:
+            - @doge.request_facebook
+            - @doctrine.orm.entity_manager
+
+    doge.helper.controller.permission_request:
+        class: Doge\FacebookBundle\Helper\Controller\PermissionRequest
+        arguments:
+            - @session
+            - @router
+            - @hwi_oauth.security.oauth_utils
 
     doge.oauth.user_provider:
         class: Doge\FacebookBundle\Provider\OauthProvider
         arguments: [@fos_user.user_manager,{facebook: facebookId}]
+
+    doge.facebook_session:
+        class: Doge\FacebookBundle\Facebook\FacebookSession
+        arguments: [ @security.token_storage, %doge_facebook.appid%, %doge_facebook.appsecret% ]
+
+    doge.request_facebook:
+        class: Doge\FacebookBundle\Helper\Facebook\RequestFacebook
+        arguments:
+            - @doge.facebook_session
+
+    doge_facebook.helper.stats.user:
+        class: Doge\FacebookBundle\Helper\Stats\User

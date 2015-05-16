@@ -19,5 +19,5 @@ doge_facebook_gallery:
     defaults: { _controller: DogeFacebookBundle:Home:gallery }
 
 doge_facebook_admin_index:
-    path:     /admin/index
+    path:     /index
     defaults: { _controller: DogeFacebookBundle:Admin:index }

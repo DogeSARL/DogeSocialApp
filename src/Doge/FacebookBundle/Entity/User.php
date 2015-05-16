@@ -20,7 +20,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var strinh$=g
+     * @var string
      * @ORM\Column(type="string", type="string", length=255, nullable=true)
      */
     protected $facebookId;
@@ -54,6 +54,12 @@ class User extends BaseUser
      * @ORM\Column(name="gender", type="string", length=10, nullable=true)
      */
     protected $gender;
+
+    /**
+     * @var string
+     * @ORM\Column(name="country", type="string", length=10, nullable=true)
+     */
+    protected $country;
 
     public function __construct()
     {
@@ -155,5 +161,21 @@ class User extends BaseUser
     public function setGender($gender)
     {
         $this->gender = $gender;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
     }
 }

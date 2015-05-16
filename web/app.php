@@ -4,6 +4,8 @@ use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+$s3 = Aws\S3\S3Client::factory();
+$bucket = getenv('S3_BUCKET')?: die('No "S3_BUCKET" config var in found in env!');
 
 // Enable APC for autoloading to improve performance.
 // You should change the ApcClassLoader first argument to a unique prefix
