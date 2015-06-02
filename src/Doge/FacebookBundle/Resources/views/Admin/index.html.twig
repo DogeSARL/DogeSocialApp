@@ -3,3 +3,9 @@ Countries of Users:
 {% for country in countries %}
   {{ country }}
 {% endfor %}
+<br />
+User per country:
+{% for country, number in user_per_country %}
+  Number of users for {{ country }}: {{ number }}
+{% endfor %}
+User by age:

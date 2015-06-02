@@ -19,7 +19,6 @@ class AdminController extends Controller
     $users = $this->getDoctrine()->getManager()->getRepository("DogeFacebookBundle:User")->findAll();
     $countries = $userStatsService->getCountries($users);
     $user_per_country = $userStatsService->getUserPerCountry($users);
-
     return $this->render('DogeFacebookBundle:Admin:index.html.twig', ['users' => $users, 'json' => $json, 'countries' => $countries, 'user_per_country' => $user_per_country]);
 
   }
