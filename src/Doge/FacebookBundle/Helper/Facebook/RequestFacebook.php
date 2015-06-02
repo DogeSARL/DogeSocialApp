@@ -70,7 +70,7 @@ class RequestFacebook {
            $this->fbSession, 'GET', '/me/albums'
         ))->execute();
         
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response); echo "</pre>";
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response->getGraphObject()); echo "</pre>";
 
         return $response->getGraphObject();
     }
