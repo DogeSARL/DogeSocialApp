@@ -7,7 +7,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class OauthProvider extends BaseClass
 {
-
     /**
      * {@inheritDoc}
      */
@@ -63,6 +62,11 @@ class OauthProvider extends BaseClass
 
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
+
+            $user->setNom($response->getResponse()["first_name"]);
+            $user->setPrenom($response->getResponse()["last_name"]);
+            $user->setGender($response->getResponse()["gender"]);
+
             return $user;
         }
 

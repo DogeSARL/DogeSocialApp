@@ -20,7 +20,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var strinh$=g
+     * @var string
      * @ORM\Column(type="string", type="string", length=255, nullable=true)
      */
     protected $facebookId;

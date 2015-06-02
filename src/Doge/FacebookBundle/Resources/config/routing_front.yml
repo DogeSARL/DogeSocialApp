@@ -1,0 +1,19 @@
+doge_facebook_homepage:
+    path:     /
+    defaults: { _controller: DogeFacebookBundle:Home:new }
+
+doge_facebook_slideshow:
+    path: /slideshow
+    defaults: { _controller: DogeFacebookBundle:Home:slideshow }
+
+doge_facebook_upload:
+    path: /upload
+    defaults: { _controller: DogeFacebookBundle:Gallery:uploadPhoto }
+
+doge_facebook_gallery:
+    path: /gallery
+    defaults: { _controller: DogeFacebookBundle:Gallery:gallery }
+
+doge_facebook_test_homepage:
+    path:     /test
+    defaults: { _controller: DogeFacebookBundle:Default:test }
