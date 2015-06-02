@@ -34,6 +34,7 @@ class RequestFacebook {
             $uploadOptions["message"] = $_POST['form']['text'];
         }
 
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($_POST['form']); echo "</pre>";die;
         if( !isset( $_POST['form']["album"] ) ){
             if( $_POST['form']["album"] == 0 && $_POST['form']['albumName'] ){
                 $responsePostAlbum = (new FacebookRequest(
