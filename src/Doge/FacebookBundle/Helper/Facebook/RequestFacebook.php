@@ -52,7 +52,6 @@ class RequestFacebook {
         ))->execute()->getGraphObject();
 
         foreach( $response->asArray() as $permission ){
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($permission); echo "</pre>";
             if( $permission->permission == $permissionLabel && $permission->status == "granted" ){
                 return true;
             }
@@ -70,7 +69,9 @@ class RequestFacebook {
         $response = (new FacebookRequest(
            $this->fbSession, 'GET', '/me/albums'
         ))->execute();
-        
+
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response->getGraphObject()); echo "</pre>";
+        die;
         return $response->getGraphObject();
     }
 }
