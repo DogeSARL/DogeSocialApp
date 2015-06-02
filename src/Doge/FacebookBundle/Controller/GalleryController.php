@@ -29,11 +29,14 @@ class GalleryController extends Controller{
             }
         }
 
-        $albums = $fbRequest->getUserAlbums()->asArray();
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($albums); echo "</pre>";die;
+        $albums = [];
+
+        foreach( $albums->asArray() as $album ){
+            $albums[] = [ "id" => $album->id, "name" => $album->name ];
+        }
 
         $formBuilder = $this->createFormBuilder();
-        $formBuilder->add("file", "file")->add("text", "text")->add("envoyer", "submit");
+        $formBuilder->add("album", "choices", [ 'choices' => $albums, "empty_value" => "Nouvel album" ] )->add("file", "file")->add("text", "text")->add("envoyer", "submit");
 
         $form = $formBuilder->getForm();
         $message = "";
