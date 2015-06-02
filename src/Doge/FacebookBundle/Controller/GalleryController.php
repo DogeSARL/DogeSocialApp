@@ -36,6 +36,8 @@ class GalleryController extends Controller{
             $albums[$album->id] = [ $album->name ];
         }
 
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($albums); echo "</pre>";die;
+
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add("album", "choice", [ 'choices' => $albums, "empty_value" => "Nouvel album" ] )->add("file", "file")->add("text", "text")->add("envoyer", "submit");
 
