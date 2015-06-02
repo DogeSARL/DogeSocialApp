@@ -29,7 +29,7 @@ class GalleryController extends Controller{
             }
         }
 
-        $albums = $fbRequest->getUserAlbums()->asArray;
+        $albums = $fbRequest->getUserAlbums()->asArray();
         echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($albums); echo "</pre>";die;
 
         $formBuilder = $this->createFormBuilder();
