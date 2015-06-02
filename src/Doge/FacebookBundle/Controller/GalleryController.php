@@ -33,7 +33,7 @@ class GalleryController extends Controller{
         $albums = [];
 
         foreach( $retrievedAlbums->asArray() as $album ){
-            $albums[] = [ "id" => $album->id, "name" => $album->name ];
+            $albums[$album->id] = [ $album->name ];
         }
 
         $formBuilder = $this->createFormBuilder();
