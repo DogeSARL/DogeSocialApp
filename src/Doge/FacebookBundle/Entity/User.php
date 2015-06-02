@@ -61,6 +61,12 @@ class User extends BaseUser
      */
     protected $country;
 
+    /**
+     * @var integer
+     * @ORM\Column(name="age", type="integer", length=10, nullable=true)
+     */
+    protected $age;
+
     public function __construct()
     {
         parent::__construct();
@@ -177,5 +183,21 @@ class User extends BaseUser
     public function setCountry($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param integer $age
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
     }
 }
