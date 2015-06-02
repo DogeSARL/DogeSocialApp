@@ -33,7 +33,7 @@ class GalleryController extends Controller{
         $albums = [];
 
         foreach( $retrievedAlbums as $album ){
-            $albums[$album->id] = [ $album->name ];
+            $albums[$album->id] = $album->name;
         }
 
         echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($albums); echo "</pre>";
