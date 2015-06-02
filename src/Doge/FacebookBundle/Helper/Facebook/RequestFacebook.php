@@ -35,7 +35,7 @@ class RequestFacebook {
             $uploadOptions["message"] = $_POST['form']['text'];
         }
 
-        if( !isset( $form["album"] ) ){
+        if( isset( $form["album"] ) ){
             if( $form["album"] == 0 && isset( $form['albumName'] ) ){
                 $responsePostAlbum = (new FacebookRequest(
                     $this->fbSession, 'POST', '/me/albums', array(
