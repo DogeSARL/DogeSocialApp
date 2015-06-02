@@ -51,9 +51,8 @@ class RequestFacebook {
             $this->fbSession, 'GET', '/me/permissions'
         ))->execute()->getGraphObject();
 
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response->asArray()); echo "</pre>";
-        die;
         foreach( $response->asArray() as $permission ){
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($permission); echo "</pre>";
             if( $permission->permission == $permissionLabel && $permission->status == "granted" ){
                 return true;
             }
