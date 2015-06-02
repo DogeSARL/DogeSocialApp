@@ -29,9 +29,10 @@ class GalleryController extends Controller{
             }
         }
 
+        $retrievedAlbums = $fbRequest->getUserAlbums();
         $albums = [];
 
-        foreach( $albums->asArray() as $album ){
+        foreach( $retrievedAlbums->asArray() as $album ){
             $albums[] = [ "id" => $album->id, "name" => $album->name ];
         }
 
