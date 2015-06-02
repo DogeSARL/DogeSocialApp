@@ -29,6 +29,9 @@ class GalleryController extends Controller{
             }
         }
 
+        $albums = $fbRequest->getUserAlbums()->asArray;
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($albums); echo "</pre>";die;
+
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add("file", "file")->add("text", "text")->add("envoyer", "submit");
 

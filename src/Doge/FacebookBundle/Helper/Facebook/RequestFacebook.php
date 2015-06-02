@@ -59,4 +59,17 @@ class RequestFacebook {
 
         return false;
     }
+
+    /**
+     * @return mixed
+     * @throws \Facebook\FacebookRequestException
+     */
+    public function getUserAlbums()
+    {
+        $response = (new FacebookRequest(
+           $this->fbSession, 'GET', '/' . $this->fbSession->getUserId() . '/albums'
+        ))->execute();
+
+        return $response->getGraphObject();
+    }
 }
