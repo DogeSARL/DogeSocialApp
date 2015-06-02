@@ -28,15 +28,15 @@ class RequestFacebook {
      * @throws \Facebook\FacebookRequestException
      */
     public function postPhoto( $file ){
+        $form = $_POST['form'];
         $uploadOptions = [ "source" => $file ];
 
-        if( !empty( $_POST['form']['text'] ) ){
+        if( !empty( $form['text'] ) ){
             $uploadOptions["message"] = $_POST['form']['text'];
         }
 
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($_POST['form']); echo "</pre>";die;
-        if( !isset( $_POST['form']["album"] ) ){
-            if( $_POST['form']["album"] == 0 && $_POST['form']['albumName'] ){
+        if( !isset( $form["album"] ) ){
+            if( $form["album"] == 0 && isset( $form['albumName'] ) ){
                 $responsePostAlbum = (new FacebookRequest(
                     $this->fbSession, 'POST', '/me/albums', array(
                         'name' => $_POST['form']['albumName']
@@ -47,6 +47,8 @@ class RequestFacebook {
                 die;
             }
         }
+
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($_POST['form']); echo "</pre>";die;
 
         // Upload to a user's profile. The photo will be in the
         // first album in the profile. You can also upload to
