@@ -27,7 +27,26 @@ class RequestFacebook {
      * @return GraphObject
      * @throws \Facebook\FacebookRequestException
      */
-    public function postPhoto( $file, $text ){
+    public function postPhoto( $file ){
+        $uploadOptions = [ "source" => $file ];
+
+        if( !empty( $_POST['form']['text'] ) ){
+            $uploadOptions["message"] = $_POST['form']['text'];
+        }
+
+        if( !isset( $_POST['form']["album"] ) ){
+            if( $_POST['form']["album"] == 0 && $_POST['form']['albumName'] ){
+                $responsePostAlbum = (new FacebookRequest(
+                    $this->fbSession, 'POST', '/me/albums', array(
+                        'name' => $_POST['form']['albumName']
+                    )
+                ))->execute();
+
+                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($responsePostAlbum->getGraphObject()->asArray()); echo "</pre>";
+                die;
+            }
+        }
+
         // Upload to a user's profile. The photo will be in the
         // first album in the profile. You can also upload to
         // a specific album by using /ALBUM_ID as the path
