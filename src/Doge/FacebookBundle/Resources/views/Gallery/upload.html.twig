@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block js %}
+    {{ parent() }}
     <script type="text/javascript">
         $("#form_album").change(function(){
             if( $(this).val() == 0 ){
