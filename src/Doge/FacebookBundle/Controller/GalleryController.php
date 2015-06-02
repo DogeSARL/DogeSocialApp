@@ -30,14 +30,14 @@ class GalleryController extends Controller{
         }
 
         $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
-        $albums = [];
+        $albums = [ 0 => "Nouvel album" ];
 
         foreach( $retrievedAlbums as $album ){
             $albums[$album->id] = $album->name;
         }
 
         $formBuilder = $this->createFormBuilder();
-        $formBuilder->add("album", "choice", [ 'choices' => $albums, "empty_value" => "Nouvel album" ] )
+        $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
             ->add("albumName", "hidden")
             ->add("file", "file")
             ->add("text", "text")
