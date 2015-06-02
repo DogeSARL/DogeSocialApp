@@ -69,6 +69,8 @@ class RequestFacebook {
         $response = (new FacebookRequest(
            $this->fbSession, 'GET', '/me/albums'
         ))->execute();
+        
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response); echo "</pre>";
 
         return $response->getGraphObject();
     }
