@@ -70,6 +70,6 @@ class RequestFacebook {
            $this->fbSession, 'GET', '/me/albums'
         ))->execute();
 
-        return $response->getGraphObject()['data'];
+        return $response->getGraphObject();
     }
 }
