@@ -67,7 +67,7 @@ class RequestFacebook {
     public function getUserAlbums()
     {
         $response = (new FacebookRequest(
-           $this->fbSession, 'GET', '/' . $this->fbSession->getUserId() . '/albums'
+           $this->fbSession, 'GET', '/me/albums'
         ))->execute();
 
         return $response->getGraphObject();
