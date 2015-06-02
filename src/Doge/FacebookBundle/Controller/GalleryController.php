@@ -37,7 +37,11 @@ class GalleryController extends Controller{
         }
 
         $formBuilder = $this->createFormBuilder();
-        $formBuilder->add("album", "choice", [ 'choices' => $albums, "empty_value" => "Nouvel album" ] )->add("file", "file")->add("text", "text")->add("envoyer", "submit");
+        $formBuilder->add("album", "choice", [ 'choices' => $albums, "empty_value" => "Nouvel album" ] )
+            ->add("albumName", "hidden")
+            ->add("file", "file")
+            ->add("text", "text")
+            ->add("envoyer", "submit");
 
         $form = $formBuilder->getForm();
         $message = "";
