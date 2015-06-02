@@ -31,4 +31,24 @@ class User{
     return $user_per_country;
   }
 
+  public function getNbOfUserWhoseAgeIsBelow25( $users ) {
+    $filtered_users = [];
+
+    foreach($users as $user) {
+      if ($user->getAge() < 25) {
+        array_push($filtered_users, $user);
+      }
+    }
+  }
+
+  public function getNbOfUserWhoseAgeIsOver25( $users ) {
+    $filtered_users = [];
+
+    foreach($users as $user) {
+      if ($user->getAge() >= 25) {
+        array_push($filtered_users, $user);
+      }
+    }
+  }
+
 }
