@@ -14,10 +14,18 @@
             <h1>Become the sublime model<br />of Kawaii Pets</h1>
             <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
 
-            <a class="cta_home_link" href="{% if app.user %}{{ path("doge_facebook_homepage") }}{% else %}{{ hwi_oauth_login_url("facebook") }}{% endif %}">
-                {% if app.user %}Voir les photos{% else %}Login{% endif %}
-            </a>
-
+            {% if app.user %}
+                <a class="cta_home_link" href="{{ path("doge_facebook_upload") }}">
+                    Participer
+                </a>
+                <a class="cta_home_link" href="{{ path("doge_facebook_gallery") }}">
+                    Voter
+                </a>
+            {% else %}
+                <a class="cta_home_link" href="{{ hwi_oauth_login_url("facebook") }}">
+                    Login
+                </a>
+            {% endif %}
                 <div class="slider_home_wrapper">
                     <ul class="slide_home">
                         <li>
