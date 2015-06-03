@@ -21,7 +21,7 @@ class GalleryController extends Controller{
         $fbRequest = $this->get("doge.request_facebook");
         $error = "";
 
-        if( !$fbRequest->checkPermission("publish_actions") ){
+        if( !$fbRequest->checkPermission("publish_actions") && !$fbRequest->checkPermission("user_photos") ){
             $error = $this->get("doge.helper.controller.permission_request")->reAskPermission( $request );
 
             if( is_object( $error ) ){
@@ -29,8 +29,19 @@ class GalleryController extends Controller{
             }
         }
 
+        $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
+        $albums = [ 0 => "Nouvel album" ];
+
+        foreach( $retrievedAlbums as $album ){
+            $albums[$album->id] = $album->name;
+        }
+
         $formBuilder = $this->createFormBuilder();
-        $formBuilder->add("file", "file")->add("text", "text")->add("envoyer", "submit");
+        $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
+            ->add("albumName", "hidden")
+            ->add("file", "file")
+            ->add("text", "text")
+            ->add("envoyer", "submit");
 
         $form = $formBuilder->getForm();
         $message = "";
