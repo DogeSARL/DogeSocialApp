@@ -97,11 +97,12 @@ class OauthProvider extends BaseClass
             $user->$setter($response->getAccessToken());
         }
         error_log("LOGGING POSSIBLE ISSUES:");
+        error_log($response->getResponse()["first_name"]);
+        error_log($response->getResponse()["last_name"]);
+        error_log($response->getResponse()["gender"]);
         error_log($response->getResponse()["location"]);
-        error_log(print_r($response->getResponse()["location"]));
-        error_log(print_r($response->getResponse()["location"]), true);
+        error_log($this->getAgefromBirthday('12/02/1993'));
 
-        print_r($response->getResponse()["location"]);
         $this->entityManager->persist($user);
         $this->entityManager->flush($user);
 
