@@ -49,6 +49,7 @@ class Upload {
             $message = "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
 
         } catch(FacebookRequestException $e) {
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($e->getMessage()); echo "</pre>";die;
             throw $e;
         }
     }
