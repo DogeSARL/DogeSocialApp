@@ -306,22 +306,26 @@ a.cta_home_link *{
     padding-bottom: 30px;
 }
 
-#gallery a.openpop{
+#gallery div.openpop{
     display: block;
     float: left;
-    height: 300px;
     margin-bottom: 30px;
     margin-right: 30px;
     overflow: hidden;
     width: 250px;
+}
+
+#gallery div.openpop a {
+    display: block;
+    height: auto;
     position: relative;
 }
 
-#gallery a.openpop .hover_gallery{
+#gallery div.openpop .hover_gallery{
     border-color: white;
 }
 
-#gallery a.openpop:hover .hover_gallery{
+#gallery div.openpop a:hover .hover_gallery{
     border: 10px solid white;
     position: absolute;
     width: 100%;
@@ -336,11 +340,11 @@ a.cta_home_link *{
     transition: 0.5s;
 }
 
-#gallery a.openpop.first{
+#gallery div.openpop.first{
     clear:left;
 }
 
-#gallery a.openpop.last{
+#gallery div.openpop.last{
     margin: 0;
 }
 
@@ -348,7 +352,7 @@ a.cta_home_link *{
     position: relative;
 }
 
-#gallery a.openpop img{
+#gallery div.openpop img{
     width: 100%;
     height:auto;
 }
@@ -614,3 +618,5 @@ a.cta_home_link *{
         page-break-after: avoid;
     }
 }
+
+

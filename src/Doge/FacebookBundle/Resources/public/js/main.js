@@ -8,8 +8,7 @@ $(document).ready(function(){
     });
 });
 
-
-$('.openpop').click(function(e){
+$('.openpop a').click(function(e){
     e.preventDefault();
     var div = $(this).attr('href');
     $('.popup_participation').each(function(){
