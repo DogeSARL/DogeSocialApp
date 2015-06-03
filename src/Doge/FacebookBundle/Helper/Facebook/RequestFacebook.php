@@ -58,6 +58,7 @@ class RequestFacebook {
             )
         ))->execute();
 
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response->getGraphObject()); echo "</pre>";die;
         return $response->getGraphObject();
     }
 
