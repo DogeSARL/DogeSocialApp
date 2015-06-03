@@ -7,6 +7,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class OauthProvider extends BaseClass
 {
+
+    protected $entityManager;
+
+    public function __construct(UserManagerInterface $userManager, array $properties, $em)
+    {
+        parent::__construct( $userManager, $properties );
+        $this->entityManager = $em;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -66,26 +75,29 @@ class OauthProvider extends BaseClass
             $user->setNom($response->getResponse()["first_name"]);
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
+            $user->setCountry($response->getResponse()["country"]);
+            $user->setAge($response->getResponse()["age"]);
 
-            return $user;
+        }
+        else {
+            //if user exists - go with the HWIOAuth way
+            $user = parent::loadUserByOAuthUserResponse($response);
+
+            $user->setNom($response->getResponse()["first_name"]);
+            $user->setPrenom($response->getResponse()["last_name"]);
+            $user->setGender($response->getResponse()["gender"]);
+            $user->setCountry($response->getResponse()["country"]);
+            $user->setAge($response->getResponse()["age"]);
+
+            $serviceName = $response->getResourceOwner()->getName();
+            $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
+
+            //update access token
+            $user->$setter($response->getAccessToken());
         }
 
-        //if user exists - go with the HWIOAuth way
-        $user = parent::loadUserByOAuthUserResponse($response);
-
-        $user->setNom($response->getResponse()["first_name"]);
-        $user->setPrenom($response->getResponse()["last_name"]);
-        $user->setGender($response->getResponse()["gender"]);
-
-        echo "<pre>";
-        \Doctrine\Common\Util\Debug::dump($user);
-        echo "</pre>";
-
-        $serviceName = $response->getResourceOwner()->getName();
-        $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
-
-        //update access token
-        $user->$setter($response->getAccessToken());
+        $this->entityManager->persist($user);
+        $this->entityManager->flush($user);
 
         return $user;
     }
