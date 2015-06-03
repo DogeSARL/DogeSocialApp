@@ -49,7 +49,6 @@ class RequestFacebook {
             }
         }
 
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($uploadOptions); echo "</pre>";
         // Upload to a user's profile. The photo will be in the
         // first album in the profile. You can also upload to
         // a specific album by using /ALBUM_ID as the path
@@ -57,7 +56,6 @@ class RequestFacebook {
             $this->fbSession, 'POST', '/' . $id . '/photos', $uploadOptions
         ))->execute();
 
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response->getGraphObject()); echo "</pre>";die;
         return $response->getGraphObject();
     }
 
