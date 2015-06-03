@@ -49,6 +49,8 @@ class RequestFacebook {
             }
         }
 
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($id); echo "</pre>";die;
+
         // Upload to a user's profile. The photo will be in the
         // first album in the profile. You can also upload to
         // a specific album by using /ALBUM_ID as the path
