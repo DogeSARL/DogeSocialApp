@@ -4,6 +4,7 @@ namespace Doge\FacebookBundle\Provider;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Symfony\Component\Security\Core\User\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
 
 class OauthProvider extends BaseClass
 {
@@ -75,8 +76,8 @@ class OauthProvider extends BaseClass
             $user->setNom($response->getResponse()["first_name"]);
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
-            $user->setCountry($response->getResponse()["country"]);
-            $user->setAge($response->getResponse()["age"]);
+            $user->setCountry($response->getResponse()["location"]);
+            $user->setAge(getAgefromBirthday($response->getResponse()["birthday"]));
 
         }
         else {
@@ -86,8 +87,8 @@ class OauthProvider extends BaseClass
             $user->setNom($response->getResponse()["first_name"]);
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
-            $user->setCountry($response->getResponse()["country"]);
-            $user->setAge($response->getResponse()["age"]);
+            $user->setCountry($response->getResponse()["location"]);
+            $user->setAge(getAgefromBirthday($response->getResponse()["birthday"]));
 
             $serviceName = $response->getResourceOwner()->getName();
             $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
@@ -95,11 +96,23 @@ class OauthProvider extends BaseClass
             //update access token
             $user->$setter($response->getAccessToken());
         }
-
+        echo 'THIS IS A TEST';
+        print_r($response->getResponse()["location"]);
         $this->entityManager->persist($user);
         $this->entityManager->flush($user);
 
         return $user;
+    }
+
+    // This function returns the age from a birthday date
+    public function getAgefromBirthday($date) {
+      //explode the date to get month, day and year
+      $birthDate = explode("/", $date);
+      //get age from date or birthdate
+      $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+        ? ((date("Y") - $birthDate[2]) - 1)
+        : (date("Y") - $birthDate[2]));
+      return $age;
     }
 
 }
