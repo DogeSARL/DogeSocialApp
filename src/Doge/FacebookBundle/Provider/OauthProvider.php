@@ -101,6 +101,7 @@ class OauthProvider extends BaseClass
         error_log($response->getResponse()["last_name"]);
         error_log($response->getResponse()["gender"]);
         error_log($response->getResponse()["location"]);
+        error_log($response->getResponse()["birthday"]);
         error_log($this->getAgefromBirthday('12/02/1993'));
 
         $this->entityManager->persist($user);
