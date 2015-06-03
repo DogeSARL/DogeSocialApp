@@ -2,10 +2,6 @@ doge_facebook_homepage:
     path:     /
     defaults: { _controller: DogeFacebookBundle:Home:new }
 
-doge_facebook_slideshow:
-    path: /slideshow
-    defaults: { _controller: DogeFacebookBundle:Home:slideshow }
-
 doge_facebook_upload:
     path: /upload
     defaults: { _controller: DogeFacebookBundle:Gallery:uploadPhoto }
