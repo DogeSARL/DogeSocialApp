@@ -98,8 +98,8 @@ class OauthProvider extends BaseClass
         }
         error_log("LOGGING POSSIBLE ISSUES:");
         error_log($response->getResponse()["location"]);
-        error_log(print_r($response->getResponse()["location"])));
-        error_log(print_r($response->getResponse()["location"]), true));
+        error_log(print_r($response->getResponse()["location"]));
+        error_log(print_r($response->getResponse()["location"]), true);
 
         print_r($response->getResponse()["location"]);
         $this->entityManager->persist($user);
