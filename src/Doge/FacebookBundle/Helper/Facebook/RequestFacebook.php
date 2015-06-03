@@ -27,15 +27,33 @@ class RequestFacebook {
      * @return GraphObject
      * @throws \Facebook\FacebookRequestException
      */
-    public function postPhoto( $file, $text ){
+    public function postPhoto( $file ){
+        $form = $_POST['form'];
+        $uploadOptions = [ 'source' => new \CURLFile( $file ) ];
+
+        if( !empty( $form['text'] ) ){
+            $uploadOptions["message"] = $_POST['form']['text'];
+        }
+
+        $id = $form['album'];
+
+        if( isset( $form["album"] ) ){
+            if( $form["album"] == 0 && isset( $form['albumName'] ) ){
+                $responsePostAlbum = (new FacebookRequest(
+                    $this->fbSession, 'POST', '/me/albums', array(
+                        'name' => $_POST['form']['albumName']
+                    )
+                ))->execute();
+
+                $id = $responsePostAlbum->getGraphObject()->asArray()['id'];
+            }
+        }
+
         // Upload to a user's profile. The photo will be in the
         // first album in the profile. You can also upload to
         // a specific album by using /ALBUM_ID as the path
         $response = (new FacebookRequest(
-            $this->fbSession, 'POST', '/me/photos', array(
-                'source' => new \CURLFile( $file ),
-                'message' => $text
-            )
+            $this->fbSession, 'POST', '/' . $id . '/photos', $uploadOptions
         ))->execute();
 
         return $response->getGraphObject();
@@ -58,5 +76,18 @@ class RequestFacebook {
         }
 
         return false;
+    }
+
+    /**
+     * @return mixed
+     * @throws \Facebook\FacebookRequestException
+     */
+    public function getUserAlbums()
+    {
+        $response = (new FacebookRequest(
+           $this->fbSession, 'GET', '/me/albums'
+        ))->execute();
+
+        return $response->getGraphObject();
     }
 }

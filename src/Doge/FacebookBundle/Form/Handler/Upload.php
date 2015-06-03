@@ -36,7 +36,7 @@ class Upload {
         }
 
         try {
-            $request = $this->fbRequest->postPhoto( $file, $_POST['form']['file']);
+            $request = $this->fbRequest->postPhoto( $file );
 
             $image = new Image();
             $image->setPostId( $request->getProperty("id") );
