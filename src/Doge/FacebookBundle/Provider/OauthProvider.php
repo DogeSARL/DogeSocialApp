@@ -77,7 +77,7 @@ class OauthProvider extends BaseClass
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
             $user->setCountry($response->getResponse()["location"]);
-            $user->setAge(parent::getAgefromBirthday($response->getResponse()["birthday"]));
+            $user->setAge($this->getAgefromBirthday($response->getResponse()["birthday"]));
 
         }
         else {
@@ -88,7 +88,7 @@ class OauthProvider extends BaseClass
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
             $user->setCountry($response->getResponse()["location"]);
-            $user->setAge(parent::getAgefromBirthday($response->getResponse()["birthday"]));
+            $user->setAge($this->getAgefromBirthday($response->getResponse()["birthday"]));
 
             $serviceName = $response->getResourceOwner()->getName();
             $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
