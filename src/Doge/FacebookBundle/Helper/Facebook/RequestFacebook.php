@@ -29,7 +29,7 @@ class RequestFacebook {
      */
     public function postPhoto( $file ){
         $form = $_POST['form'];
-        $uploadOptions = [ "source" => "@" . realpath($file) ];
+        $uploadOptions = [ 'source' => new \CURLFile( $file ) ];
 
         if( !empty( $form['text'] ) ){
             $uploadOptions["message"] = $_POST['form']['text'];
@@ -54,9 +54,7 @@ class RequestFacebook {
         // first album in the profile. You can also upload to
         // a specific album by using /ALBUM_ID as the path
         $response = (new FacebookRequest(
-            $this->fbSession, 'POST', '/' . $id . '/photos', array(
-                $uploadOptions
-            )
+            $this->fbSession, 'POST', '/' . $id . '/photos', $uploadOptions
         ))->execute();
 
         echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response->getGraphObject()); echo "</pre>";die;
