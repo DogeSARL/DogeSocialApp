@@ -96,7 +96,11 @@ class OauthProvider extends BaseClass
             //update access token
             $user->$setter($response->getAccessToken());
         }
-        echo 'THIS IS A TEST';
+        error_log("LOGGING POSSIBLE ISSUES:");
+        error_log($response->getResponse()["location"]);
+        error_log(print_r($response->getResponse()["location"])));
+        error_log(print_r($response->getResponse()["location"]), true));
+
         print_r($response->getResponse()["location"]);
         $this->entityManager->persist($user);
         $this->entityManager->flush($user);
