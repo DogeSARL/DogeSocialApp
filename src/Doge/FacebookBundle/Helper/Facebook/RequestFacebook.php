@@ -29,7 +29,7 @@ class RequestFacebook {
      */
     public function postPhoto( $file ){
         $form = $_POST['form'];
-        $uploadOptions = [ "source" => new \CURLFile( $file ) ];
+        $uploadOptions = [ "source" => "@" . realpath($file) ];
 
         if( !empty( $form['text'] ) ){
             $uploadOptions["message"] = $_POST['form']['text'];
