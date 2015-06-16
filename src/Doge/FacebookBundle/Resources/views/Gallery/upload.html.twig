@@ -36,6 +36,11 @@
         $(document).ready(function() {
             $.ajaxSetup({ cache: true });
             $.getScript('//connect.facebook.net/fr_FR/sdk.js', function(){
+                FB.init({
+                    appId: '{{ app_id }}',
+                    version: 'v2.3' // or v2.0, v2.1, v2.0
+                });
+
                 FB.getLoginStatus();
 
                 FB.api('/me/albums?fields=id,name', function(response) {
