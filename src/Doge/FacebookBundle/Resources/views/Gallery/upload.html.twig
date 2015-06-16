@@ -18,6 +18,7 @@
 
 {% block js %}
     {{ parent() }}
+    {% if error is not defined or error is empty %}
     <script src="{{ asset("bundles/dogefacebook/js/upload.js") }}"></script>
     <script type="text/javascript">
         if( $("#form_album").val() == 0 ){
@@ -35,10 +36,7 @@
         $(document).ready(function() {
             $.ajaxSetup({ cache: true });
             $.getScript('//connect.facebook.net/fr_FR/sdk.js', function(){
-                FB.init({
-                    appId: '{{ app_id }}',
-                    version: 'v2.3' // or v2.0, v2.1, v2.0
-                });
+                FB.getLoginStatus();
 
                 FB.api('/me/albums?fields=id,name', function(response) {
                     var data = response.data;
@@ -48,4 +46,5 @@
             });
         });
     </script>
+    {% endif %}
 {% endblock %}
