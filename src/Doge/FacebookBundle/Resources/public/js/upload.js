@@ -9,9 +9,7 @@ var uploadApp = function(){
                 FB.api('/'+album.id+'/photos', function(photos){
                     console.log(photos);
                     if (photos && photos.data && photos.data.length){
-                        console.log("inside");
-                        console.log(photos.data.length);
-                        var newAlbum = {};
+                        var newAlbum = [];
 
                         for(var j=0; j < photos.data.length; j++){
                             var photo = photos.data[j];
