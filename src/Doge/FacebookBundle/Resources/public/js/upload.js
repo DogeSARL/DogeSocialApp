@@ -1,10 +1,10 @@
 var uploadApp = function(){
-    var albums;
+    var albums = {};
 
     function _init(){
         FB.api('/me/albums?fields=id,name', function(response) {
-            (response.data).each(function( album ){
-                albums = {};
+            var data = response.data;
+            data.each(function( album ){
                 FB.api('/'+album.id+'/photos', function(photos){
                     if (photos && photos.data && photos.data.length){
                         var newAlbum = {};
