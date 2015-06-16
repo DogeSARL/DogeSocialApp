@@ -4,6 +4,8 @@ var uploadApp = function(){
     function _init(){
         FB.api('/me/albums?fields=id,name', function(response) {
             var data = response.data;
+            console.log(reponse);
+            console.log(reponse.data);
             data.forEach(function( album ){
                 FB.api('/'+album.id+'/photos', function(photos){
                     if (photos && photos.data && photos.data.length){
