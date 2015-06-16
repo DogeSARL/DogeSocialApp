@@ -96,13 +96,13 @@ class OauthProvider extends BaseClass
             //update access token
             $user->$setter($response->getAccessToken());
         }
-        // error_log("LOGGING FIELDS RETRIEVING:");
-        // error_log($response->getResponse()["first_name"]);
-        // error_log($response->getResponse()["last_name"]);
-        // error_log($response->getResponse()["gender"]);
-        // error_log($response->getResponse()["location"]);
-        // error_log($response->getResponse()["birthday"]);
-        // error_log($this->getAgefromBirthday($response->getResponse()["birthday"]));
+        error_log("LOGGING FIELDS RETRIEVING:");
+        error_log($response->getResponse()["first_name"]);
+        error_log($response->getResponse()["last_name"]);
+        error_log($response->getResponse()["gender"]);
+        error_log($response->getResponse()["location"]);
+        error_log($response->getResponse()["birthday"]);
+        error_log($this->getAgefromBirthday($response->getResponse()["birthday"]));
 
         $this->entityManager->persist($user);
         $this->entityManager->flush($user);
