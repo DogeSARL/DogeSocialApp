@@ -29,6 +29,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        app_id: %doge_facebook.appId%
 
 # Assetic Configuration
 assetic:
