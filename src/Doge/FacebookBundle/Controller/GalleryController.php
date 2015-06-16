@@ -21,7 +21,7 @@ class GalleryController extends Controller{
         $fbRequest = $this->get("doge.request_facebook");
         $error = "";
 
-        if( !$fbRequest->checkPermission("publish_actions") && !$fbRequest->checkPermission("user_photos") ){
+        if( !$fbRequest->checkPermission("publish_actions") || !$fbRequest->checkPermission("user_photos") ){
             $error = $this->get("doge.helper.controller.permission_request")->reAskPermission( $request );
 
             if( is_object( $error ) ){
@@ -48,7 +48,7 @@ class GalleryController extends Controller{
 
         if( $request->getMethod() == "POST" && $this->getUser() ){
             try{
-                $this->get("doge.form.handler.upload")->handleRequest();
+                $message = $this->get("doge.form.handler.upload")->handleRequest();
             } catch( FacebookRequestException $e ){
                 $message = "Une erreur est survenue lors de l'envoi du fichier.";
             }
