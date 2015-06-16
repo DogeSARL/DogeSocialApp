@@ -110,11 +110,11 @@
 }
 
 .fb-like {
-    transform: scale(1.6);
-    -ms-transform: scale(1.6);
-    -webkit-transform: scale(1.6);
-    -o-transform: scale(1.6);
-    -moz-transform: scale(1.6);
+    transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    -moz-transform: scale(1.4);
 }
 
 #container.page_home .bx-wrapper .bx-viewport {
