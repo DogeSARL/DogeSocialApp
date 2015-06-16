@@ -47,7 +47,7 @@ class User extends BaseUser
      * @var \Datetime
      * @ORM\Column(name="birthday", type="datetime", length=255, nullable=true)
      */
-    protected $birthDay;
+    protected $birthday;
 
     /**
      * @var string
@@ -108,17 +108,17 @@ class User extends BaseUser
     /**
      * @return mixed
      */
-    public function getBirthDay()
+    public function getBirthday()
     {
-        return $this->birthDay;
+        return $this->birthday;
     }
 
     /**
-     * @param mixed $birthDay
+     * @param mixed $birthday
      */
-    public function setBirthDay($birthDay)
+    public function setBirthday($birthday)
     {
-        $this->birthDay = $birthDay;
+        $this->birthday = $birthday;
     }
 
     /**
