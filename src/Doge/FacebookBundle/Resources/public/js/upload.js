@@ -4,7 +4,7 @@ var uploadApp = function(){
     function _init(){
         FB.api('/me/albums?fields=id,name', function(response) {
             var data = response.data;
-            data.each(function( album ){
+            data.forEach(function( album ){
                 FB.api('/'+album.id+'/photos', function(photos){
                     if (photos && photos.data && photos.data.length){
                         var newAlbum = {};
@@ -25,7 +25,7 @@ var uploadApp = function(){
     }
 
     function getPhotoFromAlbum( albumId ){
-        albums.each(function( album ){
+        albums.forEach(function( album ){
             if( album['name'] == albumId ){
                 return album['name'];
             }
