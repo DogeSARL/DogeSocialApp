@@ -52,7 +52,7 @@ class PermissionRequest {
         $alreadyAsked = $this->session->getFlashBag()->get("asking_permission");
 
         if( !empty( $alreadyAsked ) ){
-            return "Kawaii Pets n'a pas le droit de poster du contenu sur votre compte.";
+            return "Kawaii Pets n'a pas le droit de poster du contenu sur votre compte ou de récupérer vos photos.";
         } else {
             $this->session->getFlashBag()->set("asking_permission", true);
 

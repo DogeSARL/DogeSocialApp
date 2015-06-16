@@ -1,18 +1,29 @@
 {% extends "DogeFacebookBundle:Layout:layout.html.twig" %}
 
 {% block content %}
-{% if error is defined and error is not empty %}
-    {{ error }}
-{% else %}
+    {% if error is defined and error is not empty %}
+        {{ error }}
+    {% else %}
     {{ message }}
+    Je télécharge une photo depuis mon ordinateur :
+
     <br />
     {{ form( form ) }}
-{% endif %}
+
+    Ou je choisis une photo depuis mes albums facebook :
+        <form method="post" id="user-photos">
+        </form>
+    {% endif %}
 {% endblock %}
 
 {% block js %}
     {{ parent() }}
+    {% if error is not defined or error is empty %}
+    <script src="//connect.facebook.net/fr_FR/sdk.js"></script>
+    <script src="{{ asset("bundles/dogefacebook/js/upload.js") }}"></script>
     <script type="text/javascript">
+        var access_token;
+
         if( $("#form_album").val() == 0 ){
             $("#form_albumName").attr("type", "text");
         }
@@ -24,5 +35,21 @@
                 $("#form_albumName").attr("type", "hidden");
             }
         });
+
+        $(document).ready(function() {
+            $.ajaxSetup({ cache: true });
+
+            FB.init({
+                appId: '{{ app_id }}',
+                version: 'v2.3' // or v2.0, v2.1, v2.0
+            });
+
+            FB.getLoginStatus(function(response){
+                access_token = FB.getAuthResponse()['accessToken'];
+
+                uploadApp.init();
+            });
+        });
     </script>
+    {% endif %}
 {% endblock %}
