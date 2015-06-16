@@ -52,7 +52,7 @@
                     } else {
                         console.log('User cancelled login or did not fully authorize.');
                     }
-                }, { scope: {{ scopes }} });
+                }, { scope: "{{ scopes }}" });
 
                 console.log( FB.getLoginStatus() );
 
