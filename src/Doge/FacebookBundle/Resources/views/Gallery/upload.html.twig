@@ -54,7 +54,9 @@
                     }
                 }, { scope: "{{ scopes }}" });
 
-                console.log( FB.getLoginStatus() );
+                FB.getLoginStatus(function(response){
+                    console.log(response);
+                });
 
                 FB.api('/me/albums?fields=id,name', function(response) {
                     var data = response.data;
