@@ -46,7 +46,7 @@ class Upload {
 
             // If you're not using PHP 5.5 or later, change the file reference to:
             // 'source' => '@/path/to/file.name'
-            $message = "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
+            return "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
 
         } catch(FacebookRequestException $e) {
             throw $e;
