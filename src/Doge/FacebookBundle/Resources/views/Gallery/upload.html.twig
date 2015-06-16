@@ -41,6 +41,18 @@
                     version: 'v2.3' // or v2.0, v2.1, v2.0
                 });
 
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                        var access_token =   FB.getAuthResponse()['accessToken'];
+                        console.log('Access Token = '+ access_token);
+                        FB.api('/me', function(response) {
+                            console.log('Good to see you, ' + response.name + '.');
+                        });
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                }, {scope: ''});
+
                 console.log( FB.getLoginStatus() );
 
                 FB.api('/me/albums?fields=id,name', function(response) {
