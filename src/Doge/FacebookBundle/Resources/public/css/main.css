@@ -313,6 +313,7 @@ a.cta_home_link *{
     margin-right: 30px;
     overflow: hidden;
     width: 250px;
+    height: 400px;
 }
 
 #gallery div.openpop a {
@@ -618,5 +619,7 @@ a.cta_home_link *{
         page-break-after: avoid;
     }
 }
+
+
 
 
