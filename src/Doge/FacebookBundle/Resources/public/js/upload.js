@@ -17,7 +17,9 @@ var uploadApp = function(){
                             newAlbum.push({ "name": photo.name, "picture":photo.picture });
                         }
 
-                        newAlbum[ album.id ] = newAlbum;
+                        console.log(newAlbum);
+
+                        albums[ album.id ] = newAlbum;
                     }
                 });
             });
