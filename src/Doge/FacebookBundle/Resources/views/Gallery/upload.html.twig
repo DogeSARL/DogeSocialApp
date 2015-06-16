@@ -47,11 +47,7 @@
             FB.getLoginStatus(function(response){
                 access_token = FB.getAuthResponse()['accessToken'];
 
-                FB.api('/me/albums?access_token='+ access_token + '&fields=id,name', function(response) {
-                    var data = response.data;
-                    console.log(response);
-                    console.log(response.data);
-                });
+                uploadApp.init();
             });
         });
     </script>
