@@ -92,4 +92,4 @@ hwi_oauth:
             client_secret: %doge_facebook.appSecret%
             options:
                 display: page
-            scope: "publish_actions, user_photos"
+            scope: %doge_facebook.scopes%
