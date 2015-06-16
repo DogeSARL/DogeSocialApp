@@ -44,7 +44,7 @@ class User extends BaseUser
     protected $prenom;
 
     /**
-     * @var \Datetime
+     * @var string
      * @ORM\Column(name="birthday", type="datetime", length=255, nullable=true)
      */
     protected $birthday;
