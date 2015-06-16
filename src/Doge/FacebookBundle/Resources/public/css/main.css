@@ -451,6 +451,72 @@ a.cta_home_link *{
     font-size: 13px;
 }
 
+/* ==========================================================================
+   Upload
+   ========================================================================== */
+
+#upload .wrapper_form{
+    display:inline-block;
+    width: 225px;
+    margin-top:50px;
+    text-align: left;
+}
+
+#upload .wrapper_form input:not(#form_envoyer),
+#upload .wrapper_form select{
+    height: 30px;
+    width:100%;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing: border-box;
+    margin-bottom:15px;
+}
+
+#upload .wrapper_form select{
+    font-family: 'Open Sans';
+    font-size: 11px;
+}
+
+#upload .wrapper_form label{
+    color:white;
+    font-family: 'Open Sans';
+    font-size: 11px;
+    line-height: 1.2;
+    text-shadow: 4px 1px 6px rgba(150, 150, 150, 1);
+}
+
+#upload .wrapper_form #form_file{
+    color: #ffffff;
+    text-shadow: 4px 1px 6px rgba(150, 150, 150, 1);
+}
+
+#upload .wrapper_form .submit_wrapper{
+    text-align: center;
+}
+
+#upload .wrapper_form #form_envoyer{
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    font-family: "Vollkorn";
+    font-size: 15px;
+    line-height: 15px;
+    padding: 13px 0 12px;
+    font-style: normal;
+    font-weight: normal;
+    height: 37px;
+    margin: 0;
+
+    text-align: center;
+    text-indent: 0;
+    text-transform: uppercase;
+    width: 105px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing: border-box;
+}
 
 /* ==========================================================================
    Helper classes
