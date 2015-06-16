@@ -15,7 +15,7 @@ var uploadApp = function(){
                             newAlbum.push({ "name": photo.name, "picture":photo.picture });
                         }
 
-                        albums.push( newAlbum );
+                        newAlbum[ album.id ] = newAlbum;
                     }
                 });
             });
@@ -24,9 +24,9 @@ var uploadApp = function(){
         });
     }
 
-    function getPhotoFromAlbum( albumName ){
+    function getPhotoFromAlbum( albumId ){
         albums.each(function( album ){
-            if( album['name'] == albumName ){
+            if( album['name'] == albumId ){
                 return album['name'];
             }
         });
