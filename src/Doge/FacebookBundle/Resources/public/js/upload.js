@@ -32,5 +32,5 @@ var uploadApp = function(){
         });
     }
 
-    return {init:"_init", getPhotoFromAlbum: "getPhotoFromAlbum"};
+    return {init:_init, getPhotoFromAlbum: getPhotoFromAlbum};
 }();
