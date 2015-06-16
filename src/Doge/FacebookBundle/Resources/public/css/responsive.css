@@ -86,11 +86,6 @@
 
     }
 
-    #container.page_home .bx-wrapper .bx-viewport {
-
-        height: 210px !important;
-
-    }
 
     .fb-like {
         transform: scale(0.8);
@@ -121,6 +116,13 @@
     -o-transform: scale(1.6);
     -moz-transform: scale(1.6);
 }
+
+#container.page_home .bx-wrapper .bx-viewport {
+
+    height: 400px !important;
+
+}
+
 
 
 
