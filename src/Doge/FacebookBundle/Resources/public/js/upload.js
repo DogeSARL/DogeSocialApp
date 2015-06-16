@@ -17,23 +17,17 @@ var uploadApp = function(){
                             newAlbum.push({ "name": photo.name, "picture": photo.picture });
                         }
 
-                        console.log(newAlbum);
-
                         albums[ album.id ] = newAlbum;
                     }
                 });
             });
-
-            console.log( albums );
         });
     }
 
     function getPhotoFromAlbum( albumId ){
-        albums.forEach(function( album ){
-            if( album['name'] == albumId ){
-                return album['name'];
-            }
-        });
+        if( albums[ albumId ] == undefined ){
+            return albums[ albumId ];
+        }
     }
 
     return {init:_init, getPhotoFromAlbum: getPhotoFromAlbum};
