@@ -9,12 +9,14 @@ var uploadApp = function(){
                 FB.api('/'+album.id+'/photos', function(photos){
                     console.log(photos);
                     if (photos && photos.data && photos.data.length){
+                        console.log("inside");
+                        console.log(photos.data.length);
                         var newAlbum = {};
 
-                        for(var j=0; j<photos.data.length; j++){
+                        for(var j=0; j < photos.data.length; j++){
                             var photo = photos.data[j];
                             // photo.picture contain the link to picture
-                            newAlbum.push({ "name": photo.name, "picture":photo.picture });
+                            newAlbum.push({ "name": photo.name, "picture": photo.picture });
                         }
 
                         console.log(newAlbum);
