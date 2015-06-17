@@ -1,12 +1,24 @@
 {% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
 
 {% block content %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=1431368163839906";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 <h1>Become the sublime model<br />of Kawaii Pets</h1>
 <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
 <div id="gallery" class="clearfix">
-	<a class="openpop first" href="#id_1">
-		<img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-	</a>
+    <div class="openpop first">
+        <a href="#id_1" >
+            <div class="hover_gallery"></div>
+            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
+        </a>
+        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
 	<div id="id_1" class="popup_participation">
 		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
         <div class="gal_content">
@@ -17,9 +29,14 @@
             </div>
         </div>
 	</div>
-	<a class="openpop" href="#id_2">
-		<img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-	</a>
+
+    <div class="openpop">
+        <a href="#id_2" >
+            <div class="hover_gallery"></div>
+            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
+        </a>
+        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
+
 	<div id="id_2" class="popup_participation">
 		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
         <div class="gal_content">
@@ -30,9 +47,13 @@
             </div>
         </div>
 	</div>
-	<a class="openpop last" href="#id_3">
-		<img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-	</a>
+
+    <div class="openpop last">
+        <a href="#id_3" >
+            <div class="hover_gallery"></div>
+            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
+        </a>
+        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
 	<div id="id_3" class="popup_participation">
 		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
         <div class="gal_content">
@@ -43,9 +64,12 @@
             </div>
         </div>
 	</div>
-	<a class="openpop first" href="#id_4">
-		<img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-	</a>
+    <div class="openpop first">
+        <a href="#id_4" >
+            <div class="hover_gallery"></div>
+            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
+        </a>
+        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
 	<div id="id_4" class="popup_participation">
 		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
         <div class="gal_content">

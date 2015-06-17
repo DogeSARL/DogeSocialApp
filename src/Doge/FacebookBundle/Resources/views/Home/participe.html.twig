@@ -1,17 +1,62 @@
 {% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
 
 {% block content %}
-    <div>
-        <h1>Become the sublime model<br />of Kawaii Pets</h1>
-        <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
-        <div class="slider_home_wrapper">
-
+    <div id="upload">
+        <h1>Upload your photo right here !</h1>
+        <div class="wrapper_form">
+            <form name="form" method="post" action="" enctype="multipart/form-data">
+                <div id="form">
+                    <div>
+                        <label for="form_album" class="required">Album</label>
+                        <select id="form_album" name="form[album]">
+                            <option value="0">Nouvel album</option>
+                            <option value="10205836375002109">fdgs</option>
+                            <option value="10205659338776314">Kawaii Pets Photos</option>
+                            <option value="2746209927986">Mobile Uploads</option>
+                            <option value="10204897089080548">Cover Photos</option>
+                            <option value="1529406188653">Profile Pictures</option>
+                            <option value="1498990788287">Mon appareil 2eme partie</option>
+                            <option value="1498980028018">Mon appareil</option>
+                            <option value="1491070590287">London Baby !</option>
+                            <option value="1409296545987">Miam</option>
+                            <option value="1437292885878">Jardinage</option>
+                        </select>
+                    </div>
+                    <label for="form_albumName" class="required">Album name</label>
+                    <input type="text" id="form_albumName" name="form[albumName]">
+                    <div>
+                        <label for="form_file" class="required">File</label>
+                        <input type="file" id="form_file" name="form[file]" required="required">
+                    </div>
+                    <div>
+                        <label for="form_text" class="required">Text</label>
+                        <input type="text" id="form_text" name="form[text]" required="required">
+                    </div>
+                    <div class="submit_wrapper">
+                        <input type="submit" id="form_envoyer" name="form[envoyer]">
+                    </div>
+                    <input type="hidden" id="form__token" name="form[_token]" value="qwlW3krDkE5Y2SlDKH0BgG01w0bjP27DFXxeFta4V98">
+                </div>
+            </form>
         </div>
-        </a>
+
     </div>
 {% endblock %}
 
 {% block js %}
     {{ parent() }}
+    <script type="text/javascript">
+        if( $("#form_album").val() == 0 ){
+            $("#form_albumName").attr("type", "text");
+        }
+
+        $("#form_album").change(function(){
+            if( $(this).val() == 0 ){
+                $("#form_albumName").attr("type", "text");
+            } else {
+                $("#form_albumName").attr("type", "hidden");
+            }
+        });
+    </script>
 {% endblock %}
 
