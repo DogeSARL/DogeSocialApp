@@ -83,13 +83,13 @@
 }
 
 #container.page_home .bx-wrapper .bx-viewport {
-
-    height: 400px !important;
+    width: 500px !important;
+    height: 340px !important;
 
 }
 
 #container.fb_tab header {
-    text-align: left;
+    text-align: center;
 
 }
 #container.fb_tab {
