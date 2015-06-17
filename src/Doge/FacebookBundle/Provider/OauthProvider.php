@@ -90,7 +90,7 @@ class OauthProvider extends BaseClass
             $user->setCountry($response->getResponse()["location"]);
             error_log("ERROR HOHOHO");
             error_log($response->getResponse()["birthday"]);
-            error_log(\DateTime::createFromFormat($format, $response->getResponse()["birthday"]));
+            error_log(\DateTime::createFromFormat('m/d/Y', $response->getResponse()["birthday"]));
             $user->setBirthday(\DateTime::createFromFormat($format, $response->getResponse()["birthday"]));
             $user->setAge($this->getAgefromBirthday($response->getResponse()["birthday"]));
 
