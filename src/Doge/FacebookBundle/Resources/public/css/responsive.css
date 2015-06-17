@@ -123,6 +123,18 @@
 
 }
 
+#container.fb_tab header {
+    text-align: left;
+
+}
+#container.fb_tab {
+    height: 926px;
+    width: 810px;
+}
+
+#container.fb_tab h1 {
+}
+
 
 
 
