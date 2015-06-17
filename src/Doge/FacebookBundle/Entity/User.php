@@ -45,7 +45,7 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(name="birthday", type="datetime", length=255, nullable=true)
+     * @ORM\Column(name="birthday", type="string", length=255, nullable=true)
      */
     protected $birthday;
 
