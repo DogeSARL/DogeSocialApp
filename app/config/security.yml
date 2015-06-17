@@ -33,7 +33,9 @@ security:
                 check_path: /app/login_check
                 oauth_user_provider:
                     service: doge.oauth.user_provider
-            logout: true
+            logout:
+                path:   /app/logout
+                target: /app
             anonymous: true
 
     access_control:

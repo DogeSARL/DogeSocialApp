@@ -5,16 +5,29 @@ var uploadApp = function(){
         FB.api('/me/albums?fields=id,name', function(response) {
             var data = response.data;
             data.forEach(function( album ){
-                console.log("ok");
                 FB.api('/'+album.id+'/photos', function(photos){
-                    console.log(photos);
                     if (photos && photos.data && photos.data.length){
                         var newAlbum = [];
 
                         for(var j=0; j < photos.data.length; j++){
                             var photo = photos.data[j];
+                            var newPhoto = [];
+
+                            newPhoto[ "name" ] = photo.name;
+                            newPhoto[ "picture" ] = photo.picture;
+
                             // photo.picture contain the link to picture
-                            newAlbum.push({ "name": photo.name, "picture": photo.picture });
+
+                            bestSizedImage = photo.images[0];
+                            for( var k = 1 ; k < photo.images.length ; k++ ){
+                                if( photo.images[k].width >= 430 && bestSizedImage.width > photo.images[k].width ){
+                                    bestSizedImage = photo.images[k];
+                                }
+                            }
+
+                            newPhoto[ "thumbnail" ] = bestSizedImage;
+
+                            newAlbum.push( newPhoto );
                         }
 
                         albums[ album.id ] = newAlbum;
@@ -25,9 +38,7 @@ var uploadApp = function(){
     }
 
     function getPhotoFromAlbum( albumId ){
-        if( albums[ albumId ] == undefined ){
-            return albums[ albumId ];
-        }
+        return albums[ albumId ];
     }
 
     return {init:_init, getPhotoFromAlbum: getPhotoFromAlbum};

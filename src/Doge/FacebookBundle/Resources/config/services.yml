@@ -1,9 +1,12 @@
 services:
     doge.form.handler.upload:
         class: Doge\FacebookBundle\Form\Handler\Upload\Upload
+        scope: request
         arguments:
             - @doge.request_facebook
             - @doctrine.orm.entity_manager
+            - @request
+            - @security.token_storage
 
     doge.helper.controller.permission_request:
         class: Doge\FacebookBundle\Helper\Controller\PermissionRequest
