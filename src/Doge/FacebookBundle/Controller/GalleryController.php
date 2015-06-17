@@ -29,30 +29,36 @@ class GalleryController extends Controller{
             }
         }
 
-        $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
-        $albums = [ 0 => "Nouvel album" ];
-
-        foreach( $retrievedAlbums as $album ){
-            $albums[$album->id] = $album->name;
-        }
-
-        $formBuilder = $this->createFormBuilder();
-        $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
-            ->add("albumName", "hidden")
-            ->add("file", "file")
-            ->add("text", "text")
-            ->add("envoyer", "submit");
-
-        $form = $formBuilder->getForm();
         $message = "";
 
         if( $request->getMethod() == "POST" && $this->getUser() ){
-            try{
-                $message = $this->get("doge.form.handler.upload")->handleRequest();
-            } catch( FacebookRequestException $e ){
-                $message = "Une erreur est survenue lors de l'envoi du fichier.";
+            if( $photo = $request->get("form_photo") ){
+
+            } else {
+                try{
+                    $message = $this->get("doge.form.handler.upload")->handleRequest();
+                } catch( FacebookRequestException $e ){
+                    $message = "Une erreur est survenue lors de l'envoi du fichier.";
+                }
             }
+        } else {
+            $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
+            $albums = [ 0 => "Nouvel album" ];
+
+            foreach( $retrievedAlbums as $album ){
+                $albums[$album->id] = $album->name;
+            }
+
+            $formBuilder = $this->createFormBuilder();
+            $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
+                ->add("albumName", "hidden")
+                ->add("file", "file")
+                ->add("text", "text")
+                ->add("envoyer", "submit");
+
+            $form = $formBuilder->getForm();
         }
+
 
         return $this->render("DogeFacebookBundle:Gallery:upload.html.twig", [ 'form' => $form->createView(), "message" => $message, "error" => $error ]);
     }
