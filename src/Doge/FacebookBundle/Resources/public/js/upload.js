@@ -38,9 +38,9 @@ var uploadApp = function(){
     }
 
     function getPhotoFromAlbum( albumId ){
-        if( albums[ albumId ] == undefined ){
-            return albums[ albumId ];
-        }
+        console.log(10205659338776314);
+        console.log(albums);
+        return albums[ albumId ];
     }
 
     return {init:_init, getPhotoFromAlbum: getPhotoFromAlbum};
