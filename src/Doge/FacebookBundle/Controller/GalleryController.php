@@ -81,6 +81,8 @@ class GalleryController extends Controller{
                     "id" => $db->getPostId(),
                 ];
 
+                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($images[0]); echo "</pre>";
+                die;
             } catch( FacebookAuthorizationException $e ){
             }
         }
