@@ -1,14 +1,22 @@
-Like count: {{ json.0.like_count }}
-Countries of Users:
+<b>Like count:</b> {{ json.0.like_count }}
+<br />
+<b>Countries of Users:</b>
 {% for country in countries %}
   {{ country }}
 {% endfor %}
 <br />
-User per country:
+<b>User per country:</b>
 {% for country, number in user_per_country %}
-  Number of users for {{ country }}: {{ number }}
+  <br/ >
+  <b>Number of users for {{ country }} </b>: {{ number }}
 {% endfor %}
 <br />
-User by age:
-User below 25: {{ nb_user_age_below_25 }}
-User Over 25: {{ nb_user_age_below_25 }}
+<b>User by age:</b>
+<br />
+<b>User below 25:</b> {{ nb_user_age_below_25 }}
+<br />
+<b>User Over 25:</b> {{ nb_user_age_below_25 }}
+{% for gender, number in user_per_gender %}
+  <br/ >
+  <b>Number of user for {{ gender }} </b>: {{ number }}
+{% endfor %}
