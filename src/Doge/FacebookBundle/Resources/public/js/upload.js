@@ -38,8 +38,6 @@ var uploadApp = function(){
     }
 
     function getPhotoFromAlbum( albumId ){
-        console.log(10205659338776314);
-        console.log(albums);
         return albums[ albumId ];
     }
 
