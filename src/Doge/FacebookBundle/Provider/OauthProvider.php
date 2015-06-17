@@ -88,9 +88,7 @@ class OauthProvider extends BaseClass
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
             $user->setCountry($response->getResponse()["location"]);
-            error_log("ERROOOOOOOOR");
-            error_log($response->getResponse()["birthday"]);
-            $user->setBirthday($date = DateTime::createFromFormat($format, $response->getResponse()["birthday"]));
+            $user->setBirthday($date = \DateTime::createFromFormat($format, $response->getResponse()["birthday"]));
             $user->setAge($this->getAgefromBirthday($response->getResponse()["birthday"]));
 
             $serviceName = $response->getResourceOwner()->getName();
