@@ -22,7 +22,7 @@
                     <div class="hover_gallery"></div>
                     <img src="{{ image.url }}" alt="{{ image.name }}">
                 </a>
-                <div class="fb-like" data-href="{{ app.request.schemeAndHttpHost }}/{{ image.id }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div></div>
+                <div class="fb-like" data-href="{{ app.request.schemeAndHttpHost }}#{{ image.id }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div></div>
             <div id="id_{{ loop.index }}" class="popup_participation">
                 <a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
                 <div class="gal_content">
