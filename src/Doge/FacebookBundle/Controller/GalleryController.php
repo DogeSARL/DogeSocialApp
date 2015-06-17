@@ -77,7 +77,8 @@ class GalleryController extends Controller{
 
                 $images[] = [ "url" => $response->getProperty("source"),
                     "name" => $response->getProperty("name"),
-                    "user" => $response->getProperty("from") ];
+                    "user" => $response->getProperty("from")
+                ];
 
             } catch( FacebookAuthorizationException $e ){
             }

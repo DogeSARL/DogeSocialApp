@@ -1,7 +1,42 @@
-<html>
-<body>
-{% for image in images %}
-    Uploaded by {{ image.user.getProperty("name") }}: <img src="{{ image.url }}" alt="{{ image.name }}"/>
-{% endfor %}
-</body>
-</html>
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
+
+{% block content %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=1431368163839906";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <h1>Become the sublime model<br />of Kawaii Pets</h1>
+    <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
+    <div id="gallery" class="clearfix">
+        {% for image in images %}
+            Uploaded by {{ image.user.getProperty("name") }}: <img src="{{ image.url }}" alt="{{ image.name }}"/>
+            <div class="openpop {% if loop.index % 3 == 1 %}first{% else if loop.index % 3 == 0 %}last{% endif %}">
+                <a href="#id_1" >
+                    <div class="hover_gallery"></div>
+                    <img src="{{ image.url }}" alt="{{ image.name }}">
+                </a>
+                <div class="fb-like" data-href="{{ app.request.host }}/{{ image.id }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
+            <div id="id_1" class="popup_participation">
+                <a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
+                <div class="gal_content">
+                    <div class="frame">
+                        <div class="visu"><div class="inside_visu"><img alt="" src="{{ image.url }}"></div></div>
+                        <p class="pseudo">{{ image.user }}</p>
+                        <p>{{ image.name }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!--<p class="npart">Aucune participation n'a encore été validée.</p>-->
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+{% endblock %}
