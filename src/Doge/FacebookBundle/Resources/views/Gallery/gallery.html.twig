@@ -14,7 +14,7 @@
     <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
     <div id="gallery" class="clearfix">
         {% for image in images %}
-            <div class="openpop {% if (loop.index % 3 == 1) %}first{% else if (loop.index % 3 == 0) %}last{% endif %}">
+            <div class="openpop {% if (loop.index%3) == 1 %}first{% else if (loop.index%3) == 0 %}last{% endif %}">
                 <a href="#id_{{ loop.index }}" >
                     <div class="hover_gallery"></div>
                     <img src="{{ image.url }}" alt="{{ image.name }}">
