@@ -17,6 +17,21 @@
 	}
 }
 
+@media only screen and (max-width: 800px) {
+
+    #container.page_home .bx-wrapper .bx-viewport {
+        width: 400px !important;
+        height: 340px !important;
+    }
+
+    #container.fb_tab header {
+        text-align: center;
+
+    }
+    #container.page_home {
+        padding-bottom: 0px;
+    }
+}
 
 
 @media only screen and (max-width: 768px) {
@@ -82,18 +97,6 @@
     -webkit-filter: hue-rotate(120deg);
 }
 
-#container.page_home .bx-wrapper .bx-viewport {
-    width: 500px !important;
-    height: 340px !important;
-}
-
-#container.fb_tab header {
-    text-align: center;
-
-}
-#container.page_home {
-    padding-bottom: 0px;
-}
 
 
 
