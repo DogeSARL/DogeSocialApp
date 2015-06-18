@@ -91,7 +91,9 @@
     text-align: center;
 
 }
-
+#container.page_home {
+    padding-bottom: 0px;
+}
 
 
 
