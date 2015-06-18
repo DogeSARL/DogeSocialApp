@@ -85,7 +85,6 @@
 #container.page_home .bx-wrapper .bx-viewport {
     width: 500px !important;
     height: 340px !important;
-
 }
 
 #container.fb_tab header {
@@ -93,7 +92,7 @@
 
 }
 #container.fb_tab {
-    height: 850px;
+    height: 800px;
     width: 800px;
 }
 
