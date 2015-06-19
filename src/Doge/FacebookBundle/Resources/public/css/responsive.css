@@ -17,7 +17,7 @@
 	}
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 820px) {
 
     #container.page_home .bx-wrapper .bx-viewport {
         width: 400px !important;
@@ -99,6 +99,10 @@
 
 
 
+#container.page_home .bx-wrapper .bx-viewport {
+    width: 400px !important;
+    height: 340px !important;
+}
 
 
 
