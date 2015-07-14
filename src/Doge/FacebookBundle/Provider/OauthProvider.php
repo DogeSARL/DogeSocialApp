@@ -4,9 +4,19 @@ namespace Doge\FacebookBundle\Provider;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Symfony\Component\Security\Core\User\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
 
 class OauthProvider extends BaseClass
 {
+
+    protected $entityManager;
+
+    public function __construct(UserManagerInterface $userManager, array $properties, $em)
+    {
+        parent::__construct( $userManager, $properties );
+        $this->entityManager = $em;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -66,28 +76,43 @@ class OauthProvider extends BaseClass
             $user->setNom($response->getResponse()["first_name"]);
             $user->setPrenom($response->getResponse()["last_name"]);
             $user->setGender($response->getResponse()["gender"]);
+            $user->setCountry($response->getResponse()["location"]);
+            $user->setAge($this->getAgefromBirthday($response->getResponse()["birthday"]));
 
-            return $user;
+        }
+        else {
+            //if user exists - go with the HWIOAuth way
+            $user = parent::loadUserByOAuthUserResponse($response);
+
+            $user->setNom($response->getResponse()["first_name"]);
+            $user->setPrenom($response->getResponse()["last_name"]);
+            $user->setGender($response->getResponse()["gender"]);
+            $user->setCountry($response->getResponse()["location"]);
+            $user->setBirthday(\DateTime::createFromFormat('m/d/Y', $response->getResponse()["birthday"]));
+            $user->setAge($this->getAgefromBirthday($response->getResponse()["birthday"]));
+
+            $serviceName = $response->getResourceOwner()->getName();
+            $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
+
+            //update access token
+            $user->$setter($response->getAccessToken());
         }
 
-        //if user exists - go with the HWIOAuth way
-        $user = parent::loadUserByOAuthUserResponse($response);
-
-        $user->setNom($response->getResponse()["first_name"]);
-        $user->setPrenom($response->getResponse()["last_name"]);
-        $user->setGender($response->getResponse()["gender"]);
-
-        echo "<pre>";
-        \Doctrine\Common\Util\Debug::dump($user);
-        echo "</pre>";
-
-        $serviceName = $response->getResourceOwner()->getName();
-        $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
-
-        //update access token
-        $user->$setter($response->getAccessToken());
+        $this->entityManager->persist($user);
+        $this->entityManager->flush($user);
 
         return $user;
+    }
+
+    // This function returns the age from a birthday date
+    public function getAgefromBirthday($date) {
+      //explode the date to get month, day and year
+      $birthDate = explode("/", $date);
+      //get age from date or birthdate
+      $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+        ? ((date("Y") - $birthDate[2]) - 1)
+        : (date("Y") - $birthDate[2]));
+      return $age;
     }
 
 }
