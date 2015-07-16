@@ -78,12 +78,10 @@ class Upload {
                 move_uploaded_file( $_FILES['form']['tmp_name']['file'], $file  );
             }
 
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($file); echo "</pre>";
-
             try {
                 $request = $this->fbRequest->postPhoto( $file );
                 $image->setPostId( $request->getProperty("id") );
-
+                $image->setUserId( $this->tokenStorage->getToken()->getUser()->getId() );
                 $this->em->persist($image);
                 $this->em->flush();
 
