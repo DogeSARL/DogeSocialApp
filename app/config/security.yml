@@ -28,7 +28,7 @@ security:
             oauth:
                 resource_owners:
                     facebook: /app/login/check-facebook
-                login_path: /app/login
+                login_path: /app/
                 failure_path: /app/connect
                 check_path: /app/login_check
                 oauth_user_provider:
