@@ -80,7 +80,6 @@ class Upload {
 
             try {
                 $request = $this->fbRequest->postPhoto( $file );
-                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($request); echo "</pre>";
                 $image->setPostId( $request->getProperty("id") );
                 $image->setUserId( $this->tokenStorage->getToken()->getUser()->getId() );
                 $this->em->persist($image);
@@ -91,8 +90,6 @@ class Upload {
                 return "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
 
             } catch(\Exception $e) {
-                echo "\n<pre>"; var_dump("ok"); echo "</pre>";
-                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($e->getMessage()); echo "</pre>";
                 throw $e;
             }
         }
