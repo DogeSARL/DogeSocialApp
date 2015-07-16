@@ -37,6 +37,7 @@ class RequestFacebook {
 
         $id = $form['album'];
 
+        echo "\n<pre>"; var_dump("ok"); echo "</pre>";
         if( isset( $form["album"] ) ){
             if( $form["album"] == 0 && isset( $form['albumName'] ) ){
                 $responsePostAlbum = (new FacebookRequest(
@@ -48,7 +49,7 @@ class RequestFacebook {
                 $id = $responsePostAlbum->getGraphObject()->asArray()['id'];
             }
         }
-
+echo "\n<pre>"; var_dump("2"); echo "</pre>";
         // Upload to a user's profile. The photo will be in the
         // first album in the profile. You can also upload to
         // a specific album by using /ALBUM_ID as the path
@@ -56,6 +57,7 @@ class RequestFacebook {
             $this->fbSession, 'POST', '/' . $id . '/photos', $uploadOptions
         ))->execute();
 
+        echo "\n<pre>"; var_dump(3); echo "</pre>";
         return $response->getGraphObject();
     }
 
