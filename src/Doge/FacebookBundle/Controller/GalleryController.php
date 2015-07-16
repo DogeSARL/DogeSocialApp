@@ -53,7 +53,7 @@ class GalleryController extends Controller{
             $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
                 ->add("albumName", "hidden")
                 ->add("file", "file")
-                ->add("text", "text")
+                ->add("text", "text", [ "label" => "Describe your photo"])
                 ->add("envoyer", "submit");
 
             $form = $formBuilder->getForm();

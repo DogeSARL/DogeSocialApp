@@ -86,16 +86,13 @@
                         <div>
                             {{ form_label( form.text ) }}
                             {{ form_widget( form.text ) }}
-                            <label for="form_text" class="required">Describe your photo</label>
-                            <textarea name="form[text]" id="form_text"></textarea>
                         </div>
                         <div class="submit_wrapper">
                             {{ form_row( form.envoyer ) }}
                         </div>
                     </div>
-                    <input type="hidden" id="form__token" name="form[_token]" value="qwlW3krDkE5Y2SlDKH0BgG01w0bjP27DFXxeFta4V98">
                 </div>
-            </form>
+            {{ form_end(form) }}
         </div>
 
     </div>
