@@ -456,6 +456,16 @@ a.cta_home_link *{
    Upload
    ========================================================================== */
 
+.message_form{
+    color: white;
+    font-family: "Vollkorn",serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px;
+    text-align: center;
+}
+
 #upload .wrapper_form{
     display:inline-block;
     width: 630px;
@@ -935,7 +945,3 @@ a.cta_home_link *{
         page-break-after: avoid;
     }
 }
-
-
-
-
