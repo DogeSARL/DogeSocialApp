@@ -90,7 +90,7 @@ class Upload {
                 // 'source' => '@/path/to/file.name'
                 return "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
 
-            } catch(FacebookRequestException $e) {
+            } catch(\Exception $e) {
                 echo "\n<pre>"; var_dump("ok"); echo "</pre>";
                 echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($e->getMessage()); echo "</pre>";
                 throw $e;
