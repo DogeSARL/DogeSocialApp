@@ -57,10 +57,15 @@ class GalleryController extends Controller{
                 ->add("envoyer", "submit");
 
             $form = $formBuilder->getForm();
+
+            $formExistingPhotoBuilder = $this->createFormBuilder();
+            $formExistingPhotoBuilder->add("album", "choice", [ 'choices' => $albums ] );
+
+            $formExistingPhoto = $formExistingPhotoBuilder->getForm();
         }
 
 
-        return $this->render("DogeFacebookBundle:Gallery:upload.html.twig", [ 'form' => $form->createView(), "message" => $message, "error" => $error ]);
+        return $this->render("DogeFacebookBundle:Gallery:upload.html.twig", [ 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ]);
     }
 
     public function galleryAction()
