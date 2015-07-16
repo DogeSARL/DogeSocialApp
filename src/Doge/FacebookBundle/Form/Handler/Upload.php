@@ -80,6 +80,7 @@ class Upload {
 
             try {
                 $request = $this->fbRequest->postPhoto( $file );
+                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($request); echo "</pre>";
                 $image->setPostId( $request->getProperty("id") );
                 $image->setUserId( $this->tokenStorage->getToken()->getUser()->getId() );
                 $this->em->persist($image);
