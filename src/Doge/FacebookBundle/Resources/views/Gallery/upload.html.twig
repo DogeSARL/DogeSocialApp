@@ -2,7 +2,7 @@
 
 {% block content %}
     <div id="upload">
-        {% if error is not defined or error is not empty %}
+        {% if error is not defined or error is empty %}
         <h1>Upload your photo right here !</h1>
         <div class="wrapper_form">
             {% if message is defined and message is not empty %}
