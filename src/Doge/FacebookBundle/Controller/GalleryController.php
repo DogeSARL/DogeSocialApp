@@ -60,6 +60,7 @@ class GalleryController extends Controller{
 
         $formExistingPhoto = $formExistingPhotoBuilder->getForm();
 
+        echo "\n<pre>"; var_dump($message); echo "</pre>";
         return $this->render("DogeFacebookBundle:Gallery:upload.html.twig", [ 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ]);
     }
 
