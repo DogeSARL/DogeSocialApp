@@ -5,3 +5,11 @@ doge_facebook_gallery_maquette:
 doge_facebook_participe_maquette:
     path: /participe
     defaults: { _controller: DogeFacebookBundle:Home:participe }
+
+doge_facebook_adminlogin_maquette:
+    path: /adminlogin
+    defaults: { _controller: DogeFacebookBundle:Admin:adminLogin }
+
+doge_facebook_adminstats_maquette:
+    path: /adminstats
+    defaults: { _controller: DogeFacebookBundle:Admin:adminStats }

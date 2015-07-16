@@ -458,9 +458,36 @@ a.cta_home_link *{
 
 #upload .wrapper_form{
     display:inline-block;
-    width: 225px;
+    width: 630px;
     margin-top:50px;
     text-align: left;
+}
+
+#upload #sub-form1,
+#upload #sub-form2{
+    float: left;
+    width:300px;
+    border: 5px solid #ffffff;
+    padding: 20px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing: border-box;
+}
+
+#upload #sub-form2{
+    margin-left: 15px;
+}
+
+#upload #sub-form1 h2,
+#upload #sub-form2 h2{
+    color: #fff;
+    font-family: "Vollkorn",serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px;
+    margin: 5px auto 0;
+    text-transform: uppercase;
 }
 
 #upload .wrapper_form input:not(#form_envoyer),
@@ -479,6 +506,7 @@ a.cta_home_link *{
 }
 
 #upload .wrapper_form label{
+    display: inline-block;
     color:white;
     font-family: 'Open Sans';
     font-size: 11px;
@@ -487,6 +515,7 @@ a.cta_home_link *{
 }
 
 #upload .wrapper_form #form_file{
+    font-size: 12px;
     color: #ffffff;
     text-shadow: 4px 1px 6px rgba(150, 150, 150, 1);
 }
@@ -509,7 +538,6 @@ a.cta_home_link *{
     font-weight: normal;
     height: 37px;
     margin: 0;
-
     text-align: center;
     text-indent: 0;
     text-transform: uppercase;
@@ -517,6 +545,228 @@ a.cta_home_link *{
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing: border-box;
+}
+
+#upload .wrapper_form input.createAlbum#createAlbum{
+    height: auto;
+    width: auto;
+    display: inline-block;
+    margin: 0 0 0 15px;
+}
+
+#upload .show_images_button{
+    width: 100%;
+    display: block;
+    background: #ffffff;
+    padding: 10px;
+    font-family: 'Open Sans';
+    font-size: 11px;
+    line-height: 1;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+#upload .images_from_gallery{
+    display: block;
+}
+
+#upload .wrapper_form textarea#form_text{
+    width: 100%;
+    border: none;
+    margin-bottom: 15px;
+    resize:none;
+}
+
+#upload .wrapper_images{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: -1;
+    opacity: 0;
+    text-align: center;
+    overflow-y: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -ms-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+#upload .wrapper_images.show{
+    z-index: 3;
+    opacity: 1;
+}
+
+#upload .wrapper_images .close{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 27px;
+    height: 27px;
+    display: block;
+    background: url(../img/close.png) top left no-repeat;
+    cursor: pointer;
+    z-index: 5;
+}
+
+#upload .wrapper_choix_image{
+    width: 100%;
+    max-width: 1024px;
+    margin: 40px auto 0;
+}
+
+#upload .wrapper_choix_image .line{
+    width: 100%;
+    margin-bottom: 60px;
+    height: auto;
+}
+
+#upload .wrapper_choix_image .choix_image{
+    width: 250px;
+    float: left;
+    margin-left: 135px;
+    position: relative;
+}
+
+#upload .wrapper_choix_image .choix_image .validate{
+    width: 150px;
+    display: none;
+    background: #ffffff;
+    padding: 10px;
+    font-family: 'Open Sans';
+    font-size: 11px;
+    line-height: 1;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    margin-left: -75px;
+}
+
+#upload .wrapper_choix_image .choix_image.active .validate{
+    display: block;
+}
+
+#upload .wrapper_choix_image .choix_image label{
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    max-height: 336px;
+}
+
+#upload .wrapper_choix_image .choix_image input{
+    display: none;
+    position: absolute;
+    left:-9999px;
+}
+
+#upload .wrapper_choix_image .choix_image.active .hover_choix_image{
+    border: 10px solid white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing: border-box;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+#upload .wrapper_choix_image .choix_image.first{margin-left: 0;}
+
+#upload .wrapper_choix_image .choix_image img{
+    width:100%;
+    height: auto;
+}
+
+#upload .wrapper_choix_image .choix_image.first{
+    clear:left;
+}
+/* ==========================================================================
+   ADMIN FORM CONNEXION
+   ========================================================================== */
+#adminConnexion form {
+    border: 5px solid white;
+    margin: 200px auto;
+    padding: 25px;
+    width: 300px;
+}
+
+#adminConnexion .ligne {
+    margin: 10px 0;
+}
+
+#adminConnexion .ligne label {
+    color: #ffffff;
+    display: inline-block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    width: 120px;
+}
+
+#adminConnexion input[type="submit"] {
+    background: none repeat scroll 0 0 #06a5b4;
+    border: 0 none;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 40px auto 0;
+    overflow: visible;
+    padding: 7px 0;
+    text-align: center;
+    text-decoration: none;
+    width: 100px;
+}
+
+#adminConnexion input[type="submit"]:hover {
+    background-color: #f3f3f3;
+    color: #06a5b4;
+}
+
+#adminStats{
+    width: 100%;
+    max-width: 1024px;
+    margin:0 auto;
+    background:white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#container #adminStats  h3{
+    text-transform: uppercase;
+    color: #000000;
+    font-style: normal;
+    margin-bottom: 15px;
+}
+
+#adminStats table{
+    margin: 0 auto;
+    text-align: left;
+}
+
+#adminStats table td, #adminStats table th{
+    padding: 7px;
+}
+
+#adminStats table tr{
+    border: 1px solid black;
 }
 
 /* ==========================================================================

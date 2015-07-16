@@ -5,11 +5,11 @@
         <h1>Upload your photo right here !</h1>
         <div class="wrapper_form">
             <form name="form" method="post" action="" enctype="multipart/form-data">
-                <div id="form">
-                    <div>
+                <div id="form" class="clearfix">
+                    <div id="sub-form1">
+                        <h2>Upload from my own gallery</h2>
                         <label for="form_album" class="required">Album</label>
                         <select id="form_album" name="form[album]">
-                            <option value="0">Nouvel album</option>
                             <option value="10205836375002109">fdgs</option>
                             <option value="10205659338776314">Kawaii Pets Photos</option>
                             <option value="2746209927986">Mobile Uploads</option>
@@ -21,19 +21,84 @@
                             <option value="1409296545987">Miam</option>
                             <option value="1437292885878">Jardinage</option>
                         </select>
+                        <div class="images_from_gallery">
+                            <div class="show_images_button">Choose in the gallery</div>
+                            <div class="wrapper_images">
+                                <div class="close"></div>
+                                <div class="wrapper_choix_image clearfix">
+                                    <div class="line clearfix">
+                                        <div class="choix_image first">
+                                            <label for="test1">
+                                                <div class="hover_choix_image"></div>
+                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
+                                            </label>
+                                            <div class="validate">Validate</div>
+                                            <input id="test1" name="choix_image" type="radio"/>
+                                        </div>
+                                        <div class="choix_image">
+                                            <label for="test2">
+                                                <div class="hover_choix_image"></div>
+                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
+                                            </label>
+                                            <div class="validate">Validate</div>
+                                            <input id="test2" name="choix_image" type="radio"/>
+                                        </div>
+                                        <div class="choix_image last">
+                                            <label for="test3">
+                                                <div class="hover_choix_image"></div>
+                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
+                                            </label>
+                                            <div class="validate">Validate</div>
+                                            <input id="test3" name="choix_image" type="radio"/>
+                                        </div>
+                                    </div>
+                                    <div class="line clearfix">
+                                        <div class="choix_image first">
+                                            <label for="test4">
+                                                <div class="hover_choix_image"></div>
+                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
+                                            </label>
+                                            <div class="validate">Validate</div>
+                                            <input id="test4" name="choix_image" type="radio"/>
+                                        </div>
+                                        <div class="choix_image">
+                                            <label for="test5">
+                                                <div class="hover_choix_image"></div>
+                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
+                                            </label>
+                                            <div class="validate">Validate</div>
+                                            <input id="test5" name="choix_image" type="radio"/>
+                                        </div>
+                                        <div class="choix_image last">
+                                            <label for="test6">
+                                                <div class="hover_choix_image"></div>
+                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
+                                            </label>
+                                            <div class="validate">Validate</div>
+                                            <input id="test6" name="choix_image" type="radio"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label for="form_albumName" class="required">Album name</label>
-                    <input type="text" id="form_albumName" name="form[albumName]">
-                    <div>
-                        <label for="form_file" class="required">File</label>
-                        <input type="file" id="form_file" name="form[file]" required="required">
-                    </div>
-                    <div>
-                        <label for="form_text" class="required">Text</label>
-                        <input type="text" id="form_text" name="form[text]" required="required">
-                    </div>
-                    <div class="submit_wrapper">
-                        <input type="submit" id="form_envoyer" name="form[envoyer]">
+                    <div id="sub-form2">
+                        <h2>Upload from my computer</h2>
+                        <label for="form_createAlbum">Create new album</label>
+                        <input id="createAlbum" class="createAlbum" type="checkbox" value="createAlbum"/>
+                        <label id="label_form_albumName" for="form_albumName" class="required form_labelAlbumName" style="display:none;">Album name</label>
+                        <input type="text" id="form_albumName" name="form[albumName]">
+                        <div>
+                            <label for="form_file" class="required">Choose a file</label>
+                            <input type="file" id="form_file" name="form[file]" required="required">
+                        </div>
+                        <div>
+                            <label for="form_text" class="required">Describe your photo</label>
+                            <textarea name="form[text]" id="form_text"></textarea>
+                        </div>
+                        <div class="submit_wrapper">
+                            <input type="submit" id="form_envoyer" name="form[envoyer]">
+                        </div>
                     </div>
                     <input type="hidden" id="form__token" name="form[_token]" value="qwlW3krDkE5Y2SlDKH0BgG01w0bjP27DFXxeFta4V98">
                 </div>
@@ -46,16 +111,43 @@
 {% block js %}
     {{ parent() }}
     <script type="text/javascript">
-        if( $("#form_album").val() == 0 ){
-            $("#form_albumName").attr("type", "text");
+        function changeStateOfAlbumName(element){
+            if( element.prop('checked') ){
+                $('#label_form_albumName').css('display','block');
+                $('#form_albumName').css('display','block');
+            }else{
+                $('#label_form_albumName').css('display','none');
+                $('#form_albumName').css('display','none');
+
+            }
         }
 
-        $("#form_album").change(function(){
-            if( $(this).val() == 0 ){
-                $("#form_albumName").attr("type", "text");
-            } else {
-                $("#form_albumName").attr("type", "hidden");
-            }
+        $(document).ready(changeStateOfAlbumName($('#createAlbum')));
+        $('#createAlbum').change(function(){
+            changeStateOfAlbumName($(this));
+        });
+
+        //Afficher l'album photo facebook choisi au click
+        $('.show_images_button').click(function(e){
+            e.preventDefault();
+            $('.wrapper_images').addClass('show');
+            $('body').css('overflow','hidden');
+            $('.wrapper_images .close, .choix_image .validate').click(function(f){
+                f.preventDefault();
+                $('.show').removeClass('show');
+                $('body').css('overflow','');
+            })
+        });
+
+
+        //Effet rollover sur le bouton radio pour choisir l'image
+        $('.choix_image label').on('click', function(){
+            var _this =  $(this).closest('.choix_image');
+            $('.choix_image').not(_this).each(function(){
+                var _this2 =  $(this);
+                _this2.removeClass('active');
+            });
+            _this.addClass('active');
         });
     </script>
 {% endblock %}

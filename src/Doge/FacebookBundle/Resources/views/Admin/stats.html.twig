@@ -1,0 +1,32 @@
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
+{% block content %}
+
+    <div id="adminStats">
+        <h3>Look at those stats wow</h3>
+        <table id="customers">
+            <tbody>
+                <tr>
+                    <th>Race</th>
+                    <td>Arabe</td>
+                </tr>
+                <tr class="alt">
+                    <th>Métier</th>
+                    <td>Voleur</td>
+                </tr>
+                <tr>
+                    <th>Race</th>
+                    <td>Asiat</td>
+                </tr>
+                <tr class="alt">
+                    <th>Métier</th>
+                    <td>Marchand de tapis</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+{% endblock %}

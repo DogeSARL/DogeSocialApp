@@ -1,0 +1,16 @@
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
+{% block content %}
+
+    <div id="adminConnexion">
+        <form method="post" action="index.php">
+            <div class="ligne "><label>identifiant</label><input type="text" name="login_mitsu"></div>
+            <div class="ligne "><label>Mot de passe</label><input type="password" name="password_mitsu"></div>
+            <div class="ligne  submit"><input type="submit" value="Envoyer" name="submit"></div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+{% endblock %}

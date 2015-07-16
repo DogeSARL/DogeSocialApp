@@ -10,6 +10,25 @@
                 fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 
+        <script type="text/javascript">// <![CDATA[
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId : '468672573284887', // Add your app ID # here
+                    status : true, // checks login status
+                    cookie : true, // enables cookies to allow the server to access the session
+                    xfbml : true // parse XFBML
+                });
+                FB.Canvas.setAutoGrow(); // This is important, exclude this and the internet blows up
+            };
+
+        (function() {
+            var e = document.createElement('script');
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            e.async = true;
+            document.getElementById('fb-root').appendChild(e);
+        }());
+
+        // ]]></script>
         <div>
             <h1>Become the sublime model<br />of Kawaii Pets</h1>
             <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>

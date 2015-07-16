@@ -25,6 +25,5 @@ class HomeController extends Controller
     public function galleryAction(){
     	return $this->render("DogeFacebookBundle:Home:gallery.html.twig");
     }
-
 }
 
