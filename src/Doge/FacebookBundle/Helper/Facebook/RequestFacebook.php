@@ -38,6 +38,7 @@ class RequestFacebook {
         $id = $form['album'];
 
         echo "\n<pre>"; var_dump("ok"); echo "</pre>";
+        echo "\n<pre>"; var_dump($_POST['form']['albumName']); echo "</pre>";
         if( isset( $form["album"] ) ){
             if( $form["album"] == 0 && isset( $form['albumName'] ) ){
                 $responsePostAlbum = (new FacebookRequest(
