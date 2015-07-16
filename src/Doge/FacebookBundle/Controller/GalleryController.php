@@ -37,32 +37,30 @@ class GalleryController extends Controller{
             } catch( FacebookRequestException $e ){
                 $message = "Une erreur est survenue lors de l'envoi du fichier.";
             }
-
-            return $this->render("DogeFacebookBundle:Gallery:upload.html.twig", [ "message" => $message, "error" => $error ]);
-        } else {
-            $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
-            $albums = [ 0 => "Nouvel album" ];
-
-            foreach( $retrievedAlbums as $album ){
-                $albums[$album->id] = $album->name;
-            }
-
-            $formBuilder = $this->createFormBuilder();
-            $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
-                ->add("albumName", "hidden")
-                ->add("file", "file")
-                ->add("text", "text", [ "label" => "Describe your photo"])
-                ->add("envoyer", "submit", [ "label" => "Send" ]);
-
-            $form = $formBuilder->getForm();
-
-            $formExistingPhotoBuilder = $this->createFormBuilder();
-            $formExistingPhotoBuilder->add("album", "choice", [ 'choices' => $albums ] );
-
-            $formExistingPhoto = $formExistingPhotoBuilder->getForm();
-
-            return $this->render("DogeFacebookBundle:Gallery:upload.html.twig", [ 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ]);
         }
+
+        $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
+        $albums = [ 0 => "Nouvel album" ];
+
+        foreach( $retrievedAlbums as $album ){
+            $albums[$album->id] = $album->name;
+        }
+
+        $formBuilder = $this->createFormBuilder();
+        $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
+            ->add("albumName", "hidden")
+            ->add("file", "file")
+            ->add("text", "text", [ "label" => "Describe your photo"])
+            ->add("envoyer", "submit", [ "label" => "Send" ]);
+
+        $form = $formBuilder->getForm();
+
+        $formExistingPhotoBuilder = $this->createFormBuilder();
+        $formExistingPhotoBuilder->add("album", "choice", [ 'choices' => $albums ] );
+
+        $formExistingPhoto = $formExistingPhotoBuilder->getForm();
+
+        return $this->render("DogeFacebookBundle:Gallery:upload.html.twig", [ 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ]);
     }
 
     public function galleryAction()
