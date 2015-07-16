@@ -13,83 +13,31 @@
 <h1>Become the sublime model<br />of Kawaii Pets</h1>
 <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
 <div id="gallery" class="clearfix">
-    <div class="openpop first">
-        <a href="#id_1" >
-            <div class="hover_gallery"></div>
-            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
-        </a>
-        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
-	<div id="id_1" class="popup_participation">
-		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
-        <div class="gal_content">
-            <div class="frame">
-            	<div class="visu"><div class="inside_visu"><img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}"></div></div>
-            	<p class="pseudo">Pseudo</p>
-            	<p>Réponse question</p>
+    {% set i = 1 %}
+    {% for k in 1 .. 6 %}
+        {% if loop.index % 3 == 1 %}
+            <div class="line clearfix">
+        {% endif %}
+        <div class="openpop {% if loop.index % 3 == 1 %}first{% elseif loop.index % 3 == 0 %}last{% endif %}">
+            <a href="#id_{{ i }}" >
+                <div class="hover_gallery"></div>
+                <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
+            </a>
+            <div class="fb-like" data-href="{{ app.request.host }}/1" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div></div>
+        <div id="id_{{ loop.index }}" class="popup_participation">
+            <a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
+            <div class="gal_content">
+                <div class="frame">
+                    <div class="visu"><div class="inside_visu"><img alt="" src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg"></div></div>
+                    <p class="pseudo">moi</p>
+                    <p>okay</p>
+                </div>
             </div>
         </div>
-	</div>
-
-    <div class="openpop">
-        <a href="#id_2" >
-            <div class="hover_gallery"></div>
-            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
-        </a>
-        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
-
-	<div id="id_2" class="popup_participation">
-		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
-        <div class="gal_content">
-            <div class="frame">
-            	<div class="visu"><div class="inside_visu"><img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}"></div></div>
-            	<p class="pseudo">Pseudo</p>
-            	<p>Réponse question</p>
+        {% if loop.index == 0 %}
             </div>
-        </div>
-	</div>
-
-    <div class="openpop last">
-        <a href="#id_3" >
-            <div class="hover_gallery"></div>
-            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
-        </a>
-        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
-	<div id="id_3" class="popup_participation">
-		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
-        <div class="gal_content">
-            <div class="frame">
-            	<div class="visu"><div class="inside_visu"><img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}"></div></div>
-            	<p class="pseudo">Pseudo</p>
-            	<p>Réponse question</p>
-            </div>
-        </div>
-	</div>
-    <div class="openpop first">
-        <a href="#id_4" >
-            <div class="hover_gallery"></div>
-            <img src="/DogeSocialApp/web/bundles/dogefacebook/img/slide01.jpg" alt="">
-        </a>
-        <div class="fb-like" data-href="https://www.facebook.com/pages/Kawaii-Pets/801971733218893" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>    </div>
-	<div id="id_4" class="popup_participation">
-		<a class="close" href=""><img alt="" src="{{ asset("bundles/dogefacebook/img/close.png") }}"></a>
-        <div class="gal_content">
-            <div class="frame">
-            	<div class="visu"><div class="inside_visu"><img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}"></div></div>
-            	<p class="pseudo">Pseudo</p>
-            	<p>Réponse question</p>
-            </div>
-        </div>
-	</div>
-<!--<p class="npart">Aucune participation n'a encore été validée.</p>-->
-
-	<div class="pager  pager_bottom">
-		<a href="" title="">First</a>
-		<a href="" title="">1</a>
-		<a href="" title="">2</a>
-		<p>...</p>
-		<a href="" title="">22</a>
-		<a href="" title="">23</a>
-		<a href="" title="">Last</a>
+        {% endif %}
+    {% endfor %}
 	</div>
 </div>
 {% endblock %}
