@@ -34,7 +34,7 @@ class GalleryController extends Controller{
         if( $request->getMethod() == "POST" && $this->getUser() ){
             try{
                 $message = $this->get("doge.form.handler.upload")->handleRequest();
-            } catch( FacebookRequestException $e ){
+            } catch( \Exception $e ){
                 $message = "Une erreur est survenue lors de l'envoi du fichier.";
             }
         }
@@ -48,7 +48,7 @@ class GalleryController extends Controller{
 
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add("album", "choice", [ 'choices' => $albums ] )
-            ->add("albumName", "hidden")
+            ->add("albumName", "text")
             ->add("file", "file")
             ->add("text", "text", [ "label" => "Describe your photo"])
             ->add("envoyer", "submit", [ "label" => "Send" ]);

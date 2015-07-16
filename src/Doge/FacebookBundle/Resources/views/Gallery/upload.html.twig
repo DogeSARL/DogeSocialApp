@@ -4,6 +4,9 @@
     <div id="upload">
         <h1>Upload your photo right here !</h1>
         <div class="wrapper_form">
+            {% if error is defined and error is not empty %}
+                {{ message }}
+            {% endif %}
             {{ form_start( form ) }}
                 <div id="form" class="clearfix">
                     <div id="sub-form1">
@@ -76,7 +79,6 @@
                         <label for="form_createAlbum">Create new album</label>
                         <input id="createAlbum" class="createAlbum" type="checkbox" value="createAlbum"/>
                         <label id="label_form_albumName" for="form_albumName" class="required form_labelAlbumName" style="display:none;">Album name</label>
-                        <input type="text" id="form_albumName" name="form[albumName]">
                         {{ form_widget( form.albumName ) }}
                         {{ form_widget( form.album ) }}
                         <div>
@@ -94,7 +96,6 @@
                 </div>
             {{ form_end(form) }}
         </div>
-
     </div>
 {% endblock %}
 
