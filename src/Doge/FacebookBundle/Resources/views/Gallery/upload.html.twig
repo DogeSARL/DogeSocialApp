@@ -102,11 +102,6 @@
 {% endblock %}
 
 {% block js %}
-
-{% endblock %}
-
-
-{% block js %}
     {{ parent() }}
     {% if error is not defined or error is empty %}
     <script type="text/javascript">
