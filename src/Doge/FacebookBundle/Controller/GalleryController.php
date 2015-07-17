@@ -93,10 +93,17 @@ class GalleryController extends Controller {
 
 
         foreach ( $facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'] as $photo ) {
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($photo->images); echo "</pre>";
+            $image = $photo->images[0];
+
+            foreach( $photo->images as $anotherImage ){
+                if( $anotherImage->width > 250 && abs( $anotherImage->width ) < abs( $image->width ) ){
+                    $image = clone( $anotherImage );
+                }
+            }
+
             $images[] = [
                 "id"   => $photo->id,
-                "link" => $photo->link,
+                "link" => $image->source,
                 "name" => $photo->name
             ];
         }
