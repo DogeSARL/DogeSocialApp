@@ -72,8 +72,9 @@
 
             var id = $('#form_album').val();
             var divToDisplay = $("#album_" + id );
-
+console.log(id);
             if( divToDisplay.length === 0 ){
+            console.log(id);
                 $.post(
                     "{{ app.request.schemeAndHttpHost }}/app/album/" + id
                 ).success(function(data){
