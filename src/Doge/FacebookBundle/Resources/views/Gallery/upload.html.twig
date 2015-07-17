@@ -72,9 +72,8 @@
 
             var id = $('#form_album').val();
             var divToDisplay = $("#album_" + id );
-console.log(id);
+
             if( divToDisplay.length === 0 ){
-            console.log(id);
                 $.post(
                     "{{ app.request.schemeAndHttpHost }}/app/album/" + id
                 ).success(function(data){
@@ -103,6 +102,8 @@ console.log(id);
                     });
 
                     $(".images_from_gallery").append( choixWrapper );
+
+                    console.log( choixWrapper );
                 });
             } else {
                 $('.active_image_choice').removeClass("active_image_choice");
