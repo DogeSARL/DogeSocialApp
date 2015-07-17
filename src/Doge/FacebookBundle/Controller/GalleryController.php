@@ -70,8 +70,6 @@ class GalleryController extends Controller{
 
         $images = [];
 
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($imagesDb); echo "</pre>";
-
         foreach( $imagesDb as $db ){
             try{
                 $response = (new FacebookRequest(
@@ -84,8 +82,6 @@ class GalleryController extends Controller{
                     "id" => $db->getPostId(),
                 ];
 
-                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($images); echo "</pre>";
-
             } catch( FacebookAuthorizationException $e ){
             }
         }
@@ -95,7 +91,8 @@ class GalleryController extends Controller{
 
     public function getPhotosFromAlbumIdAction( $id ) {
         $facebookRequestHelper = $this->get("doge.request_facebook");
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'][0]); echo "</pre>";
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'][0]->name); echo "</pre>";
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'][0]->link); echo "</pre>";
 
 //        return new Response();
     }
