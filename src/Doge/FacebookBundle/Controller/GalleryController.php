@@ -70,13 +70,14 @@ class GalleryController extends Controller{
 
         $images = [];
 
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($imagesDb); echo "</pre>";
+
         foreach( $imagesDb as $db ){
             try{
                 $response = (new FacebookRequest(
                     $this->get("doge.facebook_session"), 'GET', '/' . $db->getPostId()
                 ))->execute()->getGraphObject();
 
-                echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($response->asArray()); echo "</pre>";
                 $images[] = [ "url" => $response->getProperty("source"),
                     "name" => $response->getProperty("name"),
                     "user" => $response->getProperty("from")->getProperty("name"),
@@ -94,7 +95,7 @@ class GalleryController extends Controller{
 
     public function getPhotosFromAlbumIdAction( $id ) {
         $facebookRequestHelper = $this->get("doge.request_facebook");
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($facebookRequestHelper->getAlbumPhotos( $id )->asArray()); echo "</pre>";
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'][0]); echo "</pre>";
 
 //        return new Response();
     }
