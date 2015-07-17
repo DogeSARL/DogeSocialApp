@@ -131,14 +131,14 @@
 
 
         //Effet rollover sur le bouton radio pour choisir l'image
-        $('.choix_image label').on('click', function(){
+        $(document).ready($('.choix_image label').on('click', function(){
             var _this =  $(this).closest('.choix_image');
             $('.choix_image').not(_this).each(function(){
                 var _this2 =  $(this);
                 _this2.removeClass('active');
             });
             _this.addClass('active');
-        });
+        }));
     </script>
     {% endif %}
 {% endblock %}
