@@ -79,11 +79,13 @@
                 ).success(function(data){
                     var choixWrapper = $("<div id='album_" + id + "' class='wrapper_choix_image active_image_choice clearfix'></div>");
                     var i = 0;
+                    var lineDiv;
+
                     $.each( data, function( index, imageData ){
                         var imageDiv;
 
                         if( i % 3 == 0 ){
-                            var lineDiv = $("<div class='line clearfix'></div>");
+                            lineDiv = $("<div class='line clearfix'></div>");
                             imageDiv = $("<div class='choix_image first'></div>");
                         } else if ( i % 3 == 1 ){
                             imageDiv = $("<div class='choix_image'></div>");
