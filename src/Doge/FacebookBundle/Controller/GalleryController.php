@@ -14,6 +14,7 @@ use Facebook\FacebookRequest;
 use Facebook\FacebookRequestException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GalleryController extends Controller{
     public function uploadPhotoAction( Request $request )
@@ -86,5 +87,12 @@ class GalleryController extends Controller{
         }
 
         return $this->render("DogeFacebookBundle:Gallery:gallery.html.twig", ["images" => $images]);
+    }
+
+    public function getPhotosFromAlbumIdAction( $id ) {
+        $facebookRequestHelper = $this->get("doge.request_facebook");
+        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($facebookRequestHelper->getAlbumPhotos( $id )); echo "</pre>";
+
+//        return new Response();
     }
 }

@@ -126,6 +126,15 @@
         //Afficher l'album photo facebook choisi au click
         $('.show_images_button').click(function(e){
             e.preventDefault();
+
+            var id = $('#form_album').val();
+            console.log("{{ app.request.schemeAndHttpHost }}");
+
+            $.post(
+                    "{{ app.request.schemeAndHttpHost }}/dogesocialapp/web/app_dev.php/app/album/" + id
+            ).success(function(data){
+                    });
+                    
             $('.wrapper_images').addClass('show');
             $('body').css('overflow','hidden');
             $('.wrapper_images .close, .choix_image .validate').click(function(f){
