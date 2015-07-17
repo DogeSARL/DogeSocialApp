@@ -93,10 +93,9 @@ class GalleryController extends Controller {
 
 
         foreach ( $facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'] as $photo ) {
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($photo->images[0]->source); echo "</pre>";
             $images[] = [
                 "id"   => $photo->id,
-                "link" => $photo->link,
+                "link" => $photo->images[0]->source,
                 "name" => $photo->name
             ];
         }
