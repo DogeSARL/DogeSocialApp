@@ -946,3 +946,12 @@ a.cta_home_link *{
         page-break-after: avoid;
     }
 }
+
+.images_from_gallery{
+    display: none;
+}
+
+.images_from_gallery .active_image_choice{
+    display: block;
+}
+

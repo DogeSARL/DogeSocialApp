@@ -77,7 +77,7 @@
                 $.post(
                     "{{ app.request.schemeAndHttpHost }}/app/album/" + id
                 ).success(function(data){
-                    var choixWrapper = $("<div id='album'" + id + " class='wrapper_choix_image active_image_choice clearfix'></div>");
+                    var choixWrapper = $("<div id='album_" + id + "' class='wrapper_choix_image active_image_choice clearfix'></div>");
                     var i = 0;
                     $.each( data, function( index, imageData ){
                         var imageDiv;
@@ -98,7 +98,12 @@
                                             "<input id='radio_photo_'" + id + "name='choix_image' value='" + imageData['id'] + "' type='radio'/>");
 
                         lineDiv.append( imageDiv );
-                        choixWrapper.append( lineDiv );
+
+                        if( i % 3 == 2 ){
+                            choixWrapper.append( lineDiv );
+                        }
+
+                        i++;
                     });
 
                     $(".images_from_gallery").append( choixWrapper );
