@@ -24,7 +24,7 @@ class DefaultController extends Controller
 
 
         foreach ( $facebookRequestHelper->getAlbumPhotos( 1491070590287 )->asArray()['data'] as $photo ) {
-            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($photo->images); echo "</pre>";
+            echo "\n<pre>"; print_r($photo->images[0]); echo "</pre>";
             $images[] = [
                 "id"   => $photo->id,
                 "link" => $photo->images[0]->source,
