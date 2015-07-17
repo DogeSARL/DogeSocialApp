@@ -80,10 +80,10 @@
                     var choixWrapper = $("<div id='album'" + id + " class='wrapper_choix_image active_image_choice clearfix'></div>");
                     var i = 0;
                     $.each( data, function( index, imageData ){
-                        var lineDiv = $("<div class='line clearfix'></div>");
                         var imageDiv;
 
                         if( i % 3 == 0 ){
+                            var lineDiv = $("<div class='line clearfix'></div>");
                             imageDiv = $("<div class='choix_image first'></div>");
                         } else if ( i % 3 == 1 ){
                             imageDiv = $("<div class='choix_image'></div>");
@@ -98,7 +98,7 @@
                                             "<input id='radio_photo_'" + id + "name='choix_image' value='" + imageData['id'] + "' type='radio'/>");
 
                         lineDiv.append( imageDiv );
-                        choixWrapper.append( choixWrapper );
+                        choixWrapper.append( lineDiv );
                     });
 
                     $(".images_from_gallery").append( choixWrapper );
