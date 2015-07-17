@@ -96,7 +96,7 @@ class GalleryController extends Controller {
             $image = $photo->images[0];
 
             foreach( $photo->images as $anotherImage ){
-                if( $anotherImage->width > 250 && abs( $anotherImage->width ) < abs( $image->width ) ){
+                if( $anotherImage->height > 443 && abs( $anotherImage->height ) < abs( $image->height ) ){
                     $image = clone( $anotherImage );
                 }
             }
