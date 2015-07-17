@@ -16,63 +16,6 @@
                         {{ form_widget( form.album ) }}
                         <div class="images_from_gallery">
                             <div class="show_images_button">Choose in the gallery</div>
-                            <div class="wrapper_images">
-                                <div class="close"></div>
-                                <div class="wrapper_choix_image clearfix">
-                                    <div class="line clearfix">
-                                        <div class="choix_image first">
-                                            <label for="test1">
-                                                <div class="hover_choix_image"></div>
-                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-                                            </label>
-                                            <div class="validate">Validate</div>
-                                            <input id="test1" name="choix_image" type="radio"/>
-                                        </div>
-                                        <div class="choix_image">
-                                            <label for="test2">
-                                                <div class="hover_choix_image"></div>
-                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-                                            </label>
-                                            <div class="validate">Validate</div>
-                                            <input id="test2" name="choix_image" type="radio"/>
-                                        </div>
-                                        <div class="choix_image last">
-                                            <label for="test3">
-                                                <div class="hover_choix_image"></div>
-                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-                                            </label>
-                                            <div class="validate">Validate</div>
-                                            <input id="test3" name="choix_image" type="radio"/>
-                                        </div>
-                                    </div>
-                                    <div class="line clearfix">
-                                        <div class="choix_image first">
-                                            <label for="test4">
-                                                <div class="hover_choix_image"></div>
-                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-                                            </label>
-                                            <div class="validate">Validate</div>
-                                            <input id="test4" name="choix_image" type="radio"/>
-                                        </div>
-                                        <div class="choix_image">
-                                            <label for="test5">
-                                                <div class="hover_choix_image"></div>
-                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-                                            </label>
-                                            <div class="validate">Validate</div>
-                                            <input id="test5" name="choix_image" type="radio"/>
-                                        </div>
-                                        <div class="choix_image last">
-                                            <label for="test6">
-                                                <div class="hover_choix_image"></div>
-                                                <img alt="" src="{{ asset("bundles/dogefacebook/img/slide01.jpg") }}">
-                                            </label>
-                                            <div class="validate">Validate</div>
-                                            <input id="test6" name="choix_image" type="radio"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div id="sub-form2">
@@ -128,12 +71,42 @@
             e.preventDefault();
 
             var id = $('#form_album').val();
-            console.log("{{ app.request.schemeAndHttpHost }}");
+            var divToDisplay = $("#album_" + id );
 
-            $.post(
+            if( divToDisplay.length === 0 ){
+                $.post(
                     "{{ app.request.schemeAndHttpHost }}/app/album/" + id
-            ).success(function(data){
+                ).success(function(data){
+                    var choixWrapper = $("<div id='album'" + id + " class='wrapper_choix_image active_image_choice clearfix'></div>");
+                    var i = 0;
+                    $.each( data, function( index, imageData ){
+                        var lineDiv = $("<div class='line clearfix'></div>");
+                        var imageDiv;
+
+                        if( i % 3 == 0 ){
+                            imageDiv = $("<div class='choix_image first'></div>");
+                        } else if ( i % 3 == 1 ){
+                            imageDiv = $("<div class='choix_image'></div>");
+                        } else if ( i % 3 == 2 ){
+                            imageDiv = $("<div class='choix_image last'></div>");
+                        }
+
+                        imageDiv.append( "<label for='radio_photo_" + id + "'>" +
+                                            "<div class='hover_choix_image'></div>" +
+                                            "<img alt='"+ imageData['name'] + "' src='" + imageData['url'] +"'></label>" +
+                                            "<div class='validate'>Validate</div>" +
+                                            "<input id='radio_photo_'" + id + "name='choix_image' value='" + imageData['id'] + "' type='radio'/>");
+
+                        lineDiv.append( imageDiv );
+                        choixWrapper.append( choixWrapper );
                     });
+
+                    $(".images_from_gallery").append( choixWrapper );
+                });
+            } else {
+                $('.active_image_choice').removeClass("active_image_choice");
+                divToDisplay.addClass("active_image_choice");
+            }
 
             $('.wrapper_images').addClass('show');
             $('body').css('overflow','hidden');
