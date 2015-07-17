@@ -18,7 +18,21 @@ class DefaultController extends Controller
      */
     public function testAction( Request $request )
     {
-        echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($this->get("doge.facebook_session")); echo "</pre>";die;
+        $facebookRequestHelper = $this->get( "doge.request_facebook" );
+
+        $images = [ ];
+
+
+        foreach ( $facebookRequestHelper->getAlbumPhotos( 1491070590287 )->asArray()['data'] as $photo ) {
+            echo "\n<pre>"; \Doctrine\Common\Util\Debug::dump($photo->images); echo "</pre>";
+            $images[] = [
+                "id"   => $photo->id,
+                "link" => $photo->images[0]->source,
+                "name" => $photo->name
+            ];
+        }
+
+        die;
 
         return $this->render("DogeFacebookBundle:Default:test.html.twig", [ "loginUrl" => $loginUrl ] );
     }
