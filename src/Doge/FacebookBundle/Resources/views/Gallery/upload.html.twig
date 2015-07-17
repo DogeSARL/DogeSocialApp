@@ -15,9 +15,9 @@
                         {{ form_label(form.album) }}
                         {{ form_widget( form.album ) }}
                         <div class="images_from_gallery">
+                            <div class="show_images_button">Choose in the gallery</div>
                             <div class="wrapper_images">
                                 <div class="close"></div>
-                                <div class="show_images_button">Choose in the gallery</div>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,6 @@
             });
             _this.addClass('active');
         });
-    </script>
     </script>
     {% endif %}
 {% endblock %}
