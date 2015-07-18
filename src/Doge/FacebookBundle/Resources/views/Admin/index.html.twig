@@ -1,14 +1,47 @@
-Like count: {{ json.0.like_count }}
-Countries of Users:
-{% for country in countries %}
-  {{ country }}
-{% endfor %}
-<br />
-User per country:
-{% for country, number in user_per_country %}
-  Number of users for {{ country }}: {{ number }}
-{% endfor %}
-<br />
-User by age:
-User below 25: {{ nb_user_age_below_25 }}
-User Over 25: {{ nb_user_age_below_25 }}
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
+{% block content %}
+
+    <div id="adminStats">
+        <h3>Such Stats, much Wow</h3>
+        <table id="customers">
+            <tbody>
+                <tr>
+                    <th>Nombre de Likes:</th>
+                    <td>{{ json.0.like_count }}</td>
+                </tr>
+                <tr class="alt">
+                    <th>Nombre d'utilisateurs:</th>
+                    <td>{{ nb_user_age_below_25 + nb_user_age_over_25}}</td>
+                </tr>
+                <tr class="alt">
+                    <th>Pays des Utilisateurs:</th>
+                    <td>
+                      {% for country in countries %}
+                        {{ country }}
+                      {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Nombre d'utilisateurs par Pays:</th>
+                    <td>
+                      {% for country, number in user_per_country %}
+                        {{ country }}: {{ number }}
+                      {% endfor %}
+                    </td>
+                </tr>
+                <tr class="alt">
+                    <th>Utilisateurs de moins de 25 ans:</th>
+                    <td>{{ nb_user_age_below_25 + 0 }}</td>
+                </tr>
+                <tr class="alt">
+                    <th>Utilisateurs de plus de 25 ans:</th>
+                    <td>{{ nb_user_age_over_25 + 0}}</td>
+                </tr>
+              </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+{% endblock %}
