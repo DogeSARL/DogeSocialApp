@@ -356,6 +356,7 @@ a.cta_home_link *{
 #gallery div.openpop img{
     width: 100%;
     height:auto;
+    max-height: 350px;
 }
 
 #gallery .popup_participation{
