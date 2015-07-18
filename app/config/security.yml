@@ -19,6 +19,7 @@ security:
                 login_path: /admin/login
                 check_path: /admin/login_check
                 failure_path: /admin/login
+                default_target_path: /admin
             logout:       true
             anonymous:    true
 
@@ -29,6 +30,7 @@ security:
                 resource_owners:
                     facebook: /app/login/check-facebook
                 login_path: /app/
+                default_target_path: /app
                 failure_path: /app/connect
                 check_path: /app/login_check
                 oauth_user_provider:
