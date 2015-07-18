@@ -79,6 +79,7 @@
             var divToDisplay = $("#album_" + id );
 
             if( divToDisplay.length === 0 ){
+                $('.active_image_choice').removeClass("active_image_choice");
                 $.post(
                     "{{ app.request.schemeAndHttpHost }}/app/album/" + id
                 ).success(function(data){
@@ -114,8 +115,9 @@
                     });
 
                     $(".wrapper_images").append( choixWrapper );
-
-                    console.log( choixWrapper );
+                    if(!divToDisplay.hasClass("active_image_choice")){
+                        divToDisplay.addClass("active_image_choice");
+                    }
                 });
             } else {
                 $('.active_image_choice').removeClass("active_image_choice");
