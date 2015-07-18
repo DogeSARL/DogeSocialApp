@@ -57,7 +57,7 @@ class GalleryController extends Controller {
 
         $formExistingPhotoBuilder = $this->createFormBuilder();
         $formExistingPhotoBuilder->add( "album", "choice", [ 'choices' => $albums ] );
-
+        $formExistingPhotoBuilder->setAttribute( "name" , "choice_existing_photo" );
         $formExistingPhoto = $formExistingPhotoBuilder->getForm();
 
         return $this->render( "DogeFacebookBundle:Gallery:upload.html.twig", [ 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ] );
