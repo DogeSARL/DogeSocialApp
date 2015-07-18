@@ -141,6 +141,10 @@
             });
             _this.addClass('active');
         });
+
+        $(document).on( 'click', '.validate', function(){
+            $(".sub-form1 form").submit();
+        })
     </script>
     {% endif %}
 {% endblock %}
