@@ -61,7 +61,7 @@ class Upload {
             $image = new Image();
         }
 
-        if( $id = $this->request->get("form_photo", false) ){
+        if( $id = $this->request->get("choix_image", false) ){
             $image->setPostId( $id );
 
             $this->em->persist($image);
