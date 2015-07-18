@@ -631,6 +631,11 @@ a.cta_home_link *{
     width: 100%;
     max-width: 1024px;
     margin: 40px auto 0;
+    display: none;
+}
+
+#upload .wrapper_choix_image.active_image_choice{
+    display: block;
 }
 
 #upload .wrapper_choix_image .line{
@@ -945,13 +950,5 @@ a.cta_home_link *{
     h3 {
         page-break-after: avoid;
     }
-}
-
-.images_from_gallery{
-    display: none;
-}
-
-.images_from_gallery .active_image_choice{
-    display: block;
 }
 
