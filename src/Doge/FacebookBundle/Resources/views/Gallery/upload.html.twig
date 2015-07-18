@@ -143,10 +143,8 @@
         });
 
         $(document).on( 'click', '.validate', function(){
-            console.log("ok");
-            console.log( $(".sub-form1 form") );
-            $(".sub-form1 form").submit();
-        })
+            $("#sub-form1 form").submit();
+        });
     </script>
     {% endif %}
 {% endblock %}

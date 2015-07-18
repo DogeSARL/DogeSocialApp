@@ -31,7 +31,6 @@ class GalleryController extends Controller {
         $message = "";
 
         if ( $request->getMethod() == "POST" && $this->getUser() ) {
-            echo "\n<pre>"; var_dump($_POST); echo "</pre>";die;
             try {
                 $message = $this->get( "doge.form.handler.upload" )->handleRequest();
             } catch ( \Exception $e ) {
