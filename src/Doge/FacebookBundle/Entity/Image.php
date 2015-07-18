@@ -17,12 +17,18 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(name="doge_image")
  */
-class Image {
+class Image{
     /**
      * @ORM\Id
      * @ORM\Column(type="string")
      */
     protected $postId;
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    protected $userId;
 
     /**
      * @return mixed
@@ -38,5 +44,19 @@ class Image {
     public function setPostId($postId)
     {
         $this->postId = $postId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId() {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     */
+    public function setUserId( $userId ) {
+        $this->userId = $userId;
     }
 }

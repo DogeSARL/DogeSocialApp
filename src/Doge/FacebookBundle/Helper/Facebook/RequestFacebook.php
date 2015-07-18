@@ -78,6 +78,14 @@ class RequestFacebook {
         return false;
     }
 
+    public function getAlbumPhotos( $id ) {
+        $response = (new FacebookRequest(
+            $this->fbSession, 'GET',  "/" . $id . "/photos"
+        ))->execute();
+
+        return $response->getGraphObject();
+    }
+
     /**
      * @return mixed
      * @throws \Facebook\FacebookRequestException

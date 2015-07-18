@@ -13,3 +13,7 @@ doge_facebook_gallery:
 doge_facebook_test_homepage:
     path:     /test
     defaults: { _controller: DogeFacebookBundle:Default:test }
+
+doge_facebook_photo_from_id:
+    path: /album/{id}
+    defaults: { _controller: DogeFacebookBundle:Gallery:getPhotosFromAlbumId }

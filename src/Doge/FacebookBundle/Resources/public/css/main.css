@@ -456,6 +456,16 @@ a.cta_home_link *{
    Upload
    ========================================================================== */
 
+.message_form{
+    color: white;
+    font-family: "Vollkorn",serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px;
+    text-align: center;
+}
+
 #upload .wrapper_form{
     display:inline-block;
     width: 630px;
@@ -472,6 +482,7 @@ a.cta_home_link *{
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 #upload #sub-form2{
@@ -509,7 +520,7 @@ a.cta_home_link *{
     display: inline-block;
     color:white;
     font-family: 'Open Sans';
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.2;
     text-shadow: 4px 1px 6px rgba(150, 150, 150, 1);
 }
@@ -936,6 +947,11 @@ a.cta_home_link *{
     }
 }
 
+.images_from_gallery{
+    display: none;
+}
 
-
+.images_from_gallery .active_image_choice{
+    display: block;
+}
 

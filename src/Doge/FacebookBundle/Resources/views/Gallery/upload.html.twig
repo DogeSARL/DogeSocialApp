@@ -1,48 +1,143 @@
-{% extends "DogeFacebookBundle:Layout:layout.html.twig" %}
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
 
 {% block content %}
-    {% if error is defined and error is not empty %}
-        {{ error }}
-    {% else %}
-    {{ message }}
-    Je télécharge une photo depuis mon ordinateur :
-
-    <br />
-    {{ form( form ) }}
-
-    Ou je choisis une photo depuis mes albums facebook :
-        <form method="post" id="user-photos">
-        </form>
-    {% endif %}
+    <div id="upload">
+        {% if error is not defined or error is empty %}
+        <h1>Upload your photo right here !</h1>
+        <div class="wrapper_form">
+            {% if message is defined and message is not empty %}
+                <p class="message_form">{{ message }}</p>
+            {% endif %}
+            {{ form_start( form ) }}
+                <div id="form" class="clearfix">
+                    <div id="sub-form1">
+                        <h2>Upload from my own gallery</h2>
+                        {{ form_label(form.album) }}
+                        {{ form_widget( form.album ) }}
+                        <div class="images_from_gallery">
+                            <div class="show_images_button">Choose in the gallery</div>
+                            <div class="wrapper_images">
+                                <div class="close"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sub-form2">
+                        <h2>Upload from my computer</h2>
+                        <label for="form_createAlbum">Create new album</label>
+                        <input id="createAlbum" class="createAlbum" type="checkbox" value="createAlbum"/>
+                        <label id="label_form_albumName" for="form_albumName" class="required form_labelAlbumName" style="display:none;">Album name</label>
+                        {{ form_widget( form.albumName ) }}
+                        {{ form_widget( form.album ) }}
+                        <div>
+                            {{ form_label( form.file ) }}
+                            {{ form_widget( form.file ) }}
+                        </div>
+                        <div>
+                            {{ form_label( form.text ) }}
+                            {{ form_widget( form.text ) }}
+                        </div>
+                        <div class="submit_wrapper">
+                            {{ form_row( form.envoyer ) }}
+                        </div>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+        {% else %}
+            {{ error }}
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block js %}
     {{ parent() }}
     {% if error is not defined or error is empty %}
-    <script src="//connect.facebook.net/fr_FR/sdk.js"></script>
-    <script src="{{ asset("bundles/dogefacebook/js/upload.js") }}"></script>
     <script type="text/javascript">
-        var access_token;
+        function changeStateOfAlbumName(element){
+            if( element.prop('checked') ){
+                $('#label_form_albumName').css('display','block');
+                $('#form_albumName').css('display','block');
+            }else{
+                $('#label_form_albumName').css('display','none');
+                $('#form_albumName').css('display','none');
 
-        if( $("#form_album").val() == 0 ){
-            $("#form_albumName").attr("type", "text");
+            }
         }
 
-        $("#form_album").change(function(){
-            if( $(this).val() == 0 ){
-                $("#form_albumName").attr("type", "text");
-            } else {
-                $("#form_albumName").attr("type", "hidden");
-            }
+        $(document).ready(changeStateOfAlbumName($('#createAlbum')));
+        $('#createAlbum').change(function(){
+            changeStateOfAlbumName($(this));
         });
 
-        $(document).ready(function() {
-            $.ajaxSetup({ cache: true });
-            FB.getLoginStatus(function(response){
-                access_token = FB.getAuthResponse()['accessToken'];
+        //Afficher l'album photo facebook choisi au click
+        $('.show_images_button').click(function(e){
+            e.preventDefault();
 
-                uploadApp.init();
+            var id = $('#form_album').val();
+            var divToDisplay = $("#album_" + id );
+
+            if( divToDisplay.length === 0 ){
+                $.post(
+                    "{{ app.request.schemeAndHttpHost }}/app/album/" + id
+                ).success(function(data){
+                    var choixWrapper = $("<div id='album_" + id + "' class='wrapper_choix_image active_image_choice clearfix'></div>");
+                    var i = 0;
+                    var lineDiv;
+
+                    $.each( data, function( index, imageData ){
+                        var imageDiv;
+
+                        if( i % 3 == 0 ){
+                            lineDiv = $("<div class='line clearfix'></div>");
+                            imageDiv = $("<div class='choix_image first'></div>");
+                        } else if ( i % 3 == 1 ){
+                            imageDiv = $("<div class='choix_image'></div>");
+                        } else if ( i % 3 == 2 ){
+                            imageDiv = $("<div class='choix_image last'></div>");
+                        }
+
+                        imageDiv.append( "<label for='radio_photo_" + id + "'>" +
+                                            "<div class='hover_choix_image'></div>" +
+                                            "<img alt='"+ imageData['name'] + "' src='" + imageData['link'] +"'></label>" +
+                                            "<div class='validate'>Validate</div>" +
+                                            "<input id='radio_photo_'" + id + "name='choix_image' value='" + imageData['id'] + "' type='radio'/>");
+
+                        lineDiv.append( imageDiv );
+
+                        if( i % 3 == 2 ){
+                            choixWrapper.append( lineDiv );
+                        }
+
+                        i++;
+                    });
+
+                    $(".wrapper_images").append( choixWrapper );
+
+                    console.log( choixWrapper );
+                });
+            } else {
+                $('.active_image_choice').removeClass("active_image_choice");
+                divToDisplay.addClass("active_image_choice");
+            }
+
+            $('.wrapper_images').addClass('show');
+            $('body').css('overflow','hidden');
+            $('.wrapper_images .close, .choix_image .validate').click(function(f){
+                f.preventDefault();
+                $('.show').removeClass('show');
+                $('body').css('overflow','');
+            })
+        });
+
+
+        //Effet rollover sur le bouton radio pour choisir l'image
+        $(document).on( 'click', '.choix_image label', function(){
+            var _this =  $(this).closest('.choix_image');
+            $('.choix_image').not(_this).each(function(){
+                var _this2 =  $(this);
+                _this2.removeClass('active');
             });
+            _this.addClass('active');
         });
     </script>
     {% endif %}

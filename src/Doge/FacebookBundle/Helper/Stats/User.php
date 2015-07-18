@@ -31,6 +31,20 @@ class User{
     return $user_per_country;
   }
 
+  public function getUserPerGender( $users ) {
+    $user_per_gender = [];
+    $genders = ['male', 'female'];
+    foreach($genders as $gender) {
+      if (array_key_exists($gender, $genders)) {
+        $user_per_gender[$gender]++;
+      }
+      else {
+        $user_per_gender[$gender] = 1;
+      }
+    }
+    return $user_per_gender;
+  }
+
   public function getNbOfUserWhoseAgeIsBelow25( $users ) {
     $filtered_users = [];
 

@@ -81,15 +81,15 @@ class Upload {
             try {
                 $request = $this->fbRequest->postPhoto( $file );
                 $image->setPostId( $request->getProperty("id") );
-
+                $image->setUserId( $this->tokenStorage->getToken()->getUser()->getId() );
                 $this->em->persist($image);
                 $this->em->flush();
 
                 // If you're not using PHP 5.5 or later, change the file reference to:
                 // 'source' => '@/path/to/file.name'
-                return "L'image " . $_FILES['form']['name']['file'] . "a été téléchargée sur Facebook avec succès !";
+                return "L'image " . $_FILES['form']['name']['file'] . " a été téléchargée sur Facebook avec succès !";
 
-            } catch(FacebookRequestException $e) {
+            } catch(\Exception $e) {
                 throw $e;
             }
         }
