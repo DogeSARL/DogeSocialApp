@@ -9,5 +9,5 @@
 /composer.phar
 /vendor/
 /web/bundles/
-
+!/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views/Security/login.html.twig
 .idea
