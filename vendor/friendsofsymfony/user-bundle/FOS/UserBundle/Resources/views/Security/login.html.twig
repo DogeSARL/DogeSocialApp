@@ -1,0 +1,40 @@
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
+
+{% block fos_user_content %}
+
+  {% block content %}
+      <h1 class="title">Login</h1>
+
+      <p style="color: white;">
+          Veuillez renseigner vos identifiants pour pouvoir accéder aux Statistiques.
+      </p>
+
+      {% if error %}
+          <div class="error">{ error|trans({}, 'FOSUserBundle') }}</div>
+      {% endif %}
+
+  <form action="{{ path("fos_user_security_check") }}" method="post">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+      <div>
+        <label style="color: white;" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+      </div>
+
+      <div>
+        <label style="color: white;" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="password" id="password" name="_password" required="required" />
+      </div>
+
+      <div>
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+        <label style="color: white;" for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+      </div>
+      
+  </form>
+  {% endblock %}
+
+  {% set code = code(_self) %}
+
+{% endblock fos_user_content %}

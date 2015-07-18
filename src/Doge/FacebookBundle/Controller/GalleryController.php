@@ -31,6 +31,7 @@ class GalleryController extends Controller {
         $message = "";
 
         if ( $request->getMethod() == "POST" && $this->getUser() ) {
+            echo "\n<pre>"; var_dump($_POST); echo "</pre>";die;
             try {
                 $message = $this->get( "doge.form.handler.upload" )->handleRequest();
             } catch ( \Exception $e ) {
@@ -39,7 +40,7 @@ class GalleryController extends Controller {
         }
 
         $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
-        $albums = [ 0 => "Nouvel album" ];
+        $albums = [];
 
         foreach ( $retrievedAlbums as $album ) {
             $albums[ $album->id ] = $album->name;
@@ -47,7 +48,7 @@ class GalleryController extends Controller {
 
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add( "album", "choice", [ 'choices' => $albums ] )
-            ->add( "albumName", "text" )
+            ->add( "albumName", "text", [ "required" => false ] )
             ->add( "file", "file" )
             ->add( "text", "text", [ "label" => "Describe your photo" ] )
             ->add( "envoyer", "submit", [ "label" => "Send" ] );
@@ -56,7 +57,6 @@ class GalleryController extends Controller {
 
         $formExistingPhotoBuilder = $this->createFormBuilder();
         $formExistingPhotoBuilder->add( "album", "choice", [ 'choices' => $albums ] );
-
         $formExistingPhoto = $formExistingPhotoBuilder->getForm();
 
         return $this->render( "DogeFacebookBundle:Gallery:upload.html.twig", [ 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ] );
