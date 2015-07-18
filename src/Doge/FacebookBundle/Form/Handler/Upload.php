@@ -61,8 +61,6 @@ class Upload {
             $image = new Image();
         }
 
-        echo "<pre>"; var_dump($_POST); echo "</pre>"; 
-        echo "<pre>"; var_dump($this->request->get("choix_image", false)); echo "</pre>";die;
         if( $id = $this->request->get("choix_image", false) ){
             $image->setPostId( $id );
 
