@@ -83,6 +83,7 @@
                 $.post(
                     "{{ app.request.schemeAndHttpHost }}/app/album/" + id
                 ).success(function(data){
+                            console.log(data);
                     var choixWrapper = $("<div id='album_" + id + "' class='wrapper_choix_image active_image_choice clearfix'></div>");
                     var i = 0;
                     var lineDiv;
@@ -115,6 +116,7 @@
                     });
 
                     $(".wrapper_images").append( choixWrapper );
+
                     if(!divToDisplay.hasClass("active_image_choice")){
                         divToDisplay.addClass("active_image_choice");
                     }
