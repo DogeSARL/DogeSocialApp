@@ -8,20 +8,22 @@
             {% if message is defined and message is not empty %}
                 <p class="message_form">{{ message }}</p>
             {% endif %}
-            {{ form_start( form ) }}
                 <div id="form" class="clearfix">
                     <div id="sub-form1">
+                        {{ form_start( formPhoto ) }}
                         <h2>Upload from my own gallery</h2>
-                        {{ form_label(form.album) }}
-                        {{ form_widget( form.album ) }}
+                        {{ form_label(formPhoto.album) }}
+                        {{ form_widget( formPhoto.album ) }}
                         <div class="images_from_gallery">
                             <div class="show_images_button">Choose in the gallery</div>
                             <div class="wrapper_images">
                                 <div class="close"></div>
                             </div>
                         </div>
+                        {{ form_end( formPhoto ) }}
                     </div>
                     <div id="sub-form2">
+                        {{ form_start( form ) }}
                         <h2>Upload from my computer</h2>
                         <label for="form_createAlbum">Create new album</label>
                         <input id="createAlbum" class="createAlbum" type="checkbox" value="createAlbum"/>
@@ -39,9 +41,9 @@
                         <div class="submit_wrapper">
                             {{ form_row( form.envoyer ) }}
                         </div>
+                        {{ form_end(form) }}
                     </div>
                 </div>
-            {{ form_end(form) }}
         </div>
         {% else %}
             {{ error }}
