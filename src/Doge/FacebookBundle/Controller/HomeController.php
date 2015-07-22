@@ -29,5 +29,9 @@ class HomeController extends Controller
     public function termsAction(){
         return $this->render("DogeFacebookBundle:Home:tos.html.twig");
     }
+
+    public function rulesAction(){
+        return $this->render("DogeFacebookBundle:Home:rules.html.twig");
+    }
 }
 
