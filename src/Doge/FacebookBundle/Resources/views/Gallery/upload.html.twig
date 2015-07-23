@@ -10,7 +10,7 @@
             {% endif %}
                 <div class="message_form">
                     <label for="contact_email">Adresse de contact</label>
-                    <input id="contact_email" type="email" required="true" name="contact_email"/>
+                    <input id="contact_email" {% if email != "" %}value="{{ email }}"{% endif %} type="email" required="true" name="contact_email"/>
                 </div>
                 <div id="form" class="clearfix">
                     <div id="sub-form1">
