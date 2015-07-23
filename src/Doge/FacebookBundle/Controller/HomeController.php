@@ -23,7 +23,7 @@ class HomeController extends Controller
         foreach( $photos as $photo ){
             $photoLikeCount = $facebookRequestHelper->getLikeCount( $photo->getPostId() );
 
-            if( $photoLikeCount > $likeCount ){
+            if( $photoLikeCount > $likeCount || ( $photoLikeCount == $likeCount && $likeCount == 0 ) ){
                 $winner = $photo;
                 $likeCount = $photoLikeCount;
             }
