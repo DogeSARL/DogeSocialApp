@@ -8,7 +8,10 @@
             {% if message is defined and message is not empty %}
                 <p class="message_form">{{ message }}</p>
             {% endif %}
-                <div class="message_form"><input id="contact_email" type="email" required="true" name="contact_email"/></div>
+                <div class="message_form">
+                    <label for="contact_email">Adresse de contact</label>
+                    <input id="contact_email" type="email" required="true" name="contact_email"/>
+                </div>
                 <div id="form" class="clearfix">
                     <div id="sub-form1">
                         {{ form_start( formPhoto ) }}

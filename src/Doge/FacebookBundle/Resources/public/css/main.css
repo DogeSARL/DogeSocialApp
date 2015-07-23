@@ -965,3 +965,7 @@ a.cta_mentions{
     }
 }
 
+#contact_email{
+    color: black;
+    width: 250px;
+}
