@@ -1,3 +1,13 @@
+@media only screen and (max-width: 850px ) {
+    #gallery div.openpop img{
+        max-height: 250px;
+    }
+
+    .image_container{
+        max-height: 250px;
+    }
+}
+
 @media only screen and (max-width: 810px) {
 
 	#gallery div.openpop.first {
