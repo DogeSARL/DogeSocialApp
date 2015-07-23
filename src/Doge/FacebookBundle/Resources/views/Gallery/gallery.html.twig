@@ -13,8 +13,8 @@
     <h1>Become the sublime model<br />of Kawaii Pets</h1>
     <h3>Upload your cutest photo<br />to become the new ambassador of Kawaii Pets</h3>
     <div id="gallery" class="clearfix">
-        <div style="width:100%;">
-            <a class="cta_mentions" href="{{ path("doge_facebook_upload") }}">Upload your photo</a>
+        <div style="width:100%; margin-bottom: 35px;">
+            <a class="cta_mentions" href="{{ path("doge_facebook_upload") }}" style="margin-top:0px; ">Upload your photo</a>
         </div>
         {% for image in images %}
         {% if (loop.index % 3) == 1 %}
