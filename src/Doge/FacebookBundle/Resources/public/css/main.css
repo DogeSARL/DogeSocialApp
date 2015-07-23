@@ -729,7 +729,7 @@ a.cta_mentions{
 
 #upload .wrapper_form #contact_email{
     color: black;
-    width: 250px;
+    width: 250px !important;
     height: 30px;
     margin-bottom: 15px;
     width: 250px;
