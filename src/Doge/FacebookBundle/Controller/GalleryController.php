@@ -132,11 +132,9 @@ class GalleryController extends Controller {
                 $winner = $photo;
                 $likeCount = $photoLikeCount;
             }
-
-            $winner = $facebookRequestHelper->getPhoto( $winner->getPostId() );
-
-            echo "\n<pre>"; var_dump($winner); echo "</pre>";
         }
+
+        $winner = $facebookRequestHelper->getPhoto( $winner->getPostId() );
 
         return $this->render("@DogeFacebook/Gallery/winner.html.twig", [ "winner" => $winner->asArray() ]);
     }
