@@ -13,7 +13,7 @@
                         <a class="cta_mentions" href="{{ path("doge_facebook_gallery") }}" style="margin-top:0; margin-bottom: 30px;">See the gallery</a>
                     </div>
                     <label for="contact_email">Your mail</label>
-                    <input id="contact_email" {% if email != "" %}value="{{ email }}"{% endif %} type="email" required="true" name="contact_email"/>
+                    <input id="contact_email" {% if email != "" %}value="{{ email }}"{% endif %} type="email" required="true"/>
                 </div>
                 <div id="form" class="clearfix">
                     <div id="sub-form1">
@@ -27,6 +27,7 @@
                                 <div class="close"></div>
                             </div>
                         </div>
+                        <input type="hidden" class="mail_hidden_form1" {% if email != "" %}value="{{ email }}"{% endif %} name="contact_email" />
                         {{ form_end( formPhoto ) }}
                     </div>
                     <div id="sub-form2">
@@ -48,6 +49,7 @@
                         <div class="submit_wrapper">
                             {{ form_row( form.envoyer ) }}
                         </div>
+                        <input type="hidden" class="mail_hidden_form2" {% if email != "" %}value="{{ email }}"{% endif %} name="contact_email" />
                         {{ form_end(form) }}
                     </div>
                 </div>
@@ -159,10 +161,9 @@
             $("#sub-form1 form").submit();
         });
 
-        $(document).on( "click", ".validate, #form_envoyer", function(){
-            var form = $(this).closest( "form" );
-            form.append( $("#contact_email") );
-            form.submit();
+        $("#contact_email").on("change", function(){
+            $(".mail_hidden_form1").val( $(this).val() );
+            $(".mail_hidden_form2").val( $(this).val() );
         });
 
     </script>
