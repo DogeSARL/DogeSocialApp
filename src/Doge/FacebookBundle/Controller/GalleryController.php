@@ -133,8 +133,6 @@ class GalleryController extends Controller {
                 $likeCount = $photoLikeCount;
             }
 
-            $winner = $facebookRequestHelper->getPhoto( $winner->getPostId() );
-
             echo "\n<pre>"; var_dump($winner); echo "</pre>";
         }
 
