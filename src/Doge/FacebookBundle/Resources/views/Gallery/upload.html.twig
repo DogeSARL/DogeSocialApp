@@ -9,7 +9,10 @@
                 <p class="message_form">{{ message }}</p>
             {% endif %}
                 <div class="message_form">
-                    <label for="contact_email">Adresse de contact</label>
+                    <div style="width:100%; text-align:center;">
+                        <a class="cta_mentions" href="{{ path("doge_facebook_gallery") }}">See the gallery</a>
+                    </div>
+                    <label for="contact_email">Your mail</label>
                     <input id="contact_email" type="email" required="true" name="contact_email"/>
                 </div>
                 <div id="form" class="clearfix">
@@ -47,9 +50,6 @@
                         </div>
                         {{ form_end(form) }}
                     </div>
-                </div>
-                <div style="width:100%;">
-                    <a class="cta_mentions" href="{{ path("doge_facebook_gallery") }}">See the gallery</a>
                 </div>
         </div>
         {% else %}
