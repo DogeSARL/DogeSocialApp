@@ -1,1 +1,8 @@
-<img src="{{ winner.images[0].source }}" alt="Photo de {{ winner.from.name }}" />
+{% extends 'DogeFacebookBundle:Layout:layout.html.twig' %}
+
+{% block content %}
+    <p class="message_form">Aaaaaand.... Here is the big winner !! (for the moment...)</p>
+    <div id="winner_image">
+        <img src="{{ winner.images[0].source }}" alt="Photo de {{ winner.from.name }}" />
+    </div>
+{% endblock %}
