@@ -26,14 +26,10 @@
     {%endif%}
     <div style="width:100%;">
         {%if app.request.get('_route') != 'doge_facebook_terms_conditions'%}
-            <div style="width:100%;">
-                <a class="cta_mentions" href="{{ path("doge_facebook_terms_conditions") }}">Terms and Conditions of Use</a>
-            </div>
+            <a class="cta_mentions" href="{{ path("doge_facebook_terms_conditions") }}">Terms and Conditions of Use</a>
         {%endif%}
         {%if app.request.get('_route') != 'doge_facebook_rules_contest'%}
-            <div style="width:100%;">
-                <a class="cta_mentions" href="{{ path("doge_facebook_rules_contest") }}">Rules of contest</a>
-            </div>
+            <a class="cta_mentions" href="{{ path("doge_facebook_rules_contest") }}">Rules of contest</a>
         {%endif%}
     </div>
 </div>
