@@ -26,3 +26,7 @@ doge_facebook_terms_conditions:
 doge_facebook_rules_contest:
     path:     /rules-contest
     defaults: { _controller: DogeFacebookBundle:Home:rules}
+
+doge_facebook_winner:
+    path:     /winner
+    defaults: { _controller: DogeFacebookBundle:Gallery:winner}
