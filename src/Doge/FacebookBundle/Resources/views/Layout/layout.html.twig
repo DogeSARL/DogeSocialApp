@@ -19,6 +19,10 @@
     </header>
     {% block content %}
     {% endblock %}
+    <div style="width:100%;">
+        <a class="cta_mentions" href="{{ path("doge_facebook_terms_conditions") }}">Web Site Terms and Conditions of Use</a>
+        <a class="cta_mentions" href="{{ path("doge_facebook_rules_contest") }}">Rules of contest</a>
+    </div>
 </div>
 {% block js %}
 {% include 'DogeFacebookBundle:Layout:javascript.html.twig' %}
