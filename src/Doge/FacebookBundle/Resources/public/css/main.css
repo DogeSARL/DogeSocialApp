@@ -296,6 +296,15 @@ a.cta_home_link *{
     margin-top: 25px;
 }
 
+a.cta_mentions{
+    background: white none repeat scroll 0 0;
+    color: black;
+    display: inline-block;
+    margin-top: 50px;
+    padding: 10px;
+    text-decoration: none;
+}
+
 
 /*****************************GALLERY*****************************/
 
@@ -356,6 +365,7 @@ a.cta_home_link *{
 #gallery div.openpop img{
     width: 100%;
     height:auto;
+    max-height: 350px;
 }
 
 #gallery .popup_participation{

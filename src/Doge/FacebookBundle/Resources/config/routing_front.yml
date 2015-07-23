@@ -17,3 +17,12 @@ doge_facebook_test_homepage:
 doge_facebook_photo_from_id:
     path: /album/{id}
     defaults: { _controller: DogeFacebookBundle:Gallery:getPhotosFromAlbumId }
+
+doge_facebook_terms_conditions:
+    path:     /terms-conditions
+    defaults: { _controller: DogeFacebookBundle:Home:terms }
+
+
+doge_facebook_rules_contest:
+    path:     /rules-contest
+    defaults: { _controller: DogeFacebookBundle:Home:rules}

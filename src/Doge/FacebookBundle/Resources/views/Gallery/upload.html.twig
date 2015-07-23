@@ -100,11 +100,11 @@
                             imageDiv = $("<div class='choix_image last'></div>");
                         }
 
-                        imageDiv.append( "<label for='radio_photo_" + id + "'>" +
+                        imageDiv.append( "<label for='radio_photo_" + imageData['id'] + "'>" +
                                             "<div class='hover_choix_image'></div>" +
                                             "<img alt='"+ imageData['name'] + "' src='" + imageData['link'] +"'></label>" +
                                             "<div class='validate'>Validate</div>" +
-                                            "<input id='radio_photo_" + id + "' name='choix_image' value='" + imageData['id'] + "' type='radio'/>");
+                                            "<input id='radio_photo_" + imageData['id'] + "' name='choix_image' value='" + imageData['id'] + "' type='radio'/>");
 
                         lineDiv.append( imageDiv );
 
@@ -144,6 +144,8 @@
                 _this2.removeClass('active');
             });
             _this.addClass('active');
+
+
         });
 
         $(document).on( 'click', '.validate', function(){
