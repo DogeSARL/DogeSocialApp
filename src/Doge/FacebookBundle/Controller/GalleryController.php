@@ -28,11 +28,17 @@ class GalleryController extends Controller {
             }
         }
 
-        echo "\n<pre>"; var_dump($_POST); echo "</pre>";
-        
         $message = "";
 
-        if ( $request->getMethod() == "POST" && $this->getUser() ) {
+        if ( $hasEmail = isset( $_POST['contact_email'] ) ) {
+            $user = $this->getUser()->setEmail( $_POST['contact_email'] );
+            $em = $this->getDoctrine()->getManager();
+            $em->persist( $user );
+
+            $message = "Veuillez rentrer un email";
+        }
+
+        if ( $hasEmail && $request->getMethod() == "POST" && $this->getUser() ) {
             try {
                 $message = $this->get( "doge.form.handler.upload" )->handleRequest();
             } catch ( \Exception $e ) {
@@ -41,7 +47,7 @@ class GalleryController extends Controller {
         }
 
         $retrievedAlbums = $fbRequest->getUserAlbums()->asArray()['data'];
-        $albums = [];
+        $albums = [ ];
 
         foreach ( $retrievedAlbums as $album ) {
             $albums[ $album->id ] = $album->name;
@@ -60,7 +66,7 @@ class GalleryController extends Controller {
         $formExistingPhotoBuilder->add( "album", "choice", [ 'choices' => $albums ] );
         $formExistingPhoto = $formExistingPhotoBuilder->getForm();
 
-        return $this->render( "DogeFacebookBundle:Gallery:upload.html.twig", [ 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ] );
+        return $this->render( "DogeFacebookBundle:Gallery:upload.html.twig", [ 'email' => ( filter_var( $this->getUser()->getEmail(), FILTER_VALIDATE_EMAIL ) ) ? $this->getUser()->getEmail() : "" , 'formPhoto' => $formExistingPhoto->createView(), 'form' => $form->createView(), "message" => $message, "error" => $error ] );
     }
 
     public function galleryAction() {
@@ -96,8 +102,8 @@ class GalleryController extends Controller {
         foreach ( $facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'] as $photo ) {
             $image = $photo->images[0];
 
-            foreach( $photo->images as $anotherImage ){
-                if( $anotherImage->height > 443 && abs( $anotherImage->height ) < abs( $image->height ) ){
+            foreach ( $photo->images as $anotherImage ) {
+                if ( $anotherImage->height > 443 && abs( $anotherImage->height ) < abs( $image->height ) ) {
                     $image = clone( $anotherImage );
                 }
             }
