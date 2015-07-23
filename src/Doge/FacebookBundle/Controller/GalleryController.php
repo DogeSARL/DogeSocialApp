@@ -28,11 +28,17 @@ class GalleryController extends Controller {
             }
         }
 
-        echo "\n<pre>"; var_dump($_POST); echo "</pre>";
-        
         $message = "";
 
-        if ( $request->getMethod() == "POST" && $this->getUser() ) {
+        if( $hasEmail = isset( $_POST['contact_email'] ) ){
+            $user = $this->getUser()->setEmail($_POST['contact_email']);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist( $user );
+
+            $message = "Veuillez rentrer un email";
+        }
+
+        if ( $hasEmail && $request->getMethod() == "POST" && $this->getUser() ) {
             try {
                 $message = $this->get( "doge.form.handler.upload" )->handleRequest();
             } catch ( \Exception $e ) {
