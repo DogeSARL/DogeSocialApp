@@ -56,13 +56,19 @@ class Upload {
     public function handleRequest()
     {
         $image = $this->em->getRepository("DogeFacebookBundle:Image")->findOneBy(["userId" => $this->tokenStorage->getToken()->getUser()->getId()]);
+        $newImage = false;
 
         if( !$image ){
             $image = new Image();
+            $newImage = true;
         }
 
         if( $id = $this->request->get("choix_image", false) ){
             $image->setPostId( $id );
+
+            if( $newImage ){
+                $image->setUserId( $this->tokenStorage->getToken()->getUser()->getId() );
+            }
 
             $this->em->persist($image);
             $this->em->flush();

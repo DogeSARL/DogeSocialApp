@@ -29,7 +29,7 @@ class GalleryController extends Controller {
         }
 
         echo "\n<pre>"; var_dump($_POST); echo "</pre>";
-die;
+        
         $message = "";
 
         if ( $request->getMethod() == "POST" && $this->getUser() ) {
