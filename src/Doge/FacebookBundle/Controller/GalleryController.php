@@ -98,19 +98,10 @@ class GalleryController extends Controller {
 
         $images = [ ];
 
-
         foreach ( $facebookRequestHelper->getAlbumPhotos( $id )->asArray()['data'] as $photo ) {
-            $image = $photo->images[0];
-
-            foreach ( $photo->images as $anotherImage ) {
-                if ( $anotherImage->height > 443 && abs( $anotherImage->height ) < abs( $image->height ) ) {
-                    $image = clone( $anotherImage );
-                }
-            }
-
             $images[] = [
                 "id"   => $photo->id,
-                "link" => $image->source,
+                "link" => $photo->images[0]->source,
                 "name" => $photo->name
             ];
         }
