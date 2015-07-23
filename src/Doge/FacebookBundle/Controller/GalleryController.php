@@ -138,6 +138,6 @@ class GalleryController extends Controller {
             echo "\n<pre>"; var_dump($winner); echo "</pre>";
         }
 
-        return $this->render("@DogeFacebook/Gallery/winner.html.twig", [ "winner" => $winner ]);
+        return $this->render("@DogeFacebook/Gallery/winner.html.twig", [ "winner" => $winner->asArray() ]);
     }
 }
