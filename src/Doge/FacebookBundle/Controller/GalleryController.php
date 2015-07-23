@@ -117,4 +117,27 @@ class GalleryController extends Controller {
 
         return new JsonResponse( $images );
     }
+
+    public function winnerAction() {
+        $photos = $this->getDoctrine()->getManager()->getRepository("DogeFacebookBundle:Image")->findAll();
+
+        $likeCount = 0;
+        $winner = null;
+        $facebookRequestHelper = $this->get("doge.request_facebook");
+
+        foreach( $photos as $photo ){
+            $photoLikeCount = $facebookRequestHelper->getLikeCount( $photo->getPostId() );
+
+            if( $photoLikeCount > $likeCount || ( $photoLikeCount == $likeCount && $likeCount == 0 ) ){
+                $winner = $photo;
+                $likeCount = $photoLikeCount;
+            }
+
+            $winner = $facebookRequestHelper->getPhoto( $winner->getPostId() );
+
+            echo "\n<pre>"; var_dump($winner); echo "</pre>";
+        }
+
+        return $this->render("@DogeFacebook/Gallery/winner.html.twig", [ "winner" => $winner ]);
+    }
 }

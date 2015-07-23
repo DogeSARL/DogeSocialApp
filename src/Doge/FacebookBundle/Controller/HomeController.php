@@ -14,26 +14,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class HomeController extends Controller
 {
 	public function newAction(){
-        $photos = $this->getDoctrine()->getManager()->getRepository("DogeFacebookBundle:Image")->findAll();
-
-        $likeCount = 0;
-        $winner = null;
-        $facebookRequestHelper = $this->get("doge.request_facebook");
-
-        foreach( $photos as $photo ){
-            $photoLikeCount = $facebookRequestHelper->getLikeCount( $photo->getPostId() );
-
-            if( $photoLikeCount > $likeCount || ( $photoLikeCount == $likeCount && $likeCount == 0 ) ){
-                $winner = $photo;
-                $likeCount = $photoLikeCount;
-            }
-
-            $winner = $facebookRequestHelper->getPhoto( $winner->getPostId() );
-            
-            echo "\n<pre>"; var_dump($winner); echo "</pre>";
-        }
-
-		return $this->render('DogeFacebookBundle:Home:new.html.twig', [ "winner" => $winner ]);
+		return $this->render('DogeFacebookBundle:Home:new.html.twig');
 	}
 
     public function participeAction()
