@@ -8,6 +8,7 @@
             {% if message is defined and message is not empty %}
                 <p class="message_form">{{ message }}</p>
             {% endif %}
+                <div class="message_form"><input id="contact_email" type="email" required="true" name="contact_email"/></div>
                 <div id="form" class="clearfix">
                     <div id="sub-form1">
                         {{ form_start( formPhoto ) }}
@@ -43,6 +44,9 @@
                         </div>
                         {{ form_end(form) }}
                     </div>
+                </div>
+                <div style="width:100%;">
+                    <a class="cta_mentions" href="{{ path("doge_facebook_gallery") }}">See the gallery</a>
                 </div>
         </div>
         {% else %}
@@ -151,6 +155,13 @@
         $(document).on( 'click', '.validate', function(){
             $("#sub-form1 form").submit();
         });
+
+        $(document).on( "click", ".validate, #form_envoyer", function(){
+            var form = $(this).closest( "form" );
+            form.append( $("#contact_email") );
+            form.submit();
+        });
+
     </script>
     {% endif %}
 {% endblock %}
